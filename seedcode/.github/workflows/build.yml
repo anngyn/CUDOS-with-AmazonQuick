@@ -6,8 +6,8 @@ on:
     paths:
       - pipelines/**
 env:
-  AWS_REGION: us-east-2
-  SAGEMAKER_PROJECT_NAME: sagemaker-github
+  AWS_REGION: ap-southeast-2
+  SAGEMAKER_PROJECT_NAME: Build-Deploy-GitHub3
 
 jobs:
   Build:
