@@ -48,4 +48,4 @@ git push -u origin main
 
 ## Security baseline
 
-Use least privilege in a real environment. This workshop follows the blog path for learning speed, but production usage should replace long-lived IAM user keys with GitHub OIDC federation.
+Use least privilege in a real environment. This workshop uses GitHub OIDC federation from the start instead of long-lived IAM user access keys — see [GitHub and AWS setup](../3-github-aws-setup) for the OIDC provider and role setup.

@@ -16,11 +16,11 @@ Open your repository in GitHub, then choose **Actions**. The build workflow shou
 
 If the workflow fails, check:
 
-- `AWS_REGION` value.
-- IAM user permissions.
+- `AWS_REGION` value matches the Region you deployed the SageMaker project in.
+- The IAM role behind `AWS_DEPLOY_ROLE_ARN` has the trust policy scoped to your repo and the execution policy attached.
+- `SAGEMAKER_PROJECT_NAME` in the workflow env block matches the actual project name in SageMaker Studio.
 - S3 bucket access.
 - SageMaker execution role.
-- Branch name and repository parameters.
 
 ## Monitor SageMaker Pipeline
 
@@ -77,8 +77,10 @@ cat output.json
 
 | Symptom | Check |
 |---|---|
-| GitHub workflow cannot assume or use credentials | Repository secrets and IAM permissions |
+| GitHub workflow cannot assume or use credentials | `AWS_DEPLOY_ROLE_ARN` secret value, OIDC trust policy repo condition, `permissions: id-token: write` on the job |
+| Workflow never triggers on push | Workflow YAML must live in the repo root `.github/workflows/`, not a nested subfolder |
 | Pipeline not created | SageMaker execution role and workflow logs |
+| Pipeline execution step fails with `SAGEMAKER_RESOURCE_LIMIT` / instance quota is 0 | Request a Service Quotas increase for the instance type used (for example `ml.m5.xlarge for processing job usage` and `ml.m5.xlarge for training job usage`) — new accounts default to 0 |
 | Model approval does not trigger deploy | EventBridge rule, Lambda logs, secret name |
 | Lambda receives event but GitHub workflow does not start | GitHub token permissions and workflow file name |
 | Endpoint deployment fails | Instance quota, model artifact path, endpoint config logs |

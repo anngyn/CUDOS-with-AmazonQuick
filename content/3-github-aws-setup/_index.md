@@ -29,38 +29,49 @@ Save the token in Secrets Manager:
 
 ```bash
 aws secretsmanager create-secret \
-  --name github/personal-access-token \
+  --name mlops \
   --secret-string '{"token":"<github-token>"}' \
   --region $AWS_REGION
 ```
 
-## Create IAM user for GitHub Actions
+## Create an IAM OIDC provider and role for GitHub Actions
 
-Create an IAM user named `github-actions-sagemaker-user`. Attach only permissions needed for SageMaker Pipelines, SageMaker jobs, S3 artifacts, ECR if used by the sample, CloudFormation, and CloudWatch logs.
-
-For a workshop account, you can start with the policy provided by the sample repository, then tighten it after the lab.
-
-Create access keys:
+Do not use long-lived IAM user access keys. Create an OIDC identity provider trusting `token.actions.githubusercontent.com`, then an IAM role GitHub Actions can assume:
 
 ```bash
-aws iam create-access-key --user-name github-actions-sagemaker-user
+aws iam create-open-id-connect-provider \
+  --url https://token.actions.githubusercontent.com \
+  --client-id-list sts.amazonaws.com \
+  --thumbprint-list 6938fd4d98bab03faadb97b34396831e3780aea1
+
+aws iam create-role \
+  --role-name GitHubActionsMLOpsExecutionRole \
+  --assume-role-policy-document file://iam/GitHubActionsTrustPolicy.json
+
+aws iam put-role-policy \
+  --role-name GitHubActionsMLOpsExecutionRole \
+  --policy-name GithubActionsMLOpsExecutionPolicy \
+  --policy-document file://iam/GithubActionsMLOpsExecutionPolicy.json
 ```
 
-## Add GitHub repository secrets
+The trust policy in `iam/GitHubActionsTrustPolicy.json` restricts `sts:AssumeRoleWithWebIdentity` to `repo:<owner>/<repo>:*`. Update it to match your GitHub owner and repository name.
+
+## Add GitHub repository secret
 
 ![GitHub repository secrets](/images/mlops-sagemaker-github-actions/github-secrets.svg)
 
 In GitHub, open your repository:
 
 1. Go to **Settings** > **Secrets and variables** > **Actions**.
-2. Add these repository secrets:
+2. Add one repository secret:
 
 | Secret name | Value |
 |---|---|
-| `AWS_ACCESS_KEY_ID` | IAM access key ID |
-| `AWS_SECRET_ACCESS_KEY` | IAM secret access key |
-| `AWS_REGION` | Workshop Region, for example `us-east-1` |
-| `AWS_ACCOUNT_ID` | AWS account ID |
+| `AWS_DEPLOY_ROLE_ARN` | ARN of `GitHubActionsMLOpsExecutionRole` |
+
+No AWS access key or secret key is stored in GitHub — `aws-actions/configure-aws-credentials` assumes the role via OIDC at workflow run time.
+
+3. Go to **Settings** > **Environments**, create an environment named `production`, and add yourself as a required reviewer. This is the manual approval gate before the production endpoint deploys.
 
 ## Validate setup
 
@@ -69,5 +80,5 @@ Confirm access from your terminal:
 ```bash
 aws sts get-caller-identity
 aws codestar-connections list-connections --region $AWS_REGION
-aws secretsmanager describe-secret --secret-id github/personal-access-token --region $AWS_REGION
+aws secretsmanager describe-secret --secret-id mlops --region $AWS_REGION
 ```

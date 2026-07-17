@@ -39,25 +39,31 @@ aws lambda delete-function --function-name <lambda-function-name> --region $AWS_
 
 Delete Lambda layer versions if no longer needed.
 
-## Delete secrets and IAM user
+## Delete secrets, IAM role, and OIDC provider
 
 ```bash
 aws secretsmanager delete-secret \
-  --secret-id github/personal-access-token \
+  --secret-id mlops \
   --force-delete-without-recovery \
   --region $AWS_REGION
+
+aws iam delete-role-policy --role-name GitHubActionsMLOpsExecutionRole --policy-name GithubActionsMLOpsExecutionPolicy
+aws iam delete-role --role-name GitHubActionsMLOpsExecutionRole
+aws iam delete-open-id-connect-provider \
+  --open-id-connect-provider-arn arn:aws:iam::<account-id>:oidc-provider/token.actions.githubusercontent.com
 ```
 
-Remove IAM access keys, detach policies, and delete `github-actions-sagemaker-user`.
+Also remove the inline policy added to the launch role during setup:
 
-## Delete GitHub secrets
+```bash
+aws iam delete-role-policy \
+  --role-name AmazonSageMakerServiceCatalogProductsLaunchRole \
+  --policy-name AllowGithubMLOpsLambdaLayerAccess
+```
 
-In GitHub repository settings, delete:
+## Delete GitHub secret
 
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `AWS_REGION`
-- `AWS_ACCOUNT_ID`
+In GitHub repository settings, delete `AWS_DEPLOY_ROLE_ARN`.
 
 ## Final verification
 

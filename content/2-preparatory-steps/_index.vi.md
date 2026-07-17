@@ -48,4 +48,4 @@ git push -u origin main
 
 ## Baseline bảo mật
 
-Dùng least privilege trong môi trường thật. Workshop này bám theo blog để học nhanh, nhưng production nên thay long-lived IAM user keys bằng GitHub OIDC federation.
+Dùng least privilege trong môi trường thật. Workshop này dùng GitHub OIDC federation ngay từ đầu, không dùng long-lived IAM user access keys — xem [Thiết lập GitHub và AWS](../3-github-aws-setup) để biết cách setup OIDC provider và role.

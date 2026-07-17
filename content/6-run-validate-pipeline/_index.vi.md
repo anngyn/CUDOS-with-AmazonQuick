@@ -16,11 +16,11 @@ Mở repository trong GitHub, rồi chọn **Actions**. Build workflow cần:
 
 Nếu workflow lỗi, kiểm tra:
 
-- Giá trị `AWS_REGION`.
-- IAM user permissions.
+- Giá trị `AWS_REGION` khớp Region bạn deploy SageMaker project.
+- IAM role sau `AWS_DEPLOY_ROLE_ARN` có trust policy đúng repo và đã attach execution policy.
+- `SAGEMAKER_PROJECT_NAME` trong workflow env khớp đúng tên project thật trong SageMaker Studio.
 - S3 bucket access.
 - SageMaker execution role.
-- Branch name và repository parameters.
 
 ## Theo dõi SageMaker Pipeline
 
@@ -77,8 +77,10 @@ cat output.json
 
 | Triệu chứng | Kiểm tra |
 |---|---|
-| GitHub workflow không dùng được credentials | Repository secrets và IAM permissions |
+| GitHub workflow không dùng được credentials | Giá trị secret `AWS_DEPLOY_ROLE_ARN`, trust policy OIDC đúng repo, job có `permissions: id-token: write` |
+| Push code nhưng workflow không bao giờ chạy | Workflow YAML phải nằm ở root `.github/workflows/`, không phải subfolder |
 | Pipeline không được tạo | SageMaker execution role và workflow logs |
+| Pipeline execution step fail `SAGEMAKER_RESOURCE_LIMIT` / instance quota = 0 | Request tăng Service Quotas cho instance type dùng (ví dụ `ml.m5.xlarge for processing job usage` và `ml.m5.xlarge for training job usage`) — account mới mặc định = 0 |
 | Approve model không trigger deploy | EventBridge rule, Lambda logs, secret name |
 | Lambda nhận event nhưng GitHub workflow không chạy | GitHub token permissions và workflow file name |
 | Endpoint deployment lỗi | Instance quota, model artifact path, endpoint config logs |

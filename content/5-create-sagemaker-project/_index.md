@@ -16,19 +16,21 @@ pre: " <b> 5. </b> "
 
 1. In Studio, open **Deployments** or **Projects**.
 2. Choose **Create project**.
-3. Select the custom template published through Service Catalog.
-4. Enter project parameters:
+3. Select the custom template published through Service Catalog (**Organization templates** tab).
+4. Enter project parameters — all five fields under "Code Repository Info" are required, `CloudFormation` rejects the request before creating any resource if any are blank:
 
 | Parameter | Example |
 |---|---|
-| Project name | `github-actions-mlops-demo` |
-| GitHub owner | Your GitHub user or organization |
-| GitHub repository | `mlops-sagemaker-github-actions-workshop` |
-| GitHub branch | `main` |
-| CodeConnections ARN | ARN created earlier |
-| Model package group | `github-actions-mlops-demo-model-group` |
+| Name | `Build-Deploy-GitHub` (must be unique in the account/Region) |
+| GitHub Repository Owner Name | Your GitHub user or organization |
+| GitHub Repository Name | Your workshop repository name |
+| Codestar connection unique id | The UUID portion of the CodeStar/CodeConnections ARN created earlier |
+| Name of the secret in Secrets Manager | `mlops` (or whatever name you used) |
+| GitHub workflow file for deployment | `deploy.yml` |
 
 5. Choose **Create project**.
+
+If GitHub Actions workflow files live in a subfolder (for example this repo also hosts a separate Hugo site, so the MLOps code sits under `seedcode/`), the workflow YAML files themselves must still be at the repository root's `.github/workflows/` — GitHub Actions does not read workflows from a nested `.github` folder. Use `working-directory: seedcode` inside each job step instead of moving the whole pipeline code to the repo root.
 
 ## Review created resources
 

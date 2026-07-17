@@ -39,25 +39,31 @@ aws lambda delete-function --function-name <lambda-function-name> --region $AWS_
 
 Xóa Lambda layer versions nếu không còn dùng.
 
-## Xóa secrets và IAM user
+## Xóa secrets, IAM role, và OIDC provider
 
 ```bash
 aws secretsmanager delete-secret \
-  --secret-id github/personal-access-token \
+  --secret-id mlops \
   --force-delete-without-recovery \
   --region $AWS_REGION
+
+aws iam delete-role-policy --role-name GitHubActionsMLOpsExecutionRole --policy-name GithubActionsMLOpsExecutionPolicy
+aws iam delete-role --role-name GitHubActionsMLOpsExecutionRole
+aws iam delete-open-id-connect-provider \
+  --open-id-connect-provider-arn arn:aws:iam::<account-id>:oidc-provider/token.actions.githubusercontent.com
 ```
 
-Xóa IAM access keys, detach policies, và xóa `github-actions-sagemaker-user`.
+Xóa luôn inline policy đã thêm vào launch role lúc setup:
 
-## Xóa GitHub secrets
+```bash
+aws iam delete-role-policy \
+  --role-name AmazonSageMakerServiceCatalogProductsLaunchRole \
+  --policy-name AllowGithubMLOpsLambdaLayerAccess
+```
 
-Trong GitHub repository settings, xóa:
+## Xóa GitHub secret
 
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `AWS_REGION`
-- `AWS_ACCOUNT_ID`
+Trong GitHub repository settings, xóa `AWS_DEPLOY_ROLE_ARN`.
 
 ## Kiểm tra cuối
 

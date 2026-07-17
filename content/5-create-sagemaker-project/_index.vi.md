@@ -16,19 +16,21 @@ pre: " <b> 5. </b> "
 
 1. Trong Studio, mở **Deployments** hoặc **Projects**.
 2. Chọn **Create project**.
-3. Chọn custom template đã publish qua Service Catalog.
-4. Nhập project parameters:
+3. Chọn custom template đã publish qua Service Catalog (tab **Organization templates**).
+4. Nhập project parameters — cả 5 field trong "Code Repository Info" đều bắt buộc, CloudFormation reject request trước khi tạo bất kỳ resource nào nếu bỏ trống ô nào:
 
 | Parameter | Example |
 |---|---|
-| Project name | `github-actions-mlops-demo` |
-| GitHub owner | GitHub user hoặc organization của bạn |
-| GitHub repository | `mlops-sagemaker-github-actions-workshop` |
-| GitHub branch | `main` |
-| CodeConnections ARN | ARN đã tạo trước đó |
-| Model package group | `github-actions-mlops-demo-model-group` |
+| Name | `Build-Deploy-GitHub` (phải unique trong account/Region) |
+| GitHub Repository Owner Name | GitHub user hoặc organization của bạn |
+| GitHub Repository Name | Tên repository workshop của bạn |
+| Codestar connection unique id | Phần UUID trong ARN CodeStar/CodeConnections đã tạo trước đó |
+| Name of the secret in Secrets Manager | `mlops` (hoặc tên bạn đã đặt) |
+| GitHub workflow file for deployment | `deploy.yml` |
 
 5. Chọn **Create project**.
+
+Nếu GitHub Actions workflow file nằm trong subfolder (ví dụ repo này còn host một Hugo site riêng, nên code MLOps nằm trong `seedcode/`), file YAML workflow vẫn phải nằm ở `.github/workflows/` tại root repository — GitHub Actions không đọc workflow từ `.github` nằm trong subfolder. Dùng `working-directory: seedcode` trong từng step của job thay vì move toàn bộ pipeline code lên root repo.
 
 ## Kiểm tra tài nguyên đã tạo
 
