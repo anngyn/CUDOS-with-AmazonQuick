@@ -1,0 +1,6 @@
+lambda_functions/**/lambda_layer/.env/
+lambda_functions/**/lambda_layer/python/
+lambda_functions/**/lambda_layer/layer.zip
+*.zip
+__pycache__/
+*.pyc
