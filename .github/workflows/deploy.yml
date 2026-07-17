@@ -14,6 +14,9 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    defaults:
+      run:
+        working-directory: seedcode
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -45,9 +48,9 @@ jobs:
         with:
           name: config-files
           path: |
-            endpoint-config-template.yml
-            deploy_stack.py
-            *-export.json
+            seedcode/endpoint-config-template.yml
+            seedcode/deploy_stack.py
+            seedcode/*-export.json
 
       - name: Deploy to Staging
         run: |
@@ -58,7 +61,7 @@ jobs:
             --project-name ${{ env.SAGEMAKER_PROJECT_NAME }}
 
       - name: Test Staging
-        run: | 
+        run: |
           echo "Test Staging... This will take about a few seconds."
           echo "No issues found."
 
@@ -70,6 +73,9 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    defaults:
+      run:
+        working-directory: seedcode
     steps:
       - name: Setup python 3.10
         uses: actions/setup-python@v5
@@ -91,6 +97,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: config-files
+          path: seedcode
 
       - name: Deploying to Production
         run: |

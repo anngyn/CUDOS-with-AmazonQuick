@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - pipelines/**
+      - seedcode/pipelines/**
 env:
   AWS_REGION: ap-southeast-2
   SAGEMAKER_PROJECT_NAME: Build-Deploy-GitHub3
@@ -15,6 +15,9 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    defaults:
+      run:
+        working-directory: seedcode
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
