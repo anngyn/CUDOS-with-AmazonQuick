@@ -1,34 +1,64 @@
 # End-to-End MLOps Pipeline with SageMaker, GitHub, and GitHub Actions
 
-Hands-on workshop that builds a custom Amazon SageMaker project template connecting GitHub and GitHub Actions with SageMaker Pipelines, SageMaker Model Registry, staging deployment, and production approval.
+A reference implementation of a GitHub-native MLOps pipeline for Amazon SageMaker — model training, evaluation, registry-gated approval, and staged deployment, all driven by GitHub Actions instead of AWS-native CI/CD tooling.
 
-Follows the AWS blog post ["Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions"](https://aws.amazon.com/blogs/machine-learning/build-an-end-to-end-mlops-pipeline-using-amazon-sagemaker-pipelines-github-and-github-actions/).
+Based on the AWS blog post ["Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions"](https://aws.amazon.com/blogs/machine-learning/build-an-end-to-end-mlops-pipeline-using-amazon-sagemaker-pipelines-github-and-github-actions/), adapted and hardened for a real AWS account: OIDC-based auth instead of long-lived keys, current GitHub Actions versions, and fixes for several IAM/S3 permission gaps in the original AWS sample.
+
+## Why this exists
+
+Teams already living in GitHub don't want a second CI/CD system just for ML. This pipeline keeps GitHub as the single source of truth for both application code and ML pipeline code, while SageMaker stays purely the execution engine for training, evaluation, and hosting — no CodePipeline, no CodeBuild.
+
+## Architecture
+
+```
+push to main ──▶ GitHub Actions (build.yml) ──▶ SageMaker Pipeline
+                                                   │
+                                    preprocess → train → evaluate
+                                                   │
+                                                   ▼
+                                        SageMaker Model Registry
+                                                   │
+                                      (human approves the model)
+                                                   ▼
+                                     EventBridge ──▶ Lambda
+                                                   │
+                                                   ▼
+                              GitHub Actions (deploy.yml) dispatched
+                                                   │
+                                      staging endpoint ──▶ tests
+                                                   │
+                                    (required reviewer approves)
+                                                   ▼
+                                          production endpoint
+```
+
+## Highlights
+
+- **GitHub as the control plane** — a repo push starts training; a Model Registry approval starts deployment. No polling, no manual CLI steps in between.
+- **Two-stage deployment with a real approval gate** — staging deploys automatically, production requires a GitHub Environment reviewer to sign off.
+- **OIDC, not access keys** — GitHub Actions assumes an IAM role via short-lived federated credentials; nothing long-lived sits in repository secrets.
+- **Self-contained toolchain** — a custom SageMaker Project template (via Service Catalog) provisions the Lambda trigger, EventBridge rule, and artifact bucket in one shot from SageMaker Studio.
+- **Built for a real account, not just a demo** — includes the IAM policy fixes, correct-architecture Lambda layer build, and bucket-naming constraints needed to actually get `CREATE_COMPLETE` on a fresh AWS account.
+
+## Use cases
+
+- Teams standardizing ML delivery on the same GitHub Actions pipelines already used for application code.
+- Workshops/onboarding for engineers learning SageMaker Pipelines + Model Registry without adopting AWS-native CI/CD.
+- A starting point for a production MLOps pipeline that needs staged rollout with human-in-the-loop approval before hitting production.
 
 ## Repository layout
 
-- `seedcode/` — SageMaker pipeline code (abalone example), GitHub Actions build/deploy scripts, staging/prod config
-- `.github/workflows/build.yml` — triggers SageMaker Pipeline on push to `seedcode/pipelines/**`
-- `.github/workflows/deploy.yml` — deploys staging then production endpoint, manual gate via GitHub environment `production`
+- `seedcode/` — SageMaker pipeline code (abalone example), deployment scripts, staging/prod configs
+- `.github/workflows/` — `build.yml` (train) and `deploy.yml` (staging → production)
 - `project/template.yml` — CloudFormation template for the custom SageMaker Service Catalog product
-- `iam/` — IAM policies: GitHub Actions execution policy, OIDC trust policy, Service Catalog launch role add-on
+- `iam/` — IAM policies for the GitHub Actions role, OIDC trust policy, and Service Catalog launch role fix
 - `lambda_functions/lambda_github_workflow_trigger/` — Lambda that dispatches `deploy.yml` on model approval
+- `content/` — the full setup walkthrough, published as a Hugo site (EN/VI)
 
-## Setup
-
-1. Create a GitHub OIDC provider + IAM role in your AWS account, trust `repo:<owner>/<repo>:*`, attach `iam/GithubActionsMLOpsExecutionPolicy.json`.
-2. Add repository secret `AWS_DEPLOY_ROLE_ARN` with that role's ARN. No long-lived AWS access keys.
-3. Create a GitHub environment named `production` with a required reviewer.
-4. Build and publish the Lambda layer (arm64, python3.12) used by the GitHub-trigger Lambda.
-5. Upload `project/template.yml` and the Lambda code zip to an S3 bucket with a `sagemaker-*` prefix (required by the default Service Catalog launch role permissions).
-6. Publish `project/template.yml` as a Service Catalog product, tag it `sagemaker:studio-visibility=true`.
-7. In SageMaker Studio, create a project from the published template, filling in GitHub owner/repo, CodeStar connection id, Secrets Manager secret name, and deploy workflow filename.
-
-Full walkthrough is published as a Hugo site under `content/`.
-
-## Workshop site (Hugo)
+## Workshop site
 
 ```bash
 hugo server -D
 ```
 
-Open `http://localhost:1313`. Deployed automatically to GitHub Pages on push to `main`/`update` via `.github/workflows/hugo-pages.yml`.
+Open `http://localhost:1313` for the step-by-step setup guide. Deploys automatically to GitHub Pages on push to `main`/`update`.
