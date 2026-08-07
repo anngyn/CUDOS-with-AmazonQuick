@@ -10,8 +10,6 @@ services:
   - Amazon QuickSight
 ---
 
-# Amazon Q Generative AI Integration
-
 {{< badge "Amazon Q" >}} {{< badge orange "GenAI" >}}
 {{< duration "20 mins" >}}
 

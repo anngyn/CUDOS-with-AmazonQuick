@@ -10,8 +10,6 @@ services:
   - Amazon Bedrock
 ---
 
-# Building Autonomous Agentic FinOps Workflows
-
 {{< badge orange "Agentic AI" >}} {{< badge "AWS Lambda" >}}
 {{< duration "30 mins" >}}
 

@@ -12,8 +12,6 @@ services:
   - Amazon QuickSight
 ---
 
-# Workshop Overview & Architecture
-
 {{< badge "AWS Billing" >}} {{< badge orange "FinOps" >}}
 {{< duration "10 mins" >}}
 

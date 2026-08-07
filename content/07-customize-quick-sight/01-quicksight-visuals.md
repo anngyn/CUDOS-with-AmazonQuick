@@ -9,8 +9,6 @@ services:
   - Amazon QuickSight
 ---
 
-# Customizing QuickSight Visuals
-
 {{< badge "Amazon QuickSight" >}}
 {{< duration "20 mins" >}}
 

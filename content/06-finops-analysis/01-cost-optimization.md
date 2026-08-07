@@ -10,8 +10,6 @@ services:
   - CUDOS v5
 ---
 
-# FinOps Cost Optimization Analysis
-
 {{< badge orange "FinOps Analysis" >}}
 {{< duration "25 mins" >}}
 

@@ -10,8 +10,6 @@ services:
   - AWS IAM
 ---
 
-# AWS CLI & Permissions Setup
-
 {{< badge "AWS CLI" >}} {{< badge "AWS IAM" >}}
 {{< duration "15 mins" >}}
 

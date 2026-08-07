@@ -11,8 +11,6 @@ services:
   - Amazon S3
 ---
 
-# Security & Governance Policies
-
 {{< badge "AWS IAM" >}} {{< badge "AWS KMS" >}}
 {{< duration "15 mins" >}}
 

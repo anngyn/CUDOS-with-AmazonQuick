@@ -10,8 +10,6 @@ services:
   - Amazon SNS
 ---
 
-# Configuring AWS Cost Anomaly Detection
-
 {{< badge "AWS Cost Anomaly Detection" >}}
 {{< duration "20 mins" >}}
 

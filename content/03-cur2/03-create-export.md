@@ -21,8 +21,6 @@ services:
 draft: false
 ---
 
-# Deploy the CUR 2.0 Data Export Foundation
-
 {{< badge "AWS Billing and Cost Management" >}} {{< badge orange "AWS Data Exports" >}} {{< badge "AWS CloudFormation" >}}
 {{< duration "15–20 mins" >}}
 

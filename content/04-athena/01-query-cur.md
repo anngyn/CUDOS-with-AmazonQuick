@@ -10,8 +10,6 @@ services:
   - AWS Glue
 ---
 
-# Querying CUR 2.0 with Amazon Athena
-
 {{< badge "Amazon Athena" >}} {{< badge orange "AWS Glue" >}}
 {{< duration "20 mins" >}}
 

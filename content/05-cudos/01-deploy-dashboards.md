@@ -10,8 +10,6 @@ services:
   - CUDOS v5
 ---
 
-# Deploy CUDOS v5 Dashboards
-
 {{< badge "Amazon QuickSight" >}} {{< badge "CUDOS v5" >}}
 {{< duration "30 mins" >}}
 

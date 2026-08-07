@@ -10,8 +10,6 @@ services:
   - Amazon S3
 ---
 
-# Teardown & Resource Cleanup
-
 {{< badge orange "Cleanup" >}}
 {{< duration "10 mins" >}}
 
