@@ -18,3 +18,7 @@ In this module, you will establish the core cost and usage dataset using AWS Dat
 - Deploy the AWS Cloud Intelligence Dashboards (CID) Data Export Destination stack.
 - Configure single-account billing data exports to Amazon S3.
 - Verify Parquet data structure and Athena integration readiness.
+
+### Labs & Steps
+
+1. [Deploy the CUR 2.0 Data Export Foundation](03-create-export)

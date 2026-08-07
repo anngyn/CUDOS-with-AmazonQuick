@@ -1,51 +1,35 @@
 ---
-title: "MLOps end-to-end với SageMaker và GitHub Actions"
+title: "AWS FinOps Intelligence Workshop"
 weight: 1
 chapter: false
 ---
 
-# MLOps end-to-end với SageMaker và GitHub Actions
+# AWS FinOps Intelligence Workshop
 
-Workshop này chuyển nội dung trong AWS Machine Learning Blog thành bài lab thực hành. Bạn sẽ tạo custom Amazon SageMaker project template để kết nối GitHub và GitHub Actions với SageMaker Pipelines, SageMaker Model Registry, staging deployment, và bước duyệt production.
+Chào mừng bạn đến với **AWS FinOps Intelligence Workshop**. Bài lab thực hành này sẽ hướng dẫn bạn xây dựng một nền tảng FinOps Intelligence toàn diện trên AWS sử dụng AWS Billing, CUR 2.0, Amazon Athena, CUDOS v5, Amazon QuickSight, Amazon Q và các workflow Agentic AI.
 
-![Kiến trúc MLOps](/images/architecture.png)
+{{< architecture title="AWS FinOps Intelligence Architecture" src="/images/architecture.png" caption="Kiến trúc Data Pipeline FinOps Toàn Diện" >}}
 
-{{< mermaid >}}
-flowchart LR
-  Dev[Developer push] --> GH[GitHub repository]
-  GH --> GHA[GitHub Actions build.yml]
-  GHA --> SMP[SageMaker Pipeline]
-  SMP --> Prep[Data preparation]
-  Prep --> Train[Model training]
-  Train --> Eval[Model evaluation]
-  Eval --> Reg[Model Registry]
-  Reg -->|Approve model| EB[EventBridge rule]
-  EB --> L[Lambda trigger]
-  L --> GHD[GitHub Actions deploy.yml]
-  GHD --> STG[Staging endpoint]
-  STG -->|Manual approval| PRD[Production endpoint]
-{{< /mermaid >}}
+```text
+AWS Billing
+└── AWS Data Exports / CUR 2.0
+      └── Amazon S3
+            └── AWS Glue & Amazon Athena
+                  └── CUDOS v5 & Amazon QuickSight
+                        └── Amazon Q & Agentic FinOps
+```
 
-## Bạn sẽ xây gì
+## Các Module Trong Workshop
 
-- GitHub repository chứa code SageMaker pipeline và deployment.
-- AWS CodeConnections kết nối AWS với GitHub.
-- Secrets Manager secret lưu GitHub personal access token.
-- IAM user và GitHub repository secrets cho GitHub Actions.
-- Lambda function và Lambda layer để trigger GitHub deployment workflow.
-- Service Catalog product hiển thị custom SageMaker project template trong Studio.
-- SageMaker project chạy build và deploy workflow từ GitHub Actions.
-
-## Nội dung workshop
-
-1. [Giới thiệu](1-introduction)
-2. [Chuẩn bị](2-preparatory-steps)
-3. [Thiết lập GitHub và AWS](3-github-aws-setup)
-4. [Lambda và Service Catalog](4-lambda-service-catalog)
-5. [Tạo SageMaker project](5-create-sagemaker-project)
-6. [Chạy và kiểm tra pipeline](6-run-validate-pipeline)
-7. [Dọn dẹp tài nguyên](7-clean-up-resources)
-
-## Nguồn tham khảo
-
-Workshop bám theo AWS blog "Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions" và sample repository `aws-samples/mlops-sagemaker-github-actions`.
+1. [01. Giới thiệu](01-introduction)
+2. [02. Thiết lập môi trường](02-environment)
+3. [03. Nền tảng CUR 2.0](03-cur2)
+4. [04. Tích hợp Amazon Athena](04-athena)
+5. [05. CUDOS v5 Dashboards](05-cudos)
+6. [06. Phân tích chi phí FinOps](06-finops-analysis)
+7. [07. Tùy chỉnh QuickSight](07-customize-quick-sight)
+8. [08. Amazon Q & Generative AI FinOps](08-amazon-quick)
+9. [09. Agentic FinOps Workflows](09-agentic-finops)
+10. [10. Phát hiện bất thường chi phí](10-custom-anomaly)
+11. [11. Bảo mật & Quản trị](11-security-governance)
+12. [12. Dọn dẹp tài nguyên](12-cleanup)
