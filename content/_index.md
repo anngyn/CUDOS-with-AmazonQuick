@@ -1,51 +1,35 @@
 ---
-title: "End-to-End MLOps with SageMaker and GitHub Actions"
+title: "AWS FinOps Intelligence Workshop"
 weight: 1
 chapter: false
 ---
 
-# End-to-End MLOps with SageMaker and GitHub Actions
+# AWS FinOps Intelligence Workshop
 
-This workshop converts the AWS Machine Learning Blog pattern into a hands-on lab. You will build a custom Amazon SageMaker project template that connects GitHub and GitHub Actions with SageMaker Pipelines, SageMaker Model Registry, staging deployment, and production approval.
+Welcome to the **AWS FinOps Intelligence Workshop**. This hands-on workshop guides you through establishing an end-to-end FinOps intelligence platform using AWS Billing, CUR 2.0, Amazon Athena, CUDOS v5, Amazon QuickSight, Amazon Q, and Agentic AI workflows.
 
-![MLOps architecture](/images/architecture.png)
+{{< architecture title="AWS FinOps Intelligence Architecture" src="/images/architecture.png" caption="End-to-End FinOps Data Pipeline" >}}
 
-{{< mermaid >}}
-flowchart LR
-  Dev[Developer push] --> GH[GitHub repository]
-  GH --> GHA[GitHub Actions build.yml]
-  GHA --> SMP[SageMaker Pipeline]
-  SMP --> Prep[Data preparation]
-  Prep --> Train[Model training]
-  Train --> Eval[Model evaluation]
-  Eval --> Reg[Model Registry]
-  Reg -->|Approve model| EB[EventBridge rule]
-  EB --> L[Lambda trigger]
-  L --> GHD[GitHub Actions deploy.yml]
-  GHD --> STG[Staging endpoint]
-  STG -->|Manual approval| PRD[Production endpoint]
-{{< /mermaid >}}
+```text
+AWS Billing
+└── AWS Data Exports / CUR 2.0
+      └── Amazon S3
+            └── AWS Glue & Amazon Athena
+                  └── CUDOS v5 & Amazon QuickSight
+                        └── Amazon Q & Agentic FinOps
+```
 
-## What you will build
+## Workshop Modules
 
-- GitHub repository containing SageMaker pipeline and deployment code.
-- AWS CodeConnections link from AWS to GitHub.
-- Secrets Manager secret that stores a GitHub personal access token.
-- IAM user and GitHub repository secrets used by GitHub Actions.
-- Lambda function and Lambda layer used to trigger GitHub deployment workflow.
-- Service Catalog product that exposes a custom SageMaker project template in Studio.
-- SageMaker project that runs build and deploy workflows from GitHub Actions.
-
-## Workshop sections
-
-1. [Introduction](1-introduction)
-2. [Prerequisites](2-preparatory-steps)
-3. [GitHub and AWS setup](3-github-aws-setup)
-4. [Lambda and Service Catalog](4-lambda-service-catalog)
-5. [Create SageMaker project](5-create-sagemaker-project)
-6. [Run and validate pipeline](6-run-validate-pipeline)
-7. [Clean up resources](7-clean-up-resources)
-
-## Source material
-
-This workshop follows the AWS blog post "Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions" and the `aws-samples/mlops-sagemaker-github-actions` sample repository.
+1. [01. Introduction](01-introduction)
+2. [02. Environment Setup](02-environment)
+3. [03. CUR 2.0 Foundation](03-cur2)
+4. [04. Amazon Athena Integration](04-athena)
+5. [05. CUDOS v5 Dashboards](05-cudos)
+6. [06. FinOps Cost Analysis](06-finops-analysis)
+7. [07. Customize QuickSight](07-customize-quick-sight)
+8. [08. Amazon Q & Generative AI FinOps](08-amazon-quick)
+9. [09. Agentic FinOps Workflows](09-agentic-finops)
+10. [10. Custom Anomaly Detection](10-custom-anomaly)
+11. [11. Security & Governance](11-security-governance)
+12. [12. Clean Up Resources](12-cleanup)

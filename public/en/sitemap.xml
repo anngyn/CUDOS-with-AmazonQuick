@@ -14,9 +14,31 @@
                 href="http://localhost:1313/CUDOS-with-AmazonQuick/"
                 />
   </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/02-environment/</loc>
+  </url><url>
     <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2/</loc>
   </url><url>
     <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2/03-create-export/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/</loc>
   </url><url>
     <loc>http://localhost:1313/CUDOS-with-AmazonQuick/categories/</loc>
     <xhtml:link
