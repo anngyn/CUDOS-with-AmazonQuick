@@ -1,7 +1,7 @@
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 canonifyURLs = true
-baseURL = "https://anngyn.github.io/End-to-end-MLOps-Pipeline/"
+baseURL = "https://anngyn.github.io/CUDOS-with-AmazonQuick/"
 
 # For search functionality
 [outputs]
@@ -12,7 +12,7 @@ home = [ "HTML", "RSS", "JSON"]
   themeVariant = "workshop"
   # Git hub repo link
   editURL = ""
-  description = ""
+  description = "AWS FinOps Intelligence Workshop"
   author = "Nguyễn Ấn"
   showVisitedLinks = true
   disableBreadcrumb = false
@@ -20,7 +20,7 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.en]
-title = "MLOps with SageMaker and GitHub Actions"
+title = "AWS FinOps Intelligence Workshop"
 weight = 1
 languageName = "English"
 
@@ -31,7 +31,7 @@ url = "https://www.facebook.com/groups/awsstudygroupfcj/"
 weight = 20
 
 [Languages.vi]
-title = "MLOps với SageMaker và GitHub Actions"
+title = "AWS FinOps Intelligence Workshop"
 weight = 2
 languageName = "Tiếng Việt"
 
@@ -40,4 +40,3 @@ name = "<i class='fab fa-facebook'></i> AWS Study Group"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj/"
 weight = 20
-

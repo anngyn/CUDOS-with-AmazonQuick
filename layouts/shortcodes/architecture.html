@@ -1,0 +1,5 @@
+<div class="aws-architecture">
+    {{ if .Get "title" }}<h4>{{ .Get "title" }}</h4>{{ end }}
+    <img src="{{ .Get "src" }}" alt="{{ if .Get "alt" }}{{ .Get "alt" }}{{ else }}Architecture Diagram{{ end }}" />
+    {{ if .Get "caption" }}<div class="aws-architecture-caption">{{ .Get "caption" }}</div>{{ end }}
+</div>

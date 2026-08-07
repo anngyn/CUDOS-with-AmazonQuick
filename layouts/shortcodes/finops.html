@@ -1,0 +1,4 @@
+<div class="aws-callout callout-finops">
+    {{ if .Get "title" }}<h4>{{ .Get "title" }}</h4>{{ else }}<h4>FinOps Takeaway</h4>{{ end }}
+    <p>{{ .Inner | markdownify }}</p>
+</div>

@@ -1,0 +1,4 @@
+<div class="aws-callout callout-cost">
+    {{ if .Get "title" }}<h4>{{ .Get "title" }}</h4>{{ else }}<h4>Cost</h4>{{ end }}
+    <p>{{ .Inner | markdownify }}</p>
+</div>

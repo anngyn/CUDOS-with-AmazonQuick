@@ -1,0 +1,4 @@
+<div class="aws-callout callout-security">
+    {{ if .Get "title" }}<h4>{{ .Get "title" }}</h4>{{ else }}<h4>Security</h4>{{ end }}
+    <p>{{ .Inner | markdownify }}</p>
+</div>
