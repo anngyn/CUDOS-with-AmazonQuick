@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>End-to-End MLOps with SageMaker and GitHub Actions on AWS FinOps Intelligence Workshop</title>
-    <link>http://localhost:1313/CUDOS-with-AmazonQuick/</link>
-    <description>Recent content in End-to-End MLOps with SageMaker and GitHub Actions on AWS FinOps Intelligence Workshop</description>
+    <title>03. CUR 2.0 Foundation on AWS FinOps Intelligence Workshop</title>
+    <link>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2/</link>
+    <description>Recent content in 03. CUR 2.0 Foundation on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deploy the CUR 2.0 Data Export Foundation</title>
       <link>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2/03-create-export/</link>

@@ -2,124 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/1-introduction/</loc>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/vi/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/1-introduction/"
+                href="http://localhost:1313/CUDOS-with-AmazonQuick/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/1-introduction/"
+                href="http://localhost:1313/CUDOS-with-AmazonQuick/vi/"
                 />
   </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/</loc>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/vi/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/"
+                href="http://localhost:1313/CUDOS-with-AmazonQuick/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/"
+                href="http://localhost:1313/CUDOS-with-AmazonQuick/vi/categories/"
                 />
   </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/2-preparatory-steps/</loc>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/vi/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/2-preparatory-steps/"
+                href="http://localhost:1313/CUDOS-with-AmazonQuick/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/2-preparatory-steps/"
-                />
-  </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/3-github-aws-setup/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/3-github-aws-setup/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/3-github-aws-setup/"
-                />
-  </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/4-lambda-service-catalog/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/4-lambda-service-catalog/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/4-lambda-service-catalog/"
-                />
-  </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/5-create-sagemaker-project/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/5-create-sagemaker-project/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/5-create-sagemaker-project/"
-                />
-  </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/6-run-validate-pipeline/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/6-run-validate-pipeline/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/6-run-validate-pipeline/"
-                />
-  </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/7-clean-up-resources/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/7-clean-up-resources/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/7-clean-up-resources/"
-                />
-  </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/categories/"
-                />
-  </url><url>
-    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/tags/"
+                href="http://localhost:1313/CUDOS-with-AmazonQuick/vi/tags/"
                 />
   </url>
 </urlset>

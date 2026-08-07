@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on MLOps với SageMaker và GitHub Actions</title>
-    <link>https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/tags/</link>
-    <description>Recent content in Tags on MLOps với SageMaker và GitHub Actions</description>
+    <title>Tags on AWS FinOps Intelligence Workshop</title>
+    <link>http://localhost:1313/CUDOS-with-AmazonQuick/vi/tags/</link>
+    <description>Recent content in Tags on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>vi</language>
-    <atom:link href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/vi/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/vi/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
