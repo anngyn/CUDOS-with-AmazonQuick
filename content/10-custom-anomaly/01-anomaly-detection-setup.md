@@ -1,7 +1,8 @@
 ---
 title: "Configuring AWS Cost Anomaly Detection"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>10.1 </b>"
 description: "Configure machine learning monitors and alert subscriptions for cost anomalies."
 duration: "20 mins"
 services:

@@ -1,6 +1,6 @@
 ---
 title: "Amazon Q & Generative AI FinOps"
-weight: 80
+weight: 8
 chapter: true
 pre: "<b>8. </b>"
 ---

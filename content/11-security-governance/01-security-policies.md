@@ -1,7 +1,8 @@
 ---
 title: "Security & Governance Policies"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>11.1 </b>"
 description: "Secure S3 billing buckets, IAM roles, and Athena query permissions."
 duration: "15 mins"
 services:

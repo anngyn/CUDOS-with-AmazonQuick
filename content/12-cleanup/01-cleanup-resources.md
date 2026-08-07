@@ -1,7 +1,8 @@
 ---
 title: "Teardown & Resource Cleanup"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>12.1 </b>"
 description: "Clean up CloudFormation stacks, S3 buckets, and Glue databases."
 duration: "10 mins"
 services:

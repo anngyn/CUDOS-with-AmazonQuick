@@ -1,6 +1,6 @@
 ---
 title: "Clean Up Resources"
-weight: 120
+weight: 12
 chapter: true
 pre: "<b>12. </b>"
 ---

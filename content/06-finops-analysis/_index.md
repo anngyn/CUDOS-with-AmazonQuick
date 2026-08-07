@@ -1,6 +1,6 @@
 ---
 title: "FinOps Cost Analysis"
-weight: 60
+weight: 6
 chapter: true
 pre: "<b>6. </b>"
 ---

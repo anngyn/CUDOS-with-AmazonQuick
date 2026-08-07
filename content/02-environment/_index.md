@@ -1,6 +1,6 @@
 ---
 title: "Environment Setup"
-weight: 20
+weight: 2
 chapter: true
 pre: "<b>2. </b>"
 ---

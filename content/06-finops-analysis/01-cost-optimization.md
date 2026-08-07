@@ -1,7 +1,8 @@
 ---
 title: "FinOps Cost Optimization Analysis"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>6.1 </b>"
 description: "Identify cost optimization, waste reduction, and reservation opportunities."
 duration: "25 mins"
 services:

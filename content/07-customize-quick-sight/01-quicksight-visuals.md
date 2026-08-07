@@ -1,7 +1,8 @@
 ---
 title: "Customizing QuickSight Visuals"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>7.1 </b>"
 description: "Create custom visuals, calculated fields, and KPI cards in QuickSight."
 duration: "20 mins"
 services:

@@ -1,7 +1,8 @@
 ---
 title: "Amazon Q Generative AI Integration"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>8.1 </b>"
 description: "Integrate Amazon Q to query billing datasets using natural language."
 duration: "20 mins"
 services:

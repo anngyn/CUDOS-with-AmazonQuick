@@ -1,7 +1,8 @@
 ---
 title: "Querying CUR 2.0 with Amazon Athena"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>4.1 </b>"
 description: "Run SQL queries against CUR 2.0 Parquet data using Amazon Athena."
 duration: "20 mins"
 services:

@@ -1,7 +1,8 @@
 ---
 title: "Building Autonomous Agentic FinOps Workflows"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>9.1 </b>"
 description: "Construct autonomous AI agent workflows for proactive cloud governance."
 duration: "30 mins"
 services:

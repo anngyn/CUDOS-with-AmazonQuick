@@ -1,6 +1,6 @@
 ---
 title: "Custom Anomaly Detection"
-weight: 100
+weight: 10
 chapter: true
 pre: "<b>10. </b>"
 ---

@@ -1,7 +1,8 @@
 ---
 title: "Deploy CUDOS v5 Dashboards"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>5.1 </b>"
 description: "Deploy Cloud Intelligence Dashboards (CUDOS v5) in Amazon QuickSight."
 duration: "30 mins"
 services:

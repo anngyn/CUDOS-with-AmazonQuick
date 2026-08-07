@@ -1,6 +1,6 @@
 ---
 title: "Customize QuickSight"
-weight: 70
+weight: 7
 chapter: true
 pre: "<b>7. </b>"
 ---

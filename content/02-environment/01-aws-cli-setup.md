@@ -1,7 +1,8 @@
 ---
 title: "AWS CLI & Permissions Setup"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>2.1 </b>"
 description: "Prepare AWS CLI credentials, region selection, and IAM permissions for the workshop."
 duration: "15 mins"
 services:

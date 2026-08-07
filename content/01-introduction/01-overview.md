@@ -1,7 +1,8 @@
 ---
 title: "Workshop Overview & Architecture"
-weight: 10
+weight: 1
 chapter: false
+pre: "<b>1.1 </b>"
 description: "Overview of the AWS FinOps Intelligence Workshop architecture and objectives."
 duration: "10 mins"
 services:

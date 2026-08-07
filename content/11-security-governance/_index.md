@@ -1,6 +1,6 @@
 ---
 title: "Security & Governance"
-weight: 110
+weight: 11
 chapter: true
 pre: "<b>11. </b>"
 ---

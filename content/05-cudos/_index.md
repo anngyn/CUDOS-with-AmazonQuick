@@ -1,6 +1,6 @@
 ---
 title: "CUDOS v5 Dashboards"
-weight: 50
+weight: 5
 chapter: true
 pre: "<b>5. </b>"
 ---
