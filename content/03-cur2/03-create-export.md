@@ -1,8 +1,8 @@
 ---
 title: "Deploy the CUR 2.0 Data Export Foundation"
-weight: 1
+weight: 3
 chapter: false
-pre: "<b>3.1 </b>"
+pre: "<b>3.3 </b>"
 
 description: >
   Deploy the AWS Cloud Intelligence Dashboards Data Exports destination stack for a single-account CUR 2.0 workshop.
