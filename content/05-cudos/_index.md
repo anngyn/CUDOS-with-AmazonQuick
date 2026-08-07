@@ -1,8 +1,8 @@
 ---
-title: "05. CUDOS v5 Dashboards"
+title: "CUDOS v5 Dashboards"
 weight: 50
 chapter: true
-pre: "<b>05. </b>"
+pre: "<b>5. </b>"
 ---
 
 # Module 05 — CUDOS v5 Dashboards

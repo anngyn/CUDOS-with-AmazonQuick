@@ -1,8 +1,8 @@
 ---
-title: "06. FinOps Cost Analysis"
+title: "FinOps Cost Analysis"
 weight: 60
 chapter: true
-pre: "<b>06. </b>"
+pre: "<b>6. </b>"
 ---
 
 # Module 06 — FinOps Cost Analysis

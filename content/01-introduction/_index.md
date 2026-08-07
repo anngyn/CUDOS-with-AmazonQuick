@@ -1,8 +1,8 @@
 ---
-title: "01. Introduction"
+title: "Introduction"
 weight: 10
 chapter: true
-pre: "<b>01. </b>"
+pre: "<b>1. </b>"
 ---
 
 # Module 01 — Introduction

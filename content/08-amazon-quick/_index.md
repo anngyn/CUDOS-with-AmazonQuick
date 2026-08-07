@@ -1,8 +1,8 @@
 ---
-title: "08. Amazon Q & Generative AI FinOps"
+title: "Amazon Q & Generative AI FinOps"
 weight: 80
 chapter: true
-pre: "<b>08. </b>"
+pre: "<b>8. </b>"
 ---
 
 # Module 08 — Amazon Q & Generative AI FinOps

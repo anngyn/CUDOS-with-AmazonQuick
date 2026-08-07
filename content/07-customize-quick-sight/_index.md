@@ -1,8 +1,8 @@
 ---
-title: "07. Customize QuickSight"
+title: "Customize QuickSight"
 weight: 70
 chapter: true
-pre: "<b>07. </b>"
+pre: "<b>7. </b>"
 ---
 
 # Module 07 — Customize QuickSight

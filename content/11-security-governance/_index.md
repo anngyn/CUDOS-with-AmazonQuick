@@ -1,5 +1,5 @@
 ---
-title: "11. Security & Governance"
+title: "Security & Governance"
 weight: 110
 chapter: true
 pre: "<b>11. </b>"

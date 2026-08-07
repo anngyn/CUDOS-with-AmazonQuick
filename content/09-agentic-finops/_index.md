@@ -1,8 +1,8 @@
 ---
-title: "09. Agentic FinOps Workflows"
+title: "Agentic FinOps Workflows"
 weight: 90
 chapter: true
-pre: "<b>09. </b>"
+pre: "<b>9. </b>"
 ---
 
 # Module 09 — Agentic FinOps Workflows

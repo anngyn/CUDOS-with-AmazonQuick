@@ -1,5 +1,5 @@
 ---
-title: "12. Clean Up Resources"
+title: "Clean Up Resources"
 weight: 120
 chapter: true
 pre: "<b>12. </b>"

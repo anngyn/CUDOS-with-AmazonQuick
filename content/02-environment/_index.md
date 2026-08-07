@@ -1,8 +1,8 @@
 ---
-title: "02. Environment Setup"
+title: "Environment Setup"
 weight: 20
 chapter: true
-pre: "<b>02. </b>"
+pre: "<b>2. </b>"
 ---
 
 # Module 02 — Environment Setup

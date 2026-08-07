@@ -1,8 +1,8 @@
 ---
-title: "03. CUR 2.0 Foundation"
+title: "CUR 2.0 Foundation"
 weight: 30
 chapter: true
-pre: "<b>03. </b>"
+pre: "<b>3. </b>"
 ---
 
 # Module 03 — CUR 2.0 Foundation

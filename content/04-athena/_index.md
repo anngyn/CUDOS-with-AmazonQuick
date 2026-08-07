@@ -1,8 +1,8 @@
 ---
-title: "04. Amazon Athena Integration"
+title: "Amazon Athena Integration"
 weight: 40
 chapter: true
-pre: "<b>04. </b>"
+pre: "<b>4. </b>"
 ---
 
 # Module 04 — Amazon Athena Integration
