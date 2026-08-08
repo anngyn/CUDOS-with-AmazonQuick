@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>10. Custom Anomaly Detection on AWS FinOps Intelligence Workshop</title>
+    <title>Custom Anomaly Detection on AWS FinOps Intelligence Workshop</title>
     <link>http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/</link>
-    <description>Recent content in 10. Custom Anomaly Detection on AWS FinOps Intelligence Workshop</description>
+    <description>Recent content in Custom Anomaly Detection on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deterministic Cost Anomaly Detection</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/01-deterministic-detection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/01-deterministic-detection/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Athena&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Anomaly Detection&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS Cost Anomaly Detection&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;deterministic-cost-anomaly-detection&#34;&gt;Deterministic Cost Anomaly Detection&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The custom engine is intentionally simple and transparent: historical baseline, actual cost, absolute delta, percentage delta, and a dual-threshold decision.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Understand the baseline.&lt;/li&gt;&#xA;&lt;li&gt;Understand absolute and percentage materiality.&lt;/li&gt;&#xA;&lt;li&gt;Explain why dual thresholds reduce noise.&lt;/li&gt;&#xA;&lt;li&gt;Compare with AWS Cost Anomaly Detection.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;Deterministic rules are valuable when the team needs predictable, testable behavior. Managed ML remains useful for adaptive production monitoring.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cost Driver Analysis &amp; Quick Integration</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/02-cost-driver-quick/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/02-cost-driver-quick/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Athena&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick Sight&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 20 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;cost-driver-analysis--quick-integration&#34;&gt;Cost Driver Analysis &amp;amp; Quick Integration&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;An anomaly says something changed. Cost-driver analysis identifies which account, service, Region, or usage type contributed to the change.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Rank positive cost drivers.&lt;/li&gt;&#xA;&lt;li&gt;Separate offsets from increases.&lt;/li&gt;&#xA;&lt;li&gt;Publish structured evidence.&lt;/li&gt;&#xA;&lt;li&gt;Use Quick only after numerical evidence exists.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;Grounded investigation is easier when the analytical engine has already narrowed the change to concrete dimensions and contributions.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

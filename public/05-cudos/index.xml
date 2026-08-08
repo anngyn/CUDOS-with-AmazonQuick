@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>05. CUDOS v5 Dashboards on AWS FinOps Intelligence Workshop</title>
+    <title>CUDOS v5 Dashboards on AWS FinOps Intelligence Workshop</title>
     <link>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/</link>
-    <description>Recent content in 05. CUDOS v5 Dashboards on AWS FinOps Intelligence Workshop</description>
+    <description>Recent content in CUDOS v5 Dashboards on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploy CUDOS v5 Dashboards</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/01-deploy-cudos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/01-deploy-cudos/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;CUDOS v5&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick Sight&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;SPICE&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 20 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;deploy-cudos-v5-dashboards&#34;&gt;Deploy CUDOS v5 Dashboards&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;CUDOS v5 consumes the CUR/Athena layer and publishes interactive cost intelligence through Quick Sight. AWS documents a v5 design using SPICE-backed summary, resource, and hourly datasets.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Understand the deployment prerequisites.&lt;/li&gt;&#xA;&lt;li&gt;Deploy the current CUDOS v5 release.&lt;/li&gt;&#xA;&lt;li&gt;Inspect Quick Sight datasets.&lt;/li&gt;&#xA;&lt;li&gt;Verify SPICE ingestion.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;CUDOS reduces the engineering required to create broad cost visibility, but it still depends on correct cost semantics and fresh upstream data.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CUDOS Dashboard Navigation &amp; KPIs</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/02-navigation-kpis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/02-navigation-kpis/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;CUDOS v5&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick Sight&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;cudos-dashboard-navigation--kpis&#34;&gt;CUDOS Dashboard Navigation &amp;amp; KPIs&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The goal is not to visit every sheet. The goal is to answer a sequence of cost questions and understand how the dashboard supports drill-down.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Identify total/current spend context.&lt;/li&gt;&#xA;&lt;li&gt;Identify top services and accounts.&lt;/li&gt;&#xA;&lt;li&gt;Explore cost trend and one technical domain.&lt;/li&gt;&#xA;&lt;li&gt;Perform one resource or usage drill-down.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;A good FinOps dashboard changes the next question: from total spend to ownership, drivers, and action.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

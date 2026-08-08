@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>08. Amazon Q &amp; Generative AI FinOps on AWS FinOps Intelligence Workshop</title>
+    <title>Amazon Quick &amp; Generative AI FinOps on AWS FinOps Intelligence Workshop</title>
     <link>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/</link>
-    <description>Recent content in 08. Amazon Q &amp; Generative AI FinOps on AWS FinOps Intelligence Workshop</description>
+    <description>Recent content in Amazon Quick &amp; Generative AI FinOps on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Amazon Quick Generative AI Integration</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/01-quick-integration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/01-quick-integration/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Spaces&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Chat Agents&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;amazon-quick-generative-ai-integration&#34;&gt;Amazon Quick Generative AI Integration&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;Amazon Quick is an AI-powered workspace. Spaces organize relevant resources, and chat agents can use approved context for natural-language analysis.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Understand Spaces.&lt;/li&gt;&#xA;&lt;li&gt;Configure a FinOps chat agent.&lt;/li&gt;&#xA;&lt;li&gt;Ground the agent in dashboards/context.&lt;/li&gt;&#xA;&lt;li&gt;Define safety and evidence expectations.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;Generative AI is most useful after the platform already has trusted cost evidence. It should synthesize and investigate, not invent financial calculations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Natural Language FinOps Queries</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/02-natural-language-queries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/02-natural-language-queries/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Chat Agents&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;natural-language-finops-queries&#34;&gt;Natural Language FinOps Queries&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;This lab treats natural-language analysis as an interface over trusted evidence, not a replacement for Athena or CUDOS.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Ask visibility questions.&lt;/li&gt;&#xA;&lt;li&gt;Ask period-comparison questions.&lt;/li&gt;&#xA;&lt;li&gt;Ask attribution questions.&lt;/li&gt;&#xA;&lt;li&gt;Evaluate unsupported claims.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;Accessibility improves when users can ask plain-language questions, but governance still requires traceability back to the data.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>04. Amazon Athena Integration on AWS FinOps Intelligence Workshop</title>
+    <title>Amazon Athena Integration on AWS FinOps Intelligence Workshop</title>
     <link>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/</link>
-    <description>Recent content in 04. Amazon Athena Integration on AWS FinOps Intelligence Workshop</description>
+    <description>Recent content in Amazon Athena Integration on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Querying CUR 2.0 with Amazon Athena</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/01-querying-cur2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/01-querying-cur2/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Athena&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;CUR 2.0&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;querying-cur-20-with-amazon-athena&#34;&gt;Querying CUR 2.0 with Amazon Athena&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;Athena turns cost questions into repeatable SQL. This is the analytical bridge between exported billing files and the CUDOS dashboard.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Run a minimal sanity query.&lt;/li&gt;&#xA;&lt;li&gt;Aggregate cost over a verified period.&lt;/li&gt;&#xA;&lt;li&gt;Break cost down by service or another dimension.&lt;/li&gt;&#xA;&lt;li&gt;State the cost metric used.&lt;/li&gt;&#xA;&lt;li&gt;Review query scan behavior.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;A dashboard should be traceable back to a query or semantic definition. Reproducible SQL reduces ambiguity in financial analysis.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>AWS Glue Data Catalog Inspection</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/02-glue-inspection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/02-glue-inspection/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS Glue&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Athena&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon S3&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 10 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;aws-glue-data-catalog-inspection&#34;&gt;AWS Glue Data Catalog Inspection&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;S3 stores objects; Glue tells query engines how to interpret them. A schema error can propagate into every downstream dashboard.&lt;/p&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning Objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Find the Data Exports database.&lt;/li&gt;&#xA;&lt;li&gt;Inspect the CUR table.&lt;/li&gt;&#xA;&lt;li&gt;Review representative billing/product fields.&lt;/li&gt;&#xA;&lt;li&gt;Compare the table location with the S3 path.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-this-matters-for-finops&#34;&gt;Why This Matters for FinOps&lt;/h2&gt;&#xA;&lt;p&gt;FinOps metrics are only trustworthy when the underlying schema and data location are understood.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

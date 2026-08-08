@@ -1,35 +1,57 @@
 ---
 title: "AWS FinOps Intelligence Workshop"
-weight: 1
 chapter: false
+description: "Build an end-to-end AWS FinOps environment with CUR 2.0, CUDOS v5, Amazon Quick Sight, and Amazon Quick."
 ---
 
 # AWS FinOps Intelligence Workshop
 
-Welcome to the **AWS FinOps Intelligence Workshop**. This hands-on workshop guides you through establishing an end-to-end FinOps intelligence platform using AWS Billing, CUR 2.0, Amazon Athena, CUDOS v5, Amazon QuickSight, Amazon Q, and Agentic AI workflows.
+Build an end-to-end AWS FinOps environment using **AWS Data Exports / CUR 2.0**, **Amazon S3**, **AWS Glue**, **Amazon Athena**, **CUDOS v5**, **Amazon Quick Sight**, and **Amazon Quick**.
 
-{{< architecture title="AWS FinOps Intelligence Architecture" src="/images/architecture.png" caption="End-to-End FinOps Data Pipeline" >}}
+{{< badge "Intermediate" >}}
+{{< badge "FinOps" >}}
+{{< badge "CUDOS v5" >}}
+{{< duration "3–4 hours" >}}
+
+## What you will build
 
 ```text
 AWS Billing
-└── AWS Data Exports / CUR 2.0
-      └── Amazon S3
-            └── AWS Glue & Amazon Athena
-                  └── CUDOS v5 & Amazon QuickSight
-                        └── Amazon Q & Agentic FinOps
+   ↓
+AWS Data Exports / CUR 2.0
+   ↓
+Amazon S3
+   ↓
+AWS Glue Data Catalog
+   ↓
+Amazon Athena
+   ↓
+CUDOS v5
+   ↓
+Amazon Quick Sight
+   ↓
+Amazon Quick
+   ↓
+Natural-language analysis + Quick Flows
 ```
 
-## Workshop Modules
+The workshop also introduces AWS-native cost anomaly monitoring, alerting, and a transparent deterministic anomaly pattern for comparison.
 
-1. [01. Introduction](01-introduction)
-2. [02. Environment Setup](02-environment)
-3. [03. CUR 2.0 Foundation](03-cur2)
-4. [04. Amazon Athena Integration](04-athena)
-5. [05. CUDOS v5 Dashboards](05-cudos)
-6. [06. FinOps Cost Analysis](06-finops-analysis)
-7. [07. Customize QuickSight](07-customize-quick-sight)
-8. [08. Amazon Q & Generative AI FinOps](08-amazon-quick)
-9. [09. Agentic FinOps Workflows](09-agentic-finops)
-10. [10. Custom Anomaly Detection](10-custom-anomaly)
-11. [11. Security & Governance](11-security-governance)
-12. [12. Clean Up Resources](12-cleanup)
+## Workshop modules
+
+1. Introduction
+2. Environment Setup
+3. CUR 2.0 Foundation
+4. Amazon Athena Integration
+5. CUDOS v5 Dashboards
+6. FinOps Cost Analysis
+7. Customize Quick Sight
+8. Amazon Quick & Generative AI FinOps
+9. Agentic FinOps Workflows
+10. Custom Anomaly Detection
+11. Security & Governance
+12. Clean Up Resources
+
+{{< cost >}}
+This workshop can create billable S3, Athena, SPICE, Amazon Quick, and supporting resources. Complete Module 12 when you finish.
+{{< /cost >}}

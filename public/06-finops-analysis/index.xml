@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>06. FinOps Cost Analysis on AWS FinOps Intelligence Workshop</title>
+    <title>FinOps Cost Analysis on AWS FinOps Intelligence Workshop</title>
     <link>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/</link>
-    <description>Recent content in 06. FinOps Cost Analysis on AWS FinOps Intelligence Workshop</description>
+    <description>Recent content in FinOps Cost Analysis on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FinOps Cost Optimization Analysis</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/01-cost-optimization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/01-cost-optimization/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Cost Optimization&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;CUDOS v5&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;finops-cost-optimization-analysis&#34;&gt;FinOps Cost Optimization Analysis&lt;/h1&gt;&#xA;&lt;h2 id=&#34;step-1--choose-a-comparison-period&#34;&gt;Step 1 — Choose a comparison period&lt;/h2&gt;&#xA;&lt;p&gt;Use CUDOS to compare a current period with a previous equivalent period.&lt;/p&gt;&#xA;&lt;div class=&#34;aws-callout callout-note&#34;&gt;&#xA;    &#xA;    &lt;p&gt;&lt;p&gt;📸 &lt;strong&gt;Screenshot placeholder — &lt;code&gt;06-01-period-comparison.png&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Capture the current and comparison-period configuration.&lt;/p&gt;&#xA;&lt;p&gt;Replace this block with the real screenshot after completing the step.&lt;/p&gt;&#xA;&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;step-2--find-the-largest-cost-mover&#34;&gt;Step 2 — Find the largest cost mover&lt;/h2&gt;&#xA;&lt;p&gt;Identify:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Service&lt;/li&gt;&#xA;&lt;li&gt;Current cost&lt;/li&gt;&#xA;&lt;li&gt;Previous cost&lt;/li&gt;&#xA;&lt;li&gt;Absolute change&lt;/li&gt;&#xA;&lt;li&gt;Percentage change, if available&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;aws-callout callout-note&#34;&gt;&#xA;    &#xA;    &lt;p&gt;&lt;p&gt;📸 &lt;strong&gt;Screenshot placeholder — &lt;code&gt;06-02-largest-cost-mover.png&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Unit Economics &amp; Allocation Breakdown</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/02-unit-economics-allocation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/02-unit-economics-allocation/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Unit Economics&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Cost Allocation&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;unit-economics--allocation-breakdown&#34;&gt;Unit Economics &amp;amp; Allocation Breakdown&lt;/h1&gt;&#xA;&lt;h2 id=&#34;step-1--inspect-available-allocation-metadata&#34;&gt;Step 1 — Inspect available allocation metadata&lt;/h2&gt;&#xA;&lt;p&gt;Determine which exist:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;linked/source account&lt;/li&gt;&#xA;&lt;li&gt;Cost Categories&lt;/li&gt;&#xA;&lt;li&gt;cost allocation tags&lt;/li&gt;&#xA;&lt;li&gt;account taxonomy&lt;/li&gt;&#xA;&lt;li&gt;team/project/product tags&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;aws-callout callout-note&#34;&gt;&#xA;    &#xA;    &lt;p&gt;&lt;p&gt;📸 &lt;strong&gt;Screenshot placeholder — &lt;code&gt;06-05-allocation-metadata.png&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Capture the available allocation dimensions.&lt;/p&gt;&#xA;&lt;p&gt;Replace this block with the real screenshot after completing the step.&lt;/p&gt;&#xA;&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;h2 id=&#34;step-2--choose-one-ownership-dimension&#34;&gt;Step 2 — Choose one ownership dimension&lt;/h2&gt;&#xA;&lt;p&gt;Use a meaningful real dimension such as:&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

@@ -9,24 +9,24 @@
 
     <link rel="icon" href="http://localhost:1313/CUDOS-with-AmazonQuick/images/favicon.png" type="image/png">
 
-    <title>MLOps end-to-end với SageMaker và GitHub Actions :: AWS FinOps Intelligence Workshop</title>
+    <title>AWS FinOps Intelligence Workshop :: AWS FinOps Intelligence Workshop</title>
 
     
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/nucleus.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/fontawesome-all.min.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/hybrid.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/featherlight.min.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/perfect-scrollbar.min.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/auto-complete.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/atom-one-dark-reasonable.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/theme.css?1786123531" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/hugo-theme.css?1786123531" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/nucleus.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/fontawesome-all.min.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/hybrid.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/featherlight.min.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/perfect-scrollbar.min.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/auto-complete.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/atom-one-dark-reasonable.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/theme.css?1786176883" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/hugo-theme.css?1786176883" rel="stylesheet">
     
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/theme-workshop.css?1786123531" rel="stylesheet">
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/theme-workshop.css?1786176883" rel="stylesheet">
     
     
 
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/jquery-3.3.1.min.js?1786123531"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/jquery-3.3.1.min.js?1786176883"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,8 +55,8 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/lunr.min.js?1786123531"></script>
-<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/auto-complete.js?1786123531"></script>
+<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/lunr.min.js?1786176883"></script>
+<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/auto-complete.js?1786176883"></script>
 <script type="text/javascript">
     
         
@@ -64,7 +64,7 @@
         
     
 </script>
-<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/search.js?1786123531"></script>
+<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/search.js?1786176883"></script>
  
   </div>
 
@@ -199,49 +199,17 @@
 <a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
 </span>
 
- 
-<h1 id="mlops-end-to-end-với-sagemaker-và-github-actions">MLOps end-to-end với SageMaker và GitHub Actions</h1>
-<p>Workshop này chuyển nội dung trong AWS Machine Learning Blog thành bài lab thực hành. Bạn sẽ tạo custom Amazon SageMaker project template để kết nối GitHub và GitHub Actions với SageMaker Pipelines, SageMaker Model Registry, staging deployment, và bước duyệt production.</p>
-<p><img src="http://localhost:1313/CUDOS-with-AmazonQuick/images/architecture.png" alt="Kiến trúc MLOps"></p>
-
-<div class="mermaid" align="center">
-flowchart LR
-  Dev[Developer push] --> GH[GitHub repository]
-  GH --> GHA[GitHub Actions build.yml]
-  GHA --> SMP[SageMaker Pipeline]
-  SMP --> Prep[Data preparation]
-  Prep --> Train[Model training]
-  Train --> Eval[Model evaluation]
-  Eval --> Reg[Model Registry]
-  Reg -->|Approve model| EB[EventBridge rule]
-  EB --> L[Lambda trigger]
-  L --> GHD[GitHub Actions deploy.yml]
-  GHD --> STG[Staging endpoint]
-  STG -->|Manual approval| PRD[Production endpoint]
-</div>
-
-<h2 id="bạn-sẽ-xây-gì">Bạn sẽ xây gì</h2>
-<ul>
-<li>GitHub repository chứa code SageMaker pipeline và deployment.</li>
-<li>AWS CodeConnections kết nối AWS với GitHub.</li>
-<li>Secrets Manager secret lưu GitHub personal access token.</li>
-<li>IAM user và GitHub repository secrets cho GitHub Actions.</li>
-<li>Lambda function và Lambda layer để trigger GitHub deployment workflow.</li>
-<li>Service Catalog product hiển thị custom SageMaker project template trong Studio.</li>
-<li>SageMaker project chạy build và deploy workflow từ GitHub Actions.</li>
-</ul>
-<h2 id="nội-dung-workshop">Nội dung workshop</h2>
-<ol>
-<li><a href="1-introduction">Giới thiệu</a></li>
-<li><a href="2-preparatory-steps">Chuẩn bị</a></li>
-<li><a href="3-github-aws-setup">Thiết lập GitHub và AWS</a></li>
-<li><a href="4-lambda-service-catalog">Lambda và Service Catalog</a></li>
-<li><a href="5-create-sagemaker-project">Tạo SageMaker project</a></li>
-<li><a href="6-run-validate-pipeline">Chạy và kiểm tra pipeline</a></li>
-<li><a href="7-clean-up-resources">Dọn dẹp tài nguyên</a></li>
-</ol>
-<h2 id="nguồn-tham-khảo">Nguồn tham khảo</h2>
-<p>Workshop bám theo AWS blog &ldquo;Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions&rdquo; và sample repository <code>aws-samples/mlops-sagemaker-github-actions</code>.</p>
+           
+	
+		<h1>Customize your own home page</h1>
+		<p>
+		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
+		</p>
+		<ul>
+			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
+			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
+		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
+		</ul>
 	
   
         
@@ -288,19 +256,19 @@ flowchart LR
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/clipboard.min.js?1786123531"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/perfect-scrollbar.min.js?1786123531"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/perfect-scrollbar.jquery.min.js?1786123531"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/jquery.sticky.js?1786123531"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/featherlight.min.js?1786123531"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/highlight.pack.js?1786123531"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/clipboard.min.js?1786176883"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/perfect-scrollbar.min.js?1786176883"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/perfect-scrollbar.jquery.min.js?1786176883"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/jquery.sticky.js?1786176883"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/featherlight.min.js?1786176883"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/highlight.pack.js?1786176883"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/modernizr.custom-3.6.0.js?1786123531"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/learn.js?1786123531"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/hugo-learn.js?1786123531"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/modernizr.custom-3.6.0.js?1786176883"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/learn.js?1786176883"></script>
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/hugo-learn.js?1786176883"></script>
 
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/mermaid/mermaid.css?1786123531" rel="stylesheet" />
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/mermaid/mermaid.js?1786123531"></script>
+    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/mermaid/mermaid.css?1786176883" rel="stylesheet" />
+    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/mermaid/mermaid.js?1786176883"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

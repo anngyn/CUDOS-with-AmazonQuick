@@ -1,10 +1,10 @@
 [
 {
 	"uri": "http://localhost:1313/CUDOS-with-AmazonQuick/vi/",
-	"title": "MLOps end-to-end với SageMaker và GitHub Actions",
+	"title": "AWS FinOps Intelligence Workshop",
 	"tags": [],
 	"description": "",
-	"content": "MLOps end-to-end với SageMaker và GitHub Actions Workshop này chuyển nội dung trong AWS Machine Learning Blog thành bài lab thực hành. Bạn sẽ tạo custom Amazon SageMaker project template để kết nối GitHub và GitHub Actions với SageMaker Pipelines, SageMaker Model Registry, staging deployment, và bước duyệt production.\nflowchart LR Dev[Developer push] --\u003e GH[GitHub repository] GH --\u003e GHA[GitHub Actions build.yml] GHA --\u003e SMP[SageMaker Pipeline] SMP --\u003e Prep[Data preparation] Prep --\u003e Train[Model training] Train --\u003e Eval[Model evaluation] Eval --\u003e Reg[Model Registry] Reg --\u003e|Approve model| EB[EventBridge rule] EB --\u003e L[Lambda trigger] L --\u003e GHD[GitHub Actions deploy.yml] GHD --\u003e STG[Staging endpoint] STG --\u003e|Manual approval| PRD[Production endpoint] Bạn sẽ xây gì GitHub repository chứa code SageMaker pipeline và deployment. AWS CodeConnections kết nối AWS với GitHub. Secrets Manager secret lưu GitHub personal access token. IAM user và GitHub repository secrets cho GitHub Actions. Lambda function và Lambda layer để trigger GitHub deployment workflow. Service Catalog product hiển thị custom SageMaker project template trong Studio. SageMaker project chạy build và deploy workflow từ GitHub Actions. Nội dung workshop Giới thiệu Chuẩn bị Thiết lập GitHub và AWS Lambda và Service Catalog Tạo SageMaker project Chạy và kiểm tra pipeline Dọn dẹp tài nguyên Nguồn tham khảo Workshop bám theo AWS blog \u0026ldquo;Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions\u0026rdquo; và sample repository aws-samples/mlops-sagemaker-github-actions.\n"
+	"content": ""
 },
 {
 	"uri": "http://localhost:1313/CUDOS-with-AmazonQuick/vi/categories/",

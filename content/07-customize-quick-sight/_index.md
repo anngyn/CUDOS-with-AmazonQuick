@@ -1,15 +1,24 @@
 ---
-title: "Customize QuickSight"
+title: "Customize Quick Sight"
 weight: 7
-chapter: true
-pre: "<b>7. </b>"
+chapter: false
+pre: "7. "
+description: "Create a focused FinOps analysis without rebuilding CUDOS."
+duration: "30 mins"
+services:
+  - Amazon Quick Sight
+  - CUDOS v5
 ---
+{{< badge "Amazon Quick Sight" >}}
+{{< badge "CUDOS v5" >}}
+{{< badge "FinOps" >}}
+{{< duration "30 mins" >}}
 
-# Module 07 — Customize QuickSight
+# Module 07 — Customize Quick Sight
 
-Tailor visual reports and KPI metrics.
+Use CUDOS as the AWS-provided foundation, then create a smaller analysis that matches your own FinOps operating view.
 
-{{< badge "Amazon QuickSight" >}}
-{{< duration "20 mins" >}}
+## Module contents
 
-In this module, you will create custom calculated fields and visual filters.
+- **7.1 Customizing Quick Sight Visuals**
+- **7.2 Creating Custom Calculated Fields**

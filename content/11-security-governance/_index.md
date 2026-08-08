@@ -1,15 +1,26 @@
 ---
 title: "Security & Governance"
 weight: 11
-chapter: true
-pre: "<b>11. </b>"
+chapter: false
+pre: "11. "
+description: "Apply least privilege, encryption, sharing controls, and FinOps governance."
+duration: "25 mins"
+services:
+  - AWS IAM
+  - AWS KMS
+  - Amazon S3
+  - Amazon Quick
 ---
+{{< badge "Security" >}}
+{{< badge "Governance" >}}
+{{< badge "FinOps" >}}
+{{< duration "25 mins" >}}
 
 # Module 11 — Security & Governance
 
-Implement least-privilege access and data security.
+FinOps data can expose resource identifiers, account structure, tags, and financial information.
 
-{{< badge "AWS IAM" >}} {{< badge "AWS KMS" >}}
-{{< duration "15 mins" >}}
+## Module contents
 
-In this module, you will secure billing data and dashboard access policies.
+- **11.1 Security & Governance Policies**
+- **11.2 IAM Least Privilege & KMS Encryption**

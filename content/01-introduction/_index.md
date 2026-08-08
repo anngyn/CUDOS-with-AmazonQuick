@@ -1,15 +1,39 @@
 ---
 title: "Introduction"
 weight: 1
-chapter: true
-pre: "<b>1. </b>"
+chapter: false
+pre: "1. "
+description: "Workshop goals, scope, and FinOps architecture."
+duration: "10 mins"
+services:
+  - AWS Billing
+  - FinOps
+  - Amazon Quick
 ---
+{{< badge "AWS Billing" >}}
+{{< badge "FinOps" >}}
+{{< badge "Amazon Quick" >}}
+{{< duration "10 mins" >}}
 
 # Module 01 — Introduction
 
-Welcome to the AWS FinOps Intelligence Workshop.
+This module establishes the problem, target architecture, and operating principles for the workshop.
 
-{{< badge "AWS Billing" >}} {{< badge orange "FinOps" >}}
-{{< duration "10 mins" >}}
+AWS billing data contains detailed financial evidence, but raw records do not automatically answer business questions such as:
 
-In this module, you will learn about the workshop objectives, architecture, and key outcomes.
+- Which services drive our spend?
+- Which accounts or Regions changed the most?
+- Who owns the cost?
+- Which change is expected and which is anomalous?
+- Where should the FinOps team investigate first?
+
+The workshop builds a traceable path from raw billing evidence to dashboards and AI-assisted investigation.
+
+## Module contents
+
+- **1.1 Workshop Overview & Objectives**
+- **1.2 FinOps Architecture Deep-Dive**
+
+{{< finops title="FinOps Principle" >}}
+Use deterministic financial data as the source of truth. Add dashboards and AI on top of evidence rather than asking AI to invent the evidence.
+{{< /finops >}}

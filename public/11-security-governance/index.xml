@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>11. Security &amp; Governance on AWS FinOps Intelligence Workshop</title>
+    <title>Security &amp; Governance on AWS FinOps Intelligence Workshop</title>
     <link>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/</link>
-    <description>Recent content in 11. Security &amp; Governance on AWS FinOps Intelligence Workshop</description>
+    <description>Recent content in Security &amp; Governance on AWS FinOps Intelligence Workshop</description>
     <generator>Hugo</generator>
     <language>en</language>
     <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Security &amp; Governance Policies</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/01-security-governance-policies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/01-security-governance-policies/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Security&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Governance&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 10 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;security--governance-policies&#34;&gt;Security &amp;amp; Governance Policies&lt;/h1&gt;&#xA;&lt;h2 id=&#34;step-1--review-billing-data-access&#34;&gt;Step 1 — Review billing-data access&lt;/h2&gt;&#xA;&lt;p&gt;Identify who can access:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Data Exports S3 bucket&lt;/li&gt;&#xA;&lt;li&gt;Glue database&lt;/li&gt;&#xA;&lt;li&gt;Athena query results&lt;/li&gt;&#xA;&lt;li&gt;CUDOS dashboard&lt;/li&gt;&#xA;&lt;li&gt;custom Quick Sight dashboard&lt;/li&gt;&#xA;&lt;li&gt;Quick Space and agent&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;aws-callout callout-note&#34;&gt;&#xA;    &#xA;    &lt;p&gt;&lt;p&gt;📸 &lt;strong&gt;Screenshot placeholder — &lt;code&gt;11-01-data-access-review.png&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Capture the relevant access configuration without exposing sensitive principal details.&lt;/p&gt;&#xA;&lt;p&gt;Replace this block with the real screenshot after completing the step.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IAM Least Privilege &amp; KMS Encryption</title>
+      <link>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/02-iam-kms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/02-iam-kms/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS IAM&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS KMS&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Least Privilege&lt;/span&gt;&#xA;&#xA;&lt;div class=&#34;aws-duration&#34;&gt;&#xA;    &lt;i class=&#34;far fa-clock&#34;&gt;&lt;/i&gt; &lt;strong&gt;Estimated duration:&lt;/strong&gt; 15 mins&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;h1 id=&#34;iam-least-privilege--kms-encryption&#34;&gt;IAM Least Privilege &amp;amp; KMS Encryption&lt;/h1&gt;&#xA;&lt;h2 id=&#34;step-1--inspect-cid-rolespolicies&#34;&gt;Step 1 — Inspect CID roles/policies&lt;/h2&gt;&#xA;&lt;p&gt;Identify roles/policies created by the official stacks.&lt;/p&gt;&#xA;&lt;p&gt;Record what they allow across:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;S3&lt;/li&gt;&#xA;&lt;li&gt;Glue&lt;/li&gt;&#xA;&lt;li&gt;Athena&lt;/li&gt;&#xA;&lt;li&gt;Quick Sight&lt;/li&gt;&#xA;&lt;li&gt;supporting custom resources&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;aws-callout callout-note&#34;&gt;&#xA;    &#xA;    &lt;p&gt;&lt;p&gt;📸 &lt;strong&gt;Screenshot placeholder — &lt;code&gt;11-04-cid-iam-role.png&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Capture one relevant CID/Quick Sight IAM role and its attached policies.&lt;/p&gt;&#xA;&lt;p&gt;Replace this block with the real screenshot after completing the step.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

@@ -2,6 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick-genai/01-quick-integration/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/02-environment-setup/01-cli-permissions/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/01-building-agentic-workflows/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/10-anomaly-detection/01-configure-cost-anomaly/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/01-cur2-overview/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/01-custom-visuals/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/01-deploy-cudos/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/01-cost-optimization/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena-integration/01-query-cur2/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/01-security-governance-policies/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/01-teardown/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/01-workshop-overview/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/02-governance-remediation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena-integration/02-glue-inspection/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/02-calculated-fields/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/02-navigation-kpis/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/02-environment-setup/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/02-architecture-deep-dive/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/02-iam-kms/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick-genai/02-natural-language-queries/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/02-prerequisites-identity/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/02-environment-setup/02-quicksight-onboarding/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/10-anomaly-detection/02-sns-slack-alerts/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/02-unit-economics-allocation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/02-verify-deletion/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/03-deploy-data-export/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena-integration/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/04-validate-delivery/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick-genai/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/10-anomaly-detection/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/</loc>
+  </url><url>
+    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/</loc>
+  </url><url>
     <loc>http://localhost:1313/CUDOS-with-AmazonQuick/</loc>
     <xhtml:link
                 rel="alternate"
@@ -13,32 +89,6 @@
                 hreflang="en"
                 href="http://localhost:1313/CUDOS-with-AmazonQuick/"
                 />
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/02-environment/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2/03-create-export/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/04-athena/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/10-custom-anomaly/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/</loc>
-  </url><url>
-    <loc>http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/</loc>
   </url><url>
     <loc>http://localhost:1313/CUDOS-with-AmazonQuick/categories/</loc>
     <xhtml:link
