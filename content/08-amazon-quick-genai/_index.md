@@ -16,7 +16,6 @@ services:
 {{< badge "Advanced" >}}
 {{< duration "30 mins" >}}
 
-# Module 08 — Amazon Quick & Generative AI FinOps
 
 This advanced module uses Amazon Quick on top of the FinOps dashboards already built.
 

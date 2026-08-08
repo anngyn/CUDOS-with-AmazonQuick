@@ -16,7 +16,6 @@ services:
 {{< badge "Amazon S3" >}}
 {{< duration "40 mins + delivery wait" >}}
 
-# Module 03 — CUR 2.0 Foundation
 
 AWS recommends CUR 2.0 through AWS Data Exports for foundational Cloud Intelligence Dashboards.
 

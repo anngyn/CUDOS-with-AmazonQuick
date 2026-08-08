@@ -15,7 +15,6 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< duration "10 mins" >}}
 
-# Security & Governance Policies
 
 ## Step 1 — Review billing-data access
 

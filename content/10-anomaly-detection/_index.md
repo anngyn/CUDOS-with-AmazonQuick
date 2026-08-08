@@ -15,7 +15,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "30 mins + learning period" >}}
 
-# Module 10 — Custom Anomaly Detection
 
 This module adds AWS-native anomaly monitoring and notifications. It also explains where a transparent deterministic rule can complement the managed service.
 

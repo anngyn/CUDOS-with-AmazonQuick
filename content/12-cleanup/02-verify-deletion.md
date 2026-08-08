@@ -16,7 +16,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "5–10 mins" >}}
 
-# Verifying Complete Resource Deletion
 
 ## Step 1 — Verify CloudFormation
 

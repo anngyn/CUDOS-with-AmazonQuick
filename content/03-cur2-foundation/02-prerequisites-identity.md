@@ -15,7 +15,6 @@ services:
 {{< badge "AWS CloudFormation" >}}
 {{< duration "5 mins" >}}
 
-# Prerequisites & AWS Identity Check
 
 ## Step 1 — Get the Account ID
 

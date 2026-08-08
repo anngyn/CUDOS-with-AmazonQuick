@@ -15,7 +15,6 @@ services:
 {{< badge "CUDOS v5" >}}
 {{< duration "15 mins" >}}
 
-# FinOps Cost Optimization Analysis
 
 ## Step 1 — Choose a comparison period
 

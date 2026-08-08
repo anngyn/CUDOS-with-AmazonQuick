@@ -17,7 +17,6 @@ services:
 {{< badge "CUR 2.0" >}}
 {{< duration "15–20 mins" >}}
 
-# Deploy the CUR 2.0 Data Export Foundation
 
 Official guide:
 

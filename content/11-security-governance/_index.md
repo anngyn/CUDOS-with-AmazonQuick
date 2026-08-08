@@ -16,7 +16,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "25 mins" >}}
 
-# Module 11 — Security & Governance
 
 FinOps data can expose resource identifiers, account structure, tags, and financial information.
 

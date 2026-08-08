@@ -4,7 +4,6 @@ chapter: false
 description: "Build an end-to-end AWS FinOps environment with CUR 2.0, CUDOS v5, Amazon Quick Sight, and Amazon Quick."
 ---
 
-# AWS FinOps Intelligence Workshop
 
 Build an end-to-end AWS FinOps environment using **AWS Data Exports / CUR 2.0**, **Amazon S3**, **AWS Glue**, **Amazon Athena**, **CUDOS v5**, **Amazon Quick Sight**, and **Amazon Quick**.
 

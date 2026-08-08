@@ -16,7 +16,6 @@ services:
 {{< badge "Amazon Quick Sight" >}}
 {{< duration "20 mins" >}}
 
-# Deploy CUDOS v5 Dashboards
 
 Official reference:
 

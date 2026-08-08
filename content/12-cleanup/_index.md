@@ -16,7 +16,6 @@ services:
 {{< badge "AWS CloudFormation" >}}
 {{< duration "20 mins" >}}
 
-# Module 12 — Clean Up Resources
 
 Temporary workshop resources should not become permanent cloud waste.
 

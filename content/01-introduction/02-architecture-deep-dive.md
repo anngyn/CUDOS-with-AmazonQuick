@@ -17,7 +17,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "10 mins" >}}
 
-# FinOps Architecture Deep-Dive
 
 ## Overall architecture
 

@@ -16,7 +16,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "15 mins" >}}
 
-# Unit Economics & Allocation Breakdown
 
 ## Step 1 — Inspect available allocation metadata
 

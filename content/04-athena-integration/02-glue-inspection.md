@@ -15,7 +15,6 @@ services:
 {{< badge "Amazon S3" >}}
 {{< duration "10 mins" >}}
 
-# AWS Glue Data Catalog Inspection
 
 ## Step 1 — Open the database
 

@@ -17,7 +17,6 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< duration "15 mins" >}}
 
-# Teardown & Resource Cleanup
 
 ## Step 1 — Create a resource inventory
 

@@ -14,7 +14,6 @@ services:
 {{< badge "CUR 2.0" >}}
 {{< duration "15 mins" >}}
 
-# Querying CUR 2.0 with Amazon Athena
 
 ## Step 1 — Open Athena
 

@@ -16,7 +16,6 @@ services:
 {{< badge "Least Privilege" >}}
 {{< duration "15 mins" >}}
 
-# IAM Least Privilege & KMS Encryption
 
 ## Step 1 — Inspect CID roles/policies
 

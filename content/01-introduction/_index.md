@@ -15,7 +15,6 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< duration "10 mins" >}}
 
-# Module 01 — Introduction
 
 This module establishes the problem, target architecture, and operating principles for the workshop.
 

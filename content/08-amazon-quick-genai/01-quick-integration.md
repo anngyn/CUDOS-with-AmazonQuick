@@ -15,7 +15,6 @@ services:
 {{< badge "Chat Agents" >}}
 {{< duration "15 mins" >}}
 
-# Amazon Quick Generative AI Integration
 
 Official reference:
 

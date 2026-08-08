@@ -14,7 +14,6 @@ services:
 {{< badge "Filters" >}}
 {{< duration "15 mins" >}}
 
-# Customizing Quick Sight Visuals
 
 ## Step 1 — Create an editable analysis
 

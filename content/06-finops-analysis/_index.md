@@ -15,7 +15,6 @@ services:
 {{< badge "Cost Analysis" >}}
 {{< duration "30 mins" >}}
 
-# Module 06 — FinOps Cost Analysis
 
 This module turns dashboard observations into structured FinOps questions.
 

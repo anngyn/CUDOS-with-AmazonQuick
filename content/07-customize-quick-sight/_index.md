@@ -14,7 +14,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "30 mins" >}}
 
-# Module 07 — Customize Quick Sight
 
 Use CUDOS as the AWS-provided foundation, then create a smaller analysis that matches your own FinOps operating view.
 

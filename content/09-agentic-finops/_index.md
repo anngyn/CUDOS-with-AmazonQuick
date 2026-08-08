@@ -15,7 +15,6 @@ services:
 {{< badge "Advanced" >}}
 {{< duration "30 mins" >}}
 
-# Module 09 — Agentic FinOps Workflows
 
 A chat answer handles a question. A Flow captures a repeatable process.
 

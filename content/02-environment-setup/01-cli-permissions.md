@@ -15,7 +15,6 @@ services:
 {{< badge "AWS IAM" >}}
 {{< duration "10 mins" >}}
 
-# AWS CLI & Permissions Setup
 
 ## Step 1 — Verify AWS CLI
 

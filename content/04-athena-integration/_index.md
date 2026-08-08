@@ -15,7 +15,6 @@ services:
 {{< badge "CUR 2.0" >}}
 {{< duration "25 mins" >}}
 
-# Module 04 — Amazon Athena Integration
 
 The collection stack creates the metadata required to query exported billing data. This module validates the Glue catalog and executes real SQL against CUR 2.0.
 

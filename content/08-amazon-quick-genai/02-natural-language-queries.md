@@ -15,7 +15,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "15 mins" >}}
 
-# Natural Language FinOps Queries
 
 ## Step 1 — Visibility
 

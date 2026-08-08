@@ -15,7 +15,6 @@ services:
 {{< badge "KPIs" >}}
 {{< duration "15 mins" >}}
 
-# CUDOS Dashboard Navigation & KPIs
 
 Exact sheet labels can change between CUDOS releases, so use the deployed dashboard as the source of truth.
 

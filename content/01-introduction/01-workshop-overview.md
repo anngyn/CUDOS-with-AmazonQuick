@@ -17,7 +17,6 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< duration "10 mins" >}}
 
-# Workshop Overview & Objectives
 
 Welcome to the **AWS FinOps Intelligence Workshop**. This hands-on workshop guides you through building a modern AWS-native FinOps environment from the billing-data foundation to dashboards, investigation, and optional agentic workflows.
 

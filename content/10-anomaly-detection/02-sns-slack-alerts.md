@@ -15,7 +15,6 @@ services:
 {{< badge "Slack" >}}
 {{< duration "15 mins" >}}
 
-# Setting Up SNS & Slack Alerts
 
 AWS Cost Anomaly Detection subscriptions can notify an Amazon SNS topic. AWS documentation supports mapping SNS notifications into Slack or Amazon Chime through **Amazon Q Developer in chat applications**.
 

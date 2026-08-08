@@ -15,7 +15,6 @@ services:
 {{< badge "Cost Investigation" >}}
 {{< duration "20 mins" >}}
 
-# Building Autonomous Agentic FinOps Workflows
 
 The flow automates **investigation**, not production changes.
 

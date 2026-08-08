@@ -16,7 +16,6 @@ services:
 {{< badge "SPICE" >}}
 {{< duration "35 mins" >}}
 
-# Module 05 — CUDOS v5 Dashboards
 
 CUDOS is an AWS Cloud Intelligence Dashboard for detailed AWS cost and usage analysis. The current foundational path supports and recommends CUR 2.0.
 

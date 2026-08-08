@@ -15,7 +15,6 @@ services:
 {{< badge "SPICE" >}}
 {{< duration "10 mins" >}}
 
-# Quick Sight Account Onboarding
 
 Amazon Quick Sight is the BI capability used by CUDOS. It is part of Amazon Quick.
 

@@ -15,7 +15,6 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< duration "20 mins" >}}
 
-# Module 02 — Environment Setup
 
 Prepare the account before creating billing infrastructure.
 

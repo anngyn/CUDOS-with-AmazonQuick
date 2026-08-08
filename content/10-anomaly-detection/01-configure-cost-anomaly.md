@@ -14,7 +14,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "15 mins" >}}
 
-# Configuring AWS Cost Anomaly Detection
 
 AWS Cost Anomaly Detection uses machine learning to identify unusual spend patterns. AWS documents that it uses Cost Explorer data, monitors net unblended cost, and can rank root causes across service, account, Region, and usage type.
 

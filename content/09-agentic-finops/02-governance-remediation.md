@@ -15,7 +15,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "10 mins" >}}
 
-# Automated Governance & Remediation
 
 ## Step 1 — Classify automation levels
 

@@ -15,7 +15,6 @@ services:
 {{< badge "CUR 2.0" >}}
 {{< duration "10 mins + delivery wait" >}}
 
-# Validate Data Export & S3 Delivery
 
 ## Step 1 — Verify the export exists
 

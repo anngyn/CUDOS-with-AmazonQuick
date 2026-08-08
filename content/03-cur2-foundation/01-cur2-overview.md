@@ -15,7 +15,6 @@ services:
 {{< badge "Amazon S3" >}}
 {{< duration "10 mins" >}}
 
-# CUR 2.0 Overview & Architecture
 
 ## What is CUR 2.0?
 

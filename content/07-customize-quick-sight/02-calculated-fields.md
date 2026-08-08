@@ -14,7 +14,6 @@ services:
 {{< badge "FinOps" >}}
 {{< duration "15 mins" >}}
 
-# Creating Custom Calculated Fields
 
 Calculated fields are useful for presentation-level logic. Core financial semantics should remain in a reusable semantic/query layer.
 
