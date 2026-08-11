@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="850" viewBox="0 0 1600 850" role="img" aria-labelledby="title description">
+  <title id="title">Athena CUR 2.0 validation result</title>
+  <desc id="description">Sanitized live Athena query evidence showing successful cost by service validation against the CUR 2.0 table in Sydney.</desc>
+  <style>
+    .bg{fill:#f5f8fc}.header{fill:#101b33}.card{fill:#fff;stroke:#d5dfed;stroke-width:2}.line{stroke:#d5dfed;stroke-width:2}.title{font:700 42px Arial,sans-serif;fill:#fff}.sub{font:400 20px Arial,sans-serif;fill:#c8d6ed}.ct{font:700 27px Arial,sans-serif;fill:#15274a}.code{font:600 21px 'Courier New',monospace;fill:#15274a}.lab{font:600 18px Arial,sans-serif;fill:#53627a}.val{font:700 25px Arial,sans-serif;fill:#15274a}.small{font:400 18px Arial,sans-serif;fill:#53627a}.pill{fill:#087f5b}.pillText{font:700 18px Arial,sans-serif;fill:#fff}.note{fill:#eaf3fb;stroke:#b9cde5;stroke-width:2}.noteText{font:600 18px Arial,sans-serif;fill:#15274a}
+  </style>
+  <rect class="bg" width="1600" height="850"/><rect class="header" width="1600" height="166"/>
+  <text class="title" x="80" y="76">Athena CUR 2.0 validation — live query</text>
+  <text class="sub" x="80" y="118">Sanitized execution evidence · ap-southeast-2 (Sydney) · 12 Aug 2026</text>
+  <rect class="pill" x="1280" y="52" rx="24" ry="24" width="225" height="50"/><text class="pillText" x="1340" y="84">SUCCEEDED</text>
+  <rect class="card" x="80" y="220" rx="18" ry="18" width="920" height="410"/>
+  <text class="ct" x="122" y="278">Validated query contract</text><line class="line" x1="122" y1="315" x2="958" y2="315"/>
+  <text class="code" x="122" y="365">FROM cid_data_export.cur2</text>
+  <text class="code" x="122" y="410">WHERE billing period = August 2026</text>
+  <text class="code" x="122" y="455">GROUP BY line_item_product_code</text>
+  <text class="code" x="122" y="500">SUM(line_item_unblended_cost)</text>
+  <text class="small" x="122" y="565">Financial result values are redacted in the published evidence.</text>
+  <rect class="card" x="1060" y="220" rx="18" ry="18" width="460" height="410"/>
+  <text class="ct" x="1102" y="278">Execution evidence</text><line class="line" x1="1102" y1="315" x2="1478" y2="315"/>
+  <text class="lab" x="1102" y="365">Workgroup</text><text class="val" x="1102" y="400">primary</text>
+  <text class="lab" x="1102" y="452">Result rows</text><text class="val" x="1102" y="487">10 services</text>
+  <text class="lab" x="1102" y="539">Data scanned</text><text class="val" x="1102" y="574">2,128 bytes</text>
+  <rect class="note" x="80" y="690" rx="16" ry="16" width="1440" height="90"/>
+  <text class="noteText" x="120" y="732">Query completed in 628 ms; results are encrypted with SSE-S3.</text>
+  <text class="small" x="120" y="763">This proves CUR readability and a named metric baseline. It does not by itself prove a CUDOS reconciliation.</text>
+</svg>

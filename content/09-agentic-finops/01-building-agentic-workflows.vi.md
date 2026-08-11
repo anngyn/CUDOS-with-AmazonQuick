@@ -84,11 +84,15 @@ Kết quả: PASS / FAIL
 
 Chỉ cần lưu lại Report cuối cùng của Flow là đủ làm bằng chứng nghiệm thu, không cần thiết phải chụp lại giao diện kéo thả các node cấu hình.
 
-{{< capture src="images/09-agentic-finops/09-01-cost-investigation-flow-result.png" alt="Kết quả Flow Cost Anomaly Investigation đã đánh giá và yêu cầu con người xem xét" title="Kết quả Flow điều tra có quản trị" capture="Chụp lần chạy Flow đã đánh giá ở trạng thái cuối, với kỳ đầu vào và các ngưỡng, biến động lớn nhất đã đối soát, bằng chứng quan sát được, các giả thuyết được tách riêng, nội dung cần kiểm chứng, chủ sở hữu, rủi ro và hoàn tác cùng trạng thái REVIEW REQUIRED. Thể hiện rằng không có hành động thay đổi workload nào được thực thi." caption="Lần chạy cuối cùng và bản đánh giá là bằng chứng; không cần các màn hình cấu hình node." >}}
+{{< capture src="images/09-agentic-finops/09-01-cost-investigation-flow-result.png" alt="Trang kết luận của báo cáo Amazon Quick Flow, có REVIEW REQUIRED, nhãn SYNTHETIC và không cho phép thay đổi workload" title="Kết quả Flow điều tra có quản trị" capture="Trang kết luận được render từ PDF do Amazon Quick Flows xuất ra. Nó thể hiện lần chạy tổng hợp tháng 07/2026: kỳ, phạm vi ap-southeast-2, bằng chứng AmazonEC2 $693.30, giả thuyết chưa kiểm chứng, người duyệt và không có hành động thay đổi workload nào được phê duyệt." caption="Flow đã hoàn tất một lần điều tra chỉ-đọc. Ảnh này là trang 9 của PDF kết quả, không phải ảnh dashboard." >}}
+
+[Tải PDF xuất từ Amazon Quick Flows (đủ 10 trang)](/evidence/09-agentic-finops/09-01-cost-investigation-flow-result.pdf)
 
 ## Trạng thái hiện tại của dự án
 
-Luồng chạy và tiêu chí đánh giá đã có. Tuy nhiên, tính năng AI Flow này hiện vẫn đang trong giai đoạn thử nghiệm (tùy chọn), chưa bắt buộc phải áp dụng thực tế.
+Đã chạy Flow nháp `Cost Investigation – July 2026 [Synthetic]` trên Amazon Quick tại Sydney và xuất báo cáo như bằng chứng ở trên. Flow đọc `CUDOS Dashboard Demo [Synthetic]` như nguồn Amazon QuickSight chỉ-đọc, báo cáo đúng các giá trị tháng 07 đã đối soát, tách giả thuyết khỏi quan sát và kết thúc tại `REVIEW REQUIRED`.
+
+Flow chưa Publish và nguồn kết nối là dữ liệu tổng hợp, không phải CUR thật. Vì vậy, nó chứng minh **quy trình điều tra có quản trị**, không phải khả năng remediation production. Flow không được gắn tích hợp thay đổi workload, gửi thông báo hay thực hiện hành động bên ngoài.
 
 ## Tài liệu tham khảo chính thức
 

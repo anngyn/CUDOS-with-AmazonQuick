@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1130" viewBox="0 0 1600 1130" role="img" aria-labelledby="title description">
+  <title id="title">Pre-teardown retained resource inventory</title>
+  <desc id="description">Sanitized live AWS CLI inventory of resources intentionally retained for the FinOps CUDOS workshop.</desc>
+  <style>
+    .bg{fill:#f5f8fc}.header{fill:#101b33}.row{fill:#fff;stroke:#d5dfed;stroke-width:1.5}.pill{fill:#087f5b}.pillText{font:700 17px Arial,sans-serif;fill:#fff}.title{font:700 41px Arial,sans-serif;fill:#fff}.subtitle{font:400 20px Arial,sans-serif;fill:#c8d6ed}.h{font:700 19px Arial,sans-serif;fill:#53627a}.name{font:700 21px Arial,sans-serif;fill:#15274a}.detail{font:400 17px Arial,sans-serif;fill:#53627a}.footer{font:600 18px Arial,sans-serif;fill:#15274a}.warn{fill:#fff4e5;stroke:#f0c57c;stroke-width:1.5}.warnText{font:700 18px Arial,sans-serif;fill:#8a5200}
+  </style>
+  <rect class="bg" width="1600" height="1130"/>
+  <rect class="header" width="1600" height="170"/>
+  <text class="title" x="70" y="76">FinOps project resource inventory</text>
+  <text class="subtitle" x="70" y="118">Live read-only AWS CLI snapshot · 12 Aug 2026 · ap-southeast-2 (Sydney)</text>
+  <rect class="pill" x="1240" y="56" rx="24" ry="24" width="270" height="50"/>
+  <text class="pillText" x="1325" y="88">ALL RETAINED</text>
+  <text class="h" x="85" y="220">RESOURCE</text><text class="h" x="770" y="220">OBSERVED STATE</text><text class="h" x="1250" y="220">DECISION</text>
+
+  <rect class="row" x="70" y="245" width="1460" height="96" rx="12"/>
+  <text class="name" x="90" y="283">CID-DataExports-Destination</text><text class="detail" x="90" y="313">CloudFormation stack</text>
+  <text class="name" x="770" y="283">CREATE_COMPLETE</text><text class="detail" x="770" y="313">CUDOS data foundation</text>
+  <rect class="pill" x="1265" y="274" rx="18" ry="18" width="165" height="36"/><text class="pillText" x="1303" y="298">RETAINED</text>
+
+  <rect class="row" x="70" y="355" width="1460" height="96" rx="12"/>
+  <text class="name" x="90" y="393">Athena / Glue core and demo layer</text><text class="detail" x="90" y="423">cid_data_export · finops_demo · primary workgroup</text>
+  <text class="name" x="770" y="393">Available</text><text class="detail" x="770" y="423">Reproducible queries</text>
+  <rect class="pill" x="1265" y="384" rx="18" ry="18" width="165" height="36"/><text class="pillText" x="1303" y="408">RETAINED</text>
+
+  <rect class="row" x="70" y="465" width="1460" height="110" rx="12"/>
+  <text class="name" x="90" y="503">CUDOS and FinOps dashboards</text><text class="detail" x="90" y="533">CUDOS v5 · demo · optimization · decision · allocation &amp; unit economics</text>
+  <text class="name" x="770" y="503">Listed by Amazon Quick</text><text class="detail" x="770" y="533">Evidence and analysis products</text>
+  <rect class="pill" x="1265" y="494" rx="18" ry="18" width="165" height="36"/><text class="pillText" x="1303" y="518">RETAINED</text>
+
+  <rect class="row" x="70" y="590" width="1460" height="96" rx="12"/>
+  <text class="name" x="90" y="628">Amazon Quick Q&amp;A Topic</text><text class="detail" x="90" y="658">FinOps CUDOS Demo Q&amp;A [Synthetic]</text>
+  <text class="name" x="770" y="628">Indexed</text><text class="detail" x="770" y="658">Section 8 evidence</text>
+  <rect class="pill" x="1265" y="619" rx="18" ry="18" width="165" height="36"/><text class="pillText" x="1303" y="643">RETAINED</text>
+
+  <rect class="row" x="70" y="700" width="1460" height="96" rx="12"/>
+  <text class="name" x="90" y="738">Amazon Quick Flow</text><text class="detail" x="90" y="768">Cost Investigation – July 2026 [Synthetic]</text>
+  <text class="name" x="770" y="738">Draft; report export retained</text><text class="detail" x="770" y="768">Section 9 evidence</text>
+  <rect class="pill" x="1265" y="729" rx="18" ry="18" width="165" height="36"/><text class="pillText" x="1303" y="753">RETAINED</text>
+
+  <rect class="row" x="70" y="810" width="1460" height="110" rx="12"/>
+  <text class="name" x="90" y="848">Cost Anomaly Detection + SNS</text><text class="detail" x="90" y="878">SERVICE monitor · USD 10 · IMMEDIATE · no delivery endpoint</text>
+  <text class="name" x="770" y="848">Monitor, subscription, topic present</text><text class="detail" x="770" y="878">Learning and routing pending</text>
+  <rect class="pill" x="1265" y="839" rx="18" ry="18" width="165" height="36"/><text class="pillText" x="1303" y="863">RETAINED</text>
+
+  <rect class="warn" x="70" y="960" width="1460" height="100" rx="14"/>
+  <text class="warnText" x="100" y="1004">Pre-teardown snapshot only — no delete command was run and no resource is claimed as DELETED.</text>
+  <text class="footer" x="100" y="1038">Owner: Project owner · Next review: 01 Sep 2026 · Teardown authorization: not granted</text>
+</svg>

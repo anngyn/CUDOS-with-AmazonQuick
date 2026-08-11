@@ -4,7 +4,19 @@ chapter: false
 description: "An evidence-backed AWS FinOps implementation built on CUR 2.0, Athena, CUDOS v5, QuickSight, and governed automation."
 ---
 
-This repository documents an AWS FinOps implementation as a technical project: the business problem, architecture, implementation decisions, validation evidence, operating model, and remaining gaps.
+{{< finops-hero
+  label="AWS FinOps implementation · Sydney"
+  headline="Turn billing records into governed FinOps decisions."
+  summary="A production-style CUDOS project that keeps the financial source, analytical evidence, recommendation, and human approval visibly separate."
+  proof_one_label="Financial source"
+  proof_one_value="CUR 2.0 → Athena"
+  proof_two_label="Analysis product"
+  proof_two_value="CUDOS v5 + Amazon Quick"
+  proof_three_label="Decision guardrail"
+  proof_three_value="Evidence first. Human approval."
+>}}
+
+This repository documents the business problem, architecture, implementation decisions, validation evidence, operating model, and remaining gaps as one traceable AWS FinOps project.
 
 {{< badge "FinOps" >}}
 {{< badge "CUDOS v5" >}}
@@ -53,10 +65,10 @@ Cost Anomaly Detection and SNS provide the operational signal around this analyt
 |---|---|---|
 | CUR 2.0 delivery | Validated | Real Parquet delivery in the current billing partition |
 | Athena and Glue | Validated | Database, table, schema, query result, and scan statistics |
-| CUDOS v5 and SPICE | Implementation record required | Validation contract is defined; live dashboard evidence remains to be added |
-| FinOps findings | Method defined | A reconciled real-account finding and measured outcome remain to be completed |
-| Amazon Q and Flows | Optional extension | Grounding and run-evaluation criteria are defined |
-| Alerting and governance | Design defined | Live delivery test and final access review remain to be completed |
+| CUDOS v5 and Amazon Quick | Deployed | CUDOS v5, datasets, dashboard evidence, and a clearly labelled synthetic walkthrough are retained |
+| FinOps findings | Synthetic measurement validated | Optimization, allocation, and unit-economics demonstrations are reconciled; a real-account outcome remains pending |
+| Amazon Q and Flows | Live synthetic extension | A grounded Topic and governed Flow report run on the shared synthetic demonstration source; production grounding remains optional |
+| Alerting and governance | Partially deployed | Service monitor, SNS routing foundation, security audit, and retained-resource inventory exist; delivery endpoint/test remains pending |
 
 We intentionally track this status clearly: a documented design does not count as a working system.
 

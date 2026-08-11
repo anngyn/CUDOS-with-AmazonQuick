@@ -4,3 +4,4 @@ lambda_functions/**/lambda_layer/layer.zip
 *.zip
 __pycache__/
 *.pyc
+/Cost Investigation – July 2026 [Synthetic].pdf

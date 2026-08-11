@@ -61,7 +61,7 @@ Chủ sở hữu:
 
 Lưu lại một ảnh chụp màn hình toàn cảnh Dashboard với đầy đủ thông tin bối cảnh. Đừng chụp lắt nhắt từng cái pop-up cấu hình bộ lọc.
 
-{{< capture src="images/07-customize-quick-sight/07-01-finops-decision-dashboard.png" alt="Dashboard quyết định FinOps trên QuickSight đã phát hành, kèm ngữ cảnh phạm vi và độ mới dữ liệu" title="Chế độ xem quyết định FinOps đã phát hành" capture="Chụp dashboard đã phát hành ở trạng thái cuối cùng, với bộ điều khiển ngày, chỉ số chi phí có tên, bộ lọc dịch vụ và tài khoản, KPI của kỳ được chọn cùng dấu thời gian làm mới cuối cùng hiển thị trong một chế độ xem." caption="Giữ lại chế độ xem quyết định cuối cùng; cố ý bỏ qua các màn hình thiết lập bộ lọc và định dạng trực quan." >}}
+{{< capture src="images/07-customize-quick-sight/07-01-finops-decision-dashboard.png" alt="Dashboard quyết định FinOps tổng hợp đã phát hành, có phạm vi, xu hướng, tác nhân service và kiểm chứng Spend Band" title="Chế độ xem quyết định FinOps minh họa đã phát hành" capture="Mở dashboard FinOps Decision Dashboard [Synthetic] đã publish. Chụp KPI Net Unblended Cost, xu hướng chi phí tháng 7/2026, tác nhân service, bảng scope và Spend Band, cùng nhãn Synthetic Direct Query Sydney trong một góc nhìn." caption="Bộ dữ liệu minh họa: một dashboard quyết định đã publish được dùng chung cho ví dụ thiết kế visual và calculated field. Không cần chụp các màn hình cấu hình filter hoặc định dạng." >}}
 
 {{< finops title="Điểm rút ra về FinOps" >}}
 Dashboard tùy chỉnh giúp bạn tập trung vào quyết định của team mình, mà vẫn đảm bảo tính thống nhất với định nghĩa dữ liệu của công ty (dựa trên CUDOS).

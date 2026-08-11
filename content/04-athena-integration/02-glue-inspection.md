@@ -21,9 +21,7 @@ If the catalog points to the wrong prefix, SQL can still be syntactically valid 
 
 ## Observed catalog
 
-The database name is taken from the deployed environment. Current evidence shows `cid_data_export`:
-
-{{< evidence src="images/03-cur2/04-07-glue-database.png" alt="AWS Glue Data Catalog database list containing the CUR database" caption="Observed catalog result: the CUR database exists in Glue and matches the database used by Athena." >}}
+The database name is taken from the deployed environment. Current evidence shows `cid_data_export`; the same representative Athena evidence in 4.1 is sufficient because Athena resolves the Glue database and table before it can execute the query.
 
 The project records:
 

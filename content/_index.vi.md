@@ -4,7 +4,19 @@ chapter: false
 description: "Dự án AWS FinOps có dữ liệu đối soát thực tế, được xây dựng trên CUR 2.0, Athena, CUDOS v5, QuickSight và cơ chế tự động hóa có quản trị."
 ---
 
-Kho lưu trữ này mô tả một hệ thống AWS FinOps dưới góc độ của một dự án kỹ thuật thực tế: đi từ bài toán kinh doanh, kiến trúc, các quyết định triển khai, cho đến các bằng chứng xác thực, mô hình vận hành và cả những phần còn đang hoàn thiện.
+{{< finops-hero
+  label="Dự án AWS FinOps · Sydney"
+  headline="Biến dữ liệu billing thành quyết định FinOps có quản trị."
+  summary="Một dự án CUDOS theo phong cách production, tách rõ nguồn tài chính, bằng chứng phân tích, khuyến nghị và phê duyệt của con người."
+  proof_one_label="Nguồn tài chính"
+  proof_one_value="CUR 2.0 → Athena"
+  proof_two_label="Sản phẩm phân tích"
+  proof_two_value="CUDOS v5 + Amazon Quick"
+  proof_three_label="Rào chắn quyết định"
+  proof_three_value="Có bằng chứng. Có người duyệt."
+>}}
+
+Kho lưu trữ này trình bày bài toán kinh doanh, kiến trúc, quyết định triển khai, bằng chứng xác thực, mô hình vận hành và các phần còn đang hoàn thiện như một dự án AWS FinOps có thể truy vết.
 
 {{< badge "FinOps" >}}
 {{< badge "CUDOS v5" >}}
@@ -53,10 +65,10 @@ Cost Anomaly Detection và SNS cung cấp tín hiệu vận hành bao quanh lu�
 |---|---|---|
 | Thu thập CUR 2.0 | Đã đối soát | Dữ liệu Parquet thực tế trong phân vùng thanh toán hiện tại |
 | Athena và Glue | Đã đối soát | Database, bảng, schema, kết quả truy vấn và thống kê dữ liệu đã quét |
-| CUDOS v5 và SPICE | Đang bổ sung hướng dẫn triển khai | Đã chốt quy trình đối soát; cần cập nhật thêm hình ảnh dashboard thực tế |
-| Phân tích FinOps | Đã xác định phương pháp | Cần hoàn thiện một case study trên tài khoản thật, đối soát số liệu và đo lường kết quả |
-| Amazon Q và Flows | Tùy chọn mở rộng | Đã xác định tiêu chí grounding và đánh giá hiệu quả chạy thực tế |
-| Cảnh báo và quản trị | Đã hoàn tất thiết kế | Cần kiểm thử thực tế và rà soát lại các quyền truy cập cuối cùng |
+| CUDOS v5 và Amazon Quick | Đã triển khai | Đã giữ bằng chứng CUDOS v5, dataset, dashboard và walkthrough tổng hợp được gắn nhãn rõ ràng |
+| Phân tích FinOps | Đã xác thực measurement tổng hợp | Đã đối soát ví dụ optimization, allocation và unit economics; kết quả tài khoản thật vẫn đang chờ |
+| Amazon Q và Flows | Phần mở rộng tổng hợp đang chạy | Topic có grounding và Flow có quản trị đã chạy trên nguồn demo dùng chung; production grounding vẫn là tùy chọn |
+| Cảnh báo và quản trị | Đã triển khai một phần | Có service monitor, nền tảng SNS routing, security audit và retained-resource inventory; còn chờ endpoint/test delivery |
 
 Tiến độ được ghi chú rất rõ ràng: một bản thiết kế nằm trên giấy sẽ không được tính là một hệ thống đang chạy thực tế.
 

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">AWS Cost Anomaly Detection monitor configuration</title>
+  <desc id="description">Sanitized live AWS CLI evidence for a service-level Cost Anomaly Detection monitor and SNS routing topic in Sydney.</desc>
+  <style>
+    .bg{fill:#f5f8fc}.header{fill:#101b33}.card{fill:#fff;stroke:#d5dfed;stroke-width:2}.line{stroke:#d5dfed;stroke-width:2}.title{font:700 42px Arial,sans-serif;fill:#fff}.sub{font:400 20px Arial,sans-serif;fill:#c8d6ed}.ct{font:700 27px Arial,sans-serif;fill:#15274a}.lab{font:600 18px Arial,sans-serif;fill:#53627a}.val{font:700 25px Arial,sans-serif;fill:#15274a}.small{font:400 18px Arial,sans-serif;fill:#53627a}.pill{fill:#087f5b}.pillText{font:700 18px Arial,sans-serif;fill:#fff}.pending{fill:#fff4e5;stroke:#f0c57c;stroke-width:2}.pendingText{font:700 19px Arial,sans-serif;fill:#8a5200}
+  </style>
+  <rect class="bg" width="1600" height="900"/>
+  <rect class="header" width="1600" height="166"/>
+  <text class="title" x="80" y="76">Cost Anomaly Detection — live configuration</text>
+  <text class="sub" x="80" y="118">Sanitized AWS CLI evidence · ap-southeast-2 (Sydney) · 12 Aug 2026</text>
+  <rect class="pill" x="1230" y="52" rx="24" ry="24" width="285" height="50"/><text class="pillText" x="1305" y="84">MONITOR CREATED</text>
+  <rect class="card" x="80" y="225" rx="18" ry="18" width="690" height="390"/>
+  <text class="ct" x="122" y="280">Managed anomaly monitor</text><line class="line" x1="122" y1="315" x2="728" y2="315"/>
+  <text class="lab" x="122" y="365">Monitor name</text><text class="val" x="122" y="402">FinOpsProject-ServiceMonitor</text>
+  <text class="lab" x="122" y="462">Scope</text><text class="val" x="122" y="499">DIMENSIONAL / SERVICE</text>
+  <text class="lab" x="122" y="559">Learning state</text><text class="val" x="122" y="596">New monitor — evaluation pending</text>
+  <rect class="card" x="830" y="225" rx="18" ry="18" width="690" height="390"/>
+  <text class="ct" x="872" y="280">Alert subscription and routing</text><line class="line" x1="872" y1="315" x2="1478" y2="315"/>
+  <text class="lab" x="872" y="365">Cost-impact threshold</text><text class="val" x="872" y="402">USD 10 · IMMEDIATE</text>
+  <text class="lab" x="872" y="462">SNS route</text><text class="val" x="872" y="499">finops-project-cost-anomalies</text>
+  <text class="lab" x="872" y="559">Publish permission</text><text class="val" x="872" y="596">costalerts.amazonaws.com allowed</text>
+  <rect class="pending" x="80" y="675" rx="16" ry="16" width="1440" height="126"/>
+  <text class="pendingText" x="120" y="724">Delivery endpoint is intentionally not configured yet.</text>
+  <text class="small" x="120" y="758">No email, Slack, or chat endpoint exists; therefore no test delivery or anomaly result is claimed.</text>
+  <text class="small" x="120" y="786">FinOps triage rule: percentage increase &gt; 20% AND absolute increase &gt; USD 10.</text>
+</svg>

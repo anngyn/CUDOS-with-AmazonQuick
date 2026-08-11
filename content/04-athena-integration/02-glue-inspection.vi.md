@@ -21,9 +21,7 @@ Nếu Catalog bị trỏ nhầm thư mục, lệnh SQL của bạn vẫn chạy 
 
 ## Thông tin Catalog thực tế
 
-Lấy tên Database thực tế mà bạn đã tạo. Trong ví dụ này là `cid_data_export`:
-
-{{< evidence src="images/03-cur2/04-07-glue-database.png" alt="Danh sách database AWS Glue Data Catalog chứa database CUR" caption="Kết quả catalog được quan sát: database CUR tồn tại trong Glue và khớp với database Athena đang sử dụng." >}}
+Lấy tên Database thực tế mà bạn đã tạo. Trong ví dụ này là `cid_data_export`; ảnh Athena đại diện ở 4.1 là đủ vì Athena phải resolve database và table trong Glue trước khi chạy được query.
 
 Các thông tin cần ghi nhận:
 

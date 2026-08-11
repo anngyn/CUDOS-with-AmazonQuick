@@ -67,7 +67,9 @@ Status: READY / BLOCKED / OPTIONAL
 
 ## Current project status
 
-The grounding architecture, instruction policy, and evaluation contract are defined. Live availability and agent execution evidence have not been added, so this remains an optional extension rather than a completed core capability.
+A live Amazon Quick Q&A Topic, `FinOps CUDOS Demo Q&A [Synthetic]`, has been created and indexed in `ap-southeast-2` (Sydney). It is grounded on the selected `CUDOS Dashboard Demo [Synthetic]`; the representative July 2026 question in section 8.2 returned the expected AmazonEC2 value and source sheet.
+
+This proves the **topic-level read-only Q&A flow** against the shared synthetic Athena source. It does not prove a production CUR answer, a FinOps Space, or an autonomous Chat Agent. Those remain optional extensions and must be evaluated separately before production use.
 
 {{< security >}}
 The agent needs read access to approved analytical sources, not destructive EC2, RDS, S3, or IAM permissions.

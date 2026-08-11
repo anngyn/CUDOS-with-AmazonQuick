@@ -66,14 +66,29 @@ Ngày rà soát tiếp theo:
 
 Lập một cái bảng Excel (Inventory) danh sách tất cả tài nguyên, đánh dấu `DELETED` hoặc `RETAINED`, chụp lại màn hình cái bảng đó làm biên bản nghiệm thu. Không cần chụp 100 tấm ảnh rác cho từng màn hình AWS Console.
 
-{{< capture src="images/12-cleanup/12-01-final-resource-inventory.png" alt="Inventory cuối cùng của tài nguyên dự án với trạng thái đã xóa và được giữ lại" title="Inventory vòng đời cuối cùng" capture="Chụp inventory tài nguyên đã đối soát, thể hiện mọi stack, export, bucket hoặc prefix dữ liệu được giữ lại, tài sản Glue/Athena, tài sản Quick, anomaly monitor, SNS topic và chat mapping được tạo cho dự án, cùng trạng thái DELETED hoặc RETAINED, chủ sở hữu, lý do và chi phí định kỳ dự kiến." caption="Một inventory vòng đời duy nhất thay thế các ảnh chụp xóa riêng lẻ từ từng AWS console." >}}
+## Inventory hiện tại đang giữ lại
+
+Dự án được chủ động giữ lại trong khi evidence đang được rà soát. Inventory CLI chỉ-đọc ngày 12/08/2026 xác nhận:
+
+| Nhóm tài sản | Bằng chứng trực tiếp | Trạng thái | Chủ sở hữu | Lý do / lần review tới |
+|---|---|---|---|---|
+| Nền tảng dữ liệu | `CID-DataExports-Destination` là `CREATE_COMPLETE`; Athena/Glue lõi còn tồn tại | RETAINED | Project owner | Nền tảng CUDOS; review 01/09/2026 |
+| Dashboard, analysis, dataset Quick | CUDOS v5 và các tài sản CUDOS/FinOps tùy chỉnh đang được liệt kê | RETAINED | Project owner | Evidence dự án và Direct Query analytics; review 01/09/2026 |
+| Q&amp;A và Flow | Topic Q&amp;A tổng hợp đã index; Flow có quản trị còn Draft và đã xuất report | RETAINED | Project owner | Evidence mục 8–9; review 01/09/2026 |
+| Cảnh báo | Service monitor, subscription `$10` immediate và SNS topic tồn tại; chưa có endpoint nhận | RETAINED | Project owner | Detector đang học và chờ routing; review 01/09/2026 |
+
+Không được ghi chi phí định kỳ là bằng 0: S3 storage/request, Athena scan, Amazon Quick entitlement và SNS delivery sau này đều vẫn theo pricing AWS. Chưa có lệnh xóa nào được cấp quyền hoặc thực hiện.
+
+{{< capture src="images/12-cleanup/12-01-final-resource-inventory.svg" alt="Inventory CLI đã làm sạch về tài nguyên dự án đang được giữ lại" title="Inventory tài nguyên trước teardown" capture="Inventory CLI trực tiếp đã làm sạch, thể hiện nền tảng dự án, tài sản Amazon Quick, anomaly monitor và SNS topic. Mọi dòng đều là RETAINED vì chưa được cấp quyền teardown." caption="Đây là inventory trước teardown, không phải bằng chứng xóa. Nó thay thế các ảnh console rời rạc nhưng vẫn giữ quyết định retain-or-delete rõ ràng." >}}
+
+[Tải inventory máy có thể đọc](/data/audits/12-01-retained-resource-inventory.json)
 
 ## Check lại Billing (Hậu kiểm)
 
 AWS tính tiền có độ trễ (delay từ 24-48h). Do đó, sau khi dọn dẹp vài ngày, HÃY VÀO LẠI BILLING để xem có khoản tiền rác (vd: tiền lưu trữ EBS Snapshot, IP tĩnh chưa release, S3 versioning) nào còn sót lại không.
 
 {{< validation >}}
-Dự án chỉ "Done" khi: 1 là Xóa sạch, 2 là Giữ lại thì phải có người nhận Trách nhiệm trả tiền.
+Tài liệu vòng đời chỉ hoàn tất khi mọi tài nguyên đã xóa hoặc được ghi rõ là chủ động giữ lại. Teardown thực tế vẫn chưa hoàn tất cho đến khi chủ sở hữu cấp quyền xóa và inventory hậu kiểm xác nhận trạng thái cuối.
 {{< /validation >}}
 
 {{< finops title="Điểm rút ra về FinOps" >}}

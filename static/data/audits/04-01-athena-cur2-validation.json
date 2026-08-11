@@ -1,0 +1,15 @@
+{
+  "snapshot_date": "2026-08-12",
+  "region": "ap-southeast-2",
+  "workgroup": "primary",
+  "source": "cid_data_export.cur2",
+  "period": "August 2026",
+  "query_purpose": "CUR cost by service validation",
+  "metric": "line_item_unblended_cost",
+  "query_state": "SUCCEEDED",
+  "result_row_count": 10,
+  "engine_execution_time_ms": 628,
+  "data_scanned_bytes": 2128,
+  "result_encryption": "SSE_S3",
+  "published_financial_values": "redacted"
+}

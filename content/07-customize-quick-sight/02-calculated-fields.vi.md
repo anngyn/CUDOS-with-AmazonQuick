@@ -30,13 +30,13 @@ Giả sử bạn muốn tạo một trường Calculated Field tên là `Spend B
 
 ```text
 ifelse(
-    {unblended_cost} >= 1000,
+    {net_unblended_cost} >= 15,
     'High Spend',
-    'Standard'
+    'Standard Spend'
 )
 ```
 
-Bạn cần note lại rõ ràng ngưỡng (threshold) là 1000 và trường gốc là `unblended_cost`. Trường này chỉ giúp bạn phân loại (gắn mác) cho Dashboard dễ nhìn hơn, chứ nó KHÔNG hề làm thay đổi con số tiền bạc thực tế.
+Cần ghi rõ ngưỡng (threshold) `$15` và trường gốc là `net_unblended_cost`. Trong dashboard minh họa, dòng EC2 production theo ngày nằm trên ngưỡng, còn RDS, Lambda, S3, Data Transfer và staging nằm dưới ngưỡng. Trường này chỉ giúp phân loại (gắn mác) cho Dashboard dễ nhìn hơn, chứ KHÔNG hề làm thay đổi con số tiền bạc thực tế.
 
 ## Xác thực logic (Testing)
 
@@ -51,7 +51,7 @@ Test case 2 (trên ngưỡng):
 Kết quả: PASS / FAIL
 ```
 
-{{< capture src="images/07-customize-quick-sight/07-02-spend-band-validation.png" alt="Kiểm chứng Spend Band trên QuickSight với các giá trị ở hai phía của ngưỡng" title="Kiểm chứng ranh giới trường tính toán" capture="Chụp một visual dạng bảng nhỏ thể hiện ít nhất một đầu vào dưới ngưỡng và một đầu vào tại hoặc trên ngưỡng, đồng thời hiển thị Spend Band quan sát được và kết quả dự kiến. Không dùng trình chỉnh sửa trường tính toán làm bằng chứng." caption="Hai trường hợp tại ranh giới minh họa quy tắc trình bày mà không coi quy tắc này là một định nghĩa tài chính dùng chung." >}}
+{{< capture src="images/07-customize-quick-sight/07-01-finops-decision-dashboard.png" alt="Kiểm chứng Spend Band trên QuickSight với các giá trị ở hai phía của ngưỡng" title="Kiểm chứng ranh giới trường tính toán" capture="Dùng lại ảnh dashboard FinOps Decision Dashboard [Synthetic] ở mục 7.1. Bảng scope thể hiện ít nhất một dòng EC2 production từ $15 trở lên có nhãn High Spend và các dòng chi phí thấp hơn có nhãn Standard Spend. Không dùng trình chỉnh sửa calculated field làm bằng chứng." caption="Hai nhóm minh họa quy tắc trình bày cục bộ mà không coi quy tắc này là một định nghĩa tài chính dùng chung." >}}
 
 {{< validation >}}
 Logic tính toán bề mặt chỉ được nghiệm thu khi nó rõ ràng, chỉ dùng trong nội bộ cái Dashboard đó, có thể test bằng tay dễ dàng, và quan trọng nhất là KHÔNG giẫm chân lên các quy tắc chia tiền chuẩn của tổ chức.

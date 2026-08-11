@@ -56,17 +56,25 @@ The review covers:
 - KMS permissions required by delivery and query identities;
 - key ownership and rotation when a customer-managed key is used.
 
+## Deployed audit result
+
+A sanitized live CLI audit in `ap-southeast-2` confirmed that both the Data Exports and Athena-results buckets use `AES256` default encryption and have all four S3 Block Public Access controls enabled. The `primary` Athena workgroup enforces its configuration and encrypts query results with `SSE_S3`.
+
+The `CidCmdQuickSightDataSourceRole` trust policy permits `quicksight.amazonaws.com`. Its two attached policies and one inline policy were checked for `ec2:TerminateInstances`, `rds:DeleteDBInstance`, and `iam:CreateUser`; none matched. This is a targeted review of the listed workload-changing actions, not a blanket certification of every possible IAM permission.
+
 ## KMS decision
 
 A customer-managed KMS key adds policy control and audit ownership, but also introduces key policy, IAM dependency, recurring cost, and failure modes. It is selected only when an organizational requirement justifies that operational responsibility.
 
 More KMS configuration is not automatically more secure if nobody owns the key policy or recovery path.
 
+This workshop uses AWS-managed S3 encryption (`AES256` / `SSE_S3`) rather than a customer-managed KMS key. No requirement has justified the extra key-policy, recovery, and operational ownership burden of a CMK.
+
 ## Evidence hygiene
 
 Published images are reviewed for access keys, session tokens, emails, organization IDs, account/catalog IDs, bucket names, ARNs, and financial values. Redaction changes the published artifact, not the underlying validation record.
 
-{{< capture src="images/11-security-governance/11-01-iam-kms-boundary.png" alt="Sanitized evidence of the IAM and encryption boundary for the FinOps analytical stack" title="IAM and encryption boundary" capture="Create one sanitized evidence composite showing the analytical role scoped to required S3/Glue/Athena/QuickSight access, S3 default encryption, and Athena query-result encryption. Confirm that workload-changing permissions are absent; redact principals, ARNs, bucket names, account IDs, and key IDs." caption="Security evidence demonstrates the read-oriented boundary without publishing sensitive identifiers." >}}
+{{< capture src="images/11-security-governance/11-01-iam-kms-boundary.svg" alt="Sanitized live CLI audit of the IAM and encryption boundary for the FinOps analytical stack" title="IAM and encryption boundary" capture="Sanitized evidence composite generated from the live CLI audit. It shows S3 default encryption and public-access blocks, Athena result encryption, QuickSight-only trust, and no matches for the reviewed workload-changing actions. Bucket names, principals, ARNs, account IDs, and key IDs are omitted." caption="The audit demonstrates the deployed read-oriented boundary. It is a targeted permission review, not a claim that every IAM permission was exhaustively certified." >}}
 
 {{< security >}}
 Least privilege means the minimum permission for the correct identity and resource scope, supported by runtime evidence.

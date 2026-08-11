@@ -30,13 +30,13 @@ Local visual classification
 
 ```text
 ifelse(
-    {unblended_cost} >= 1000,
+    {net_unblended_cost} >= 15,
     'High Spend',
-    'Standard'
+    'Standard Spend'
 )
 ```
 
-The threshold and source field are documented. The field classifies a value for the current view; it does not redefine the cost metric.
+The `$15` threshold and source field are documented. In the synthetic demonstration, the production EC2 daily row is above the threshold while RDS, Lambda, S3, data transfer, and staging rows are below it. The field classifies a value for the current view; it does not redefine the cost metric.
 
 ## Validation
 
@@ -51,7 +51,7 @@ Test case 2:
 Result: PASS / FAIL
 ```
 
-{{< capture src="images/07-customize-quick-sight/07-02-spend-band-validation.png" alt="QuickSight Spend Band validation with values on both sides of the threshold" title="Calculated-field boundary validation" capture="Capture a small table visual showing at least one input below the threshold and one input at or above it, with the observed Spend Band and expected result visible. Do not use the calculated-field editor as the evidence." caption="Two boundary cases demonstrate the presentation rule without treating it as a shared financial definition." >}}
+{{< capture src="images/07-customize-quick-sight/07-01-finops-decision-dashboard.png" alt="QuickSight Spend Band validation with values on both sides of the threshold" title="Calculated-field boundary validation" capture="Use the same FinOps Decision Dashboard [Synthetic] artifact from section 7.1. Its scope table shows at least one $15-or-more production EC2 row labeled High Spend and lower-cost rows labeled Standard Spend. Do not use the calculated-field editor as evidence." caption="The two bands demonstrate the local presentation rule without treating it as a shared financial definition." >}}
 
 {{< validation >}}
 Presentation logic is accepted when it is transparent, locally scoped, manually testable, and does not override the governed financial model.

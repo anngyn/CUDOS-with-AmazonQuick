@@ -64,7 +64,7 @@ The cadence is tied to artifacts: anomaly record, finding backlog, allocation re
 
 ## Current project status
 
-The operating model and matrix are defined. Real principals, owners, review dates, and completed access-review results remain to be populated.
+The operating model and matrix are defined. The deployed S3, Athena, and QuickSight datasource-role controls have been audited in section 11.2; real principal ownership, review dates, and a completed business access-review record remain to be populated.
 
 {{< finops title="FinOps Takeaway" >}}
 Governance turns cost visibility into accountable decisions without giving the analytical platform unnecessary workload authority.

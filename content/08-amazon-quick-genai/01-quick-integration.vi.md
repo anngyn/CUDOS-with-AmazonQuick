@@ -67,7 +67,9 @@ Trạng thái: READY / BLOCKED / OPTIONAL
 
 ## Trạng thái hiện tại của dự án
 
-Kiến trúc dữ liệu, prompt guardrails và tiêu chí đánh giá đã được chốt. Tuy nhiên, tính năng AI này vẫn đang ở dạng tùy chọn (optional extension) chứ chưa phải tính năng bắt buộc của dự án.
+Đã tạo và lập chỉ mục Q&A Topic trực tiếp trên Amazon Quick: `FinOps CUDOS Demo Q&A [Synthetic]` tại `ap-southeast-2` (Sydney). Topic được grounding bằng dashboard đã chọn `CUDOS Dashboard Demo [Synthetic]`; câu hỏi tháng 07/2026 tại mục 8.2 đã trả về đúng AmazonEC2 và sheet nguồn.
+
+Điều này chứng minh **luồng hỏi đáp chỉ-đọc ở cấp Topic** trên nguồn Athena tổng hợp dùng chung. Nó không chứng minh câu trả lời dựa trên CUR thật, không chứng minh FinOps Space, và cũng không phải Chat Agent tự động. Các phần đó vẫn là mở rộng tùy chọn và cần kiểm thử độc lập trước khi dùng production.
 
 {{< security >}}
 Con AI chỉ cần quyền ĐỌC (Read-only) đối với các Dashboard. Tuyệt đối KHÔNG cấp cho nó quyền thay đổi hạ tầng (như quyền sửa EC2, RDS, S3 hay IAM).

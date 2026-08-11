@@ -85,11 +85,11 @@ Chi phí cho mỗi 1.000 request thành công = $2,00
 
 *(Lưu ý: Ví dụ trên chỉ để minh họa công thức, không phải là số liệu thực tế của dự án). Việc sử dụng "tổng số lần gọi API" làm mẫu số trong khi nghiệp vụ yêu cầu "số request thành công" có thể tạo ra cảm giác hệ thống đang hoạt động hiệu quả hơn, trong khi thực tế số lượng lỗi (error) lại đang tăng lên.*
 
-{{< capture src="images/06-finops-analysis/06-02-allocation-unit-economics.png" alt="Báo cáo tỷ lệ phân bổ và chi phí đơn vị với các chỉ số được quản trị" title="Tỷ lệ phân bổ và Unit Economics" capture="Chụp màn hình báo cáo thể hiện: chiều ownership, tổng chi phí cần phân bổ, chi phí đã/chưa phân bổ, tỷ lệ phân bổ (coverage %), chỉ số kinh doanh, kỳ báo cáo và chi phí đơn vị. Lưu ý: Kỳ chốt số liệu tài chính và kỳ chốt số liệu kinh doanh phải khớp nhau." caption="Hình ảnh minh họa cho báo cáo phân bổ; tuy nhiên, các tài liệu định nghĩa quy tắc phân bổ và chỉ số kinh doanh mới là nguồn tham chiếu chuẩn nhất." >}}
+{{< capture src="images/06-finops-analysis/06-02-allocation-unit-economics.png" alt="Dashboard Amazon Quick tổng hợp thể hiện tỷ lệ phân bổ, chi phí đã/chưa phân bổ, phân bổ theo owner và chi phí trên 1.000 request" title="Minh họa Allocation Coverage và Unit Economics" capture="Mở dashboard FinOps Allocation and Unit Economics [Synthetic] đã publish. Chụp KPI $2,00 trên 1.000 request, allocation coverage 96,85%, bar chart chi phí theo owner, donut allocated/unallocated và bảng summary. Giữ nhãn synthetic Direct Query hiển thị rõ." caption="Bộ dữ liệu minh họa: cost allocation và business denominator được tính từ cùng nguồn dữ liệu tổng hợp đã dùng cho dashboard CUDOS-style và kết quả tối ưu hóa ở mục 6.1." >}}
 
 ## Tiến độ hiện tại của dự án
 
-Các quy tắc phân bổ và định nghĩa chỉ số Unit Economics đã được lập tài liệu. Tuy nhiên, cấu trúc ownership thực tế, tổng chi phí cần phân bổ, tỷ lệ phân bổ thực tế và nguồn dữ liệu kinh doanh vẫn chưa được tích hợp vào. Do đó, các chỉ số Unit Economics vẫn đang ở trạng thái chờ cho đến khi có đủ dữ liệu tài chính và kinh doanh.
+Dự án đã có dashboard Amazon Quick Direct Query minh họa chạy từ nguồn dữ liệu tổng hợp dùng chung: tổng chi phí cần phân bổ `$1.180,00`, chi phí đã phân bổ `$1.142,80`, chưa phân bổ `$37,20`, allocation coverage `96,85%` và `$2,00` trên 1.000 successful inference requests. Ownership taxonomy và nguồn business volume thật vẫn đang chờ tích hợp; các số tổng hợp này mô tả đường đi tính toán có kiểm soát, không phải kết quả phân bổ chi phí AWS thực tế.
 
 {{< finops title="Kết luận FinOps" >}}
 Việc phân bổ giúp gắn liền chi phí với người chịu trách nhiệm. Còn Unit Economics giúp chứng minh chi phí mà họ đã tiêu tạo ra được giá trị kinh doanh gì.

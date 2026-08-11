@@ -56,17 +56,25 @@ Rà soát bao quát:
 - các quyền KMS cần thiết cho identity phân phối và identity truy vấn;
 - quyền sở hữu key và việc xoay vòng khi sử dụng customer-managed key.
 
+## Kết quả audit cấu hình đã triển khai
+
+Audit CLI đã làm sạch tại `ap-southeast-2` xác nhận cả bucket Data Exports và Athena-results dùng mã hóa mặc định `AES256`, đồng thời bật đủ bốn lớp S3 Block Public Access. Athena workgroup `primary` ép cấu hình của nó và mã hóa kết quả query bằng `SSE_S3`.
+
+Trust policy của `CidCmdQuickSightDataSourceRole` chỉ cho phép `quicksight.amazonaws.com`. Hai attached policy và một inline policy của role được rà soát đối với `ec2:TerminateInstances`, `rds:DeleteDBInstance` và `iam:CreateUser`; không có quyền nào khớp. Đây là kiểm tra có mục tiêu đối với các quyền làm thay đổi workload đã nêu, không phải chứng nhận toàn bộ mọi quyền IAM.
+
 ## Lưu ý về Customer-managed KMS
 
 Dùng Customer-managed KMS (CMK) thì xịn đấy (kiểm soát được policy, audit log), nhưng nó kéo theo ti tỉ thứ phiền phức: tự lo key policy, rủi ro bị khóa (lock-out), và tốn thêm tiền hàng tháng. Chỉ dùng CMK nếu quy định bảo mật của công ty BẮT BUỘC, còn không thì cứ AWS-managed KMS (SSE-S3 hoặc SSE-KMS) mà táng.
 
 Mã hóa lắm vào mà mất Key thì cũng khóc ròng. Đừng cấu hình lằng nhằng nếu không có quy trình backup/rotate Key đàng hoàng.
 
+Workshop này dùng mã hóa S3 do AWS quản lý (`AES256` / `SSE_S3`), không dùng customer-managed KMS key. Chưa có yêu cầu nào biện minh cho gánh nặng key policy, khôi phục key và vận hành bổ sung của CMK.
+
 ## Che dấu thông tin nhạy cảm (Redaction)
 
 Trước khi chụp màn hình đi báo cáo, BẮT BUỘC phải che mờ (blur/redact) các thông tin sau: Access Key, Email, AWS Account ID, Tên S3 Bucket, ARN và Số tiền thực tế. Việc che mờ này giúp bảo vệ bí mật công ty mà vẫn chứng minh được là hệ thống đang chạy.
 
-{{< capture src="images/11-security-governance/11-01-iam-kms-boundary.png" alt="Bằng chứng đã làm sạch về ranh giới IAM và mã hóa của stack phân tích FinOps" title="Ranh giới IAM và mã hóa" capture="Tạo một composite bằng chứng đã làm sạch, thể hiện role phân tích chỉ được cấp quyền S3/Glue/Athena/QuickSight cần thiết, mã hóa mặc định của S3 và mã hóa kết quả truy vấn Athena. Xác nhận các quyền làm thay đổi workload không tồn tại; che principal, ARN, tên bucket, account ID và key ID." caption="Bằng chứng bảo mật thể hiện ranh giới theo hướng đọc mà không công bố mã định danh nhạy cảm." >}}
+{{< capture src="images/11-security-governance/11-01-iam-kms-boundary.svg" alt="Audit CLI trực tiếp đã làm sạch về ranh giới IAM và mã hóa của stack phân tích FinOps" title="Ranh giới IAM và mã hóa" capture="Composite bằng chứng được tạo từ audit CLI trực tiếp. Nó cho thấy mã hóa mặc định và public-access block của S3, mã hóa kết quả Athena, trust chỉ cho QuickSight và không khớp các quyền thay đổi workload đã rà soát. Tên bucket, principal, ARN, account ID và key ID đã được loại bỏ." caption="Audit cho thấy ranh giới triển khai theo hướng chỉ-đọc. Đây là rà soát quyền có mục tiêu, không phải tuyên bố đã chứng nhận toàn bộ mọi quyền IAM." >}}
 
 {{< security >}}
 Đặc quyền tối thiểu (Least Privilege) không phải là "cho ít quyền nhất", mà là "chỉ cho đúng quyền cần thiết để làm đúng việc, không thừa không thiếu".

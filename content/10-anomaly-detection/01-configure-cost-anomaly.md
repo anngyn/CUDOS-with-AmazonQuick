@@ -42,6 +42,22 @@ Response owner:
 Expected response time:
 ```
 
+## Deployed configuration
+
+The following governed monitor now exists in `ap-southeast-2` (Sydney):
+
+```text
+Monitor name: FinOpsProject-ServiceMonitor
+Monitor type: DIMENSIONAL / SERVICE
+Managed cost-impact threshold: USD 10
+Alert frequency: IMMEDIATE
+Cost Anomaly subscription: finops-project-cost-anomaly-subscription
+SNS topic: finops-project-cost-anomalies
+Deterministic review rule: percentage increase > 20% AND absolute increase > USD 10
+```
+
+The managed service applies the USD threshold. The 20% rule remains a transparent FinOps triage rule applied by the human reviewer; it is not an extra Cost Anomaly Detection filter.
+
 ## Materiality effect
 
 Percentage alone is misleading on tiny baselines. A move from `$0.01` to `$0.10` is a 900% increase but may not justify incident handling. Absolute cost alone can miss a rapidly growing small workload. Requiring both produces a more useful review queue.
@@ -52,11 +68,13 @@ New monitors and services require historical data before managed anomaly detecti
 
 Ranked root causes remain analytical leads. They identify cost contributors but do not prove the operational event that caused them.
 
-{{< capture src="images/10-custom-anomaly/10-01-cost-anomaly-monitor.png" alt="AWS Cost Anomaly Detection monitor and subscription configuration" title="Live anomaly monitor and ownership" capture="Capture the monitor and subscription summary showing the monitor name, service scope, alert frequency, materiality threshold, destination, and response owner. A detected anomaly is optional because a new monitor may still be learning." caption="This artifact proves the governed monitor exists; it does not claim that absence of an anomaly means zero risk." >}}
+{{< capture src="images/10-custom-anomaly/10-01-cost-anomaly-monitor.svg" alt="Sanitized live AWS CLI evidence of the Cost Anomaly Detection monitor and subscription configuration" title="Live anomaly monitor and routing" capture="Sanitized evidence generated from the live AWS CLI configuration. It shows the monitor name, SERVICE scope, immediate USD 10 threshold, SNS routing topic, and detector learning state without exposing identifiers." caption="This artifact proves the governed monitor and routing foundation exist. It does not claim an anomaly, a delivery endpoint, or zero risk." >}}
 
 ## Current project status
 
-The monitor strategy, naming, materiality model, and ownership record are defined. A live monitor, subscription, detected anomaly, and response-time result have not yet been evidenced.
+The live monitor and its SNS-based Cost Anomaly subscription have been created in Sydney. Its first evaluation date is still empty, which is expected while the managed detector learns the account's cost pattern. No anomaly has been detected or claimed.
+
+The SNS topic currently has no email, Slack, or chat endpoint. The routing resource exists, but 10.2 remains pending until an approved destination and a timestamped test are supplied.
 
 ## Official reference
 

@@ -2,7 +2,15 @@
 
 Dự án triển khai AWS FinOps dựa trên bằng chứng (evidence-backed), kết nối dữ liệu cước phí CUR 2.0 để đối soát qua Athena, trực quan hóa trên Dashboard CUDOS v5, phân bổ và tối ưu hóa chi phí có trách nhiệm, cảnh báo bất thường, và tích hợp các luồng Amazon Q tùy chọn.
 
-Toàn bộ tài liệu hướng dẫn của dự án này đã được **Việt hóa hoàn toàn** với văn phong kỹ thuật (Tech-savvy/Cloud Architect) giúp các team tại Việt Nam dễ dàng tiếp cận và triển khai quy trình Quản trị chi phí (FinOps) trên AWS.
+Tài liệu có cả tiếng Việt và English, ưu tiên cách trình bày của một dự án kỹ thuật: mỗi claim nêu rõ nguồn, phạm vi, chỉ số, trạng thái bằng chứng và giới hạn của nó.
+
+## Xem bản public
+
+GitHub Pages được build tự động từ nhánh `main`:
+
+`https://anngyn.github.io/CUDOS-with-AmazonQuick/`
+
+Trang public dùng nhận diện **FinOps evidence ledger**: điều hướng theo chuỗi bằng chứng, trạng thái delivery rõ ràng và ảnh evidence đã loại bỏ identifiers nhạy cảm. Không sử dụng tracker hay counter bên thứ ba.
 
 ## Kiến trúc Hệ thống
 
@@ -40,9 +48,10 @@ Vì vậy, triển khai bao gồm:
 
 ## Trạng thái Bàn giao
 
-- **Đã xác thực:** Phân phối file Parquet CUR 2.0, hiện diện trong Glue catalog, cấu trúc/truy vấn Athena, và thống kê quét (scan) truy vấn.
-- **Đã định nghĩa nhưng chờ chạy thực tế:** Mức độ sẵn sàng CUDOS/SPICE, ghi nhận lỗi FinOps đã đối soát, độ bao phủ phân bổ, kiểm tra truyền tải cảnh báo, và nhật ký dọn dẹp.
-- **Phần mở rộng tùy chọn:** Chatbot Amazon Q và Q Flows điều tra có quản trị.
+- **Đã xác thực:** CUR 2.0 Parquet, Glue/Athena, truy vấn cost-by-service thực tế, CUDOS v5, Amazon Quick datasets/dashboards, và ranh giới S3/Athena/IAM đã audit.
+- **Đã chạy bằng dữ liệu tổng hợp có nhãn:** walkthrough CUDOS, optimization outcome, allocation/unit economics, Amazon Quick Q&A và Flow điều tra có quản trị. Những bằng chứng này không được trình bày như số hóa đơn CUR thật.
+- **Đã triển khai một phần:** Cost Anomaly monitor và SNS routing foundation. Delivery test cần Slack/email endpoint được phê duyệt.
+- **Lifecycle:** inventory hiện tại đánh dấu các resource là `RETAINED`; teardown chưa được cấp quyền.
 
 ## Chạy Local
 
@@ -59,6 +68,10 @@ Kiểm tra build production-style mà không ghi ra folder `public/`:
 ```bash
 hugo --renderToMemory --minify --baseURL "https://example.com/CUDOS-with-AmazonQuick/"
 ```
+
+## Deploy GitHub Pages
+
+Workflow [hugo-pages.yml](.github/workflows/hugo-pages.yml) build Hugo Extended và deploy artifact khi có commit trên `main` hoặc `master`. Workflow dùng `--cleanDestinationDir`, vì vậy thư mục `public/` local không phải nguồn triển khai và không cần commit như bằng chứng build.
 
 ## Cấu trúc Repository
 

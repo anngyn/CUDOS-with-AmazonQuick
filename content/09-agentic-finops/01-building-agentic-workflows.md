@@ -85,11 +85,15 @@ Result: PASS / FAIL
 
 One final Flow result and its evaluation record are sufficient evidence. Node-by-node configuration screenshots are not required.
 
-{{< capture src="images/09-agentic-finops/09-01-cost-investigation-flow-result.png" alt="Evaluated Cost Anomaly Investigation Flow result requiring human review" title="Governed investigation Flow result" capture="Capture the final evaluated Flow run with its input period and thresholds, largest reconciled mover, observed evidence, separated hypotheses, verification required, owner, risk and rollback, and the status REVIEW REQUIRED. Show that no workload-changing action executed." caption="The final run and evaluation are evidence; node configuration screens are not." >}}
+{{< capture src="images/09-agentic-finops/09-01-cost-investigation-flow-result.png" alt="Final page of an Amazon Quick Flow report with REVIEW REQUIRED, SYNTHETIC classification, and no workload action authorized" title="Governed investigation Flow result" capture="Final page rendered from the Amazon Quick Flows PDF export. It shows the completed July 2026 synthetic run: period, ap-southeast-2 scope, AmazonEC2 $693.30 evidence, unverified hypothesis, human review, and no authorized workload action." caption="The Flow completed a read-only investigation run. This image is page 9 of its exported report, not a dashboard screenshot." >}}
+
+[Download the complete Amazon Quick Flows export (10 pages)](/evidence/09-agentic-finops/09-01-cost-investigation-flow-result.pdf)
 
 ## Current project status
 
-The Flow design and evaluation contract are defined. A published Flow and real evaluated run have not yet been supplied, so the capability remains pending and optional.
+A real run of the draft Amazon Quick Flow `Cost Investigation – July 2026 [Synthetic]` was completed in Sydney and exported as the evidence above. It reads the selected `CUDOS Dashboard Demo [Synthetic]` as a read-only Amazon QuickSight source, reports the reconciled July values, separates hypotheses from observations, and ends at `REVIEW REQUIRED`.
+
+The Flow has not been published and the connected source is synthetic rather than a real CUR export. It therefore demonstrates the governed **investigation workflow**, not a production remediation capability. No workload-changing, notification, or other action integration is attached.
 
 ## Official reference
 

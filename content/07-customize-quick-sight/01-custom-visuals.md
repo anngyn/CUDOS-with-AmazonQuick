@@ -61,7 +61,7 @@ Owner:
 
 One final dashboard artifact is retained when it shows this context together. Screenshots of individual filter configuration screens are not project evidence.
 
-{{< capture src="images/07-customize-quick-sight/07-01-finops-decision-dashboard.png" alt="Published QuickSight FinOps decision dashboard with scope and freshness context" title="Published FinOps decision view" capture="Capture the final published dashboard with the date control, named cost metric, service and account filters, selected-period KPI, daily trend, and last-refresh timestamp visible in one view." caption="The final decision view is retained; filter-setup and visual-formatting screens are intentionally omitted." >}}
+{{< capture src="images/07-customize-quick-sight/07-01-finops-decision-dashboard.png" alt="Published Amazon Quick synthetic FinOps decision dashboard with scope, trend, service driver, and Spend Band validation" title="Published FinOps decision demonstration" capture="Open the published FinOps Decision Dashboard [Synthetic]. Capture the named net-unblended-cost KPI, July 2026 daily trend, service driver, scope table, Spend Band classification, and the synthetic Direct Query Sydney label in one view." caption="Demonstration dataset: one published decision view is retained for both the visual-design and calculated-field examples. Filter-setup and formatting screens are intentionally omitted." >}}
 
 {{< finops title="FinOps Takeaway" >}}
 The custom view adds decision focus while preserving shared CUDOS financial semantics.

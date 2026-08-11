@@ -18,8 +18,8 @@ services:
 | Cấp độ | Khả năng của AI | Trạng thái dự án |
 |---|---|---|
 | Mức 0 | Phân tích thủ công bằng tay | Đang làm |
-| Mức 1 | Tự động phát hiện bất thường | Đã có (dùng AWS Cost Anomaly Detection) |
-| Mức 2 | Tự động điều tra nguyên nhân | Có thể dùng Q Flows (Tùy chọn) |
+| Mức 1 | Tự động phát hiện bất thường | Đã thiết kế với AWS Cost Anomaly Detection; chờ bằng chứng chạy thực tế |
+| Mức 2 | Tự động điều tra nguyên nhân | Đã chạy Amazon Quick Flow trên dữ liệu tổng hợp; Draft và tùy chọn |
 | Mức 3 | Tự động đề xuất cách sửa lỗi | Có tính năng này, nhưng con người phải duyệt |
 | Mức 4 | Tự động sửa lỗi (Remediation) | KHÔNG ÁP DỤNG cho AI phân tích |
 

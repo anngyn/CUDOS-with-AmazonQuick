@@ -36,10 +36,6 @@ SHOW TABLES IN <CUR_DATABASE>;
 
 Trong ví dụ này, chúng tôi đang sử dụng database là `cid_data_export` và table là `cur2`.
 
-{{< evidence src="images/03-cur2/04-01-athena-database.png" alt="Trình soạn thảo truy vấn Athena với database và table CUR được chọn" caption="Bối cảnh phân tích được quan sát: database và table CUR đã tạo có thể sử dụng trong Athena." >}}
-
-{{< evidence src="images/03-cur2/04-02-athena-show-tables.png" alt="Kết quả Athena SHOW TABLES chứa table CUR 2.0" caption="Kết quả catalog được quan sát: có thể phát hiện table CUR 2.0 qua SQL." >}}
-
 ## Kiểm tra khả năng đọc dữ liệu và Schema
 
 Hãy chạy thử một lệnh SELECT đơn giản để đảm bảo Athena có thể đọc được dữ liệu do Glue Catalog trỏ tới:
@@ -50,8 +46,6 @@ FROM <CUR_DATABASE>.<CUR2_TABLE>
 LIMIT 10;
 ```
 
-{{< evidence src="images/03-cur2/04-03-athena-first-rows.png" alt="Truy vấn mẫu Athena trả về các bản ghi CUR 2.0" caption="Kết quả được quan sát: Athena trả về các dòng CUR 2.0 thực; các định danh tài chính đã được che trong bằng chứng công bố." >}}
-
 Đồng thời, bạn cũng nên kiểm tra cấu trúc bảng (schema) trước khi viết các câu SQL phức tạp:
 
 ```sql
@@ -59,8 +53,6 @@ DESCRIBE <CUR_DATABASE>.<CUR2_TABLE>;
 ```
 
 Dữ liệu chuẩn sẽ chứa đầy đủ các cột về: kỳ hóa đơn, account sử dụng, service/product, mốc thời gian, Region, loại chi phí (line item), tiền phí, thông tin Reservation/Savings Plans, tags, và Cost Categories.
-
-{{< evidence src="images/03-cur2/04-04-athena-describe-cur2.png" alt="Kết quả Athena DESCRIBE cho table CUR 2.0" caption="Lược đồ được quan sát: table cung cấp các trường billing, line item và cost cần thiết cho mô hình FinOps." >}}
 
 ## Truy vấn thử Chi phí theo Service
 
@@ -78,13 +70,13 @@ LIMIT 20;
 
 Lưu ý: Loại chi phí phải được định nghĩa rõ ràng. Nếu bạn thay `unblended_cost` bằng chi phí đã phân bổ (amortized cost) hoặc chi phí thực tế sau chiết khấu (net cost), con số sẽ khác đi hoàn toàn và cần được giải thích riêng.
 
-{{< evidence src="images/03-cur2/04-05-athena-cost-by-service.png" alt="Truy vấn chi phí theo dịch vụ của Athena và kết quả" caption="Kết quả được quan sát: table CUR có thể được tổng hợp theo dịch vụ bằng một chỉ số chi phí được nêu tên rõ ràng." >}}
-
 ## Tối ưu hóa Chi phí truy vấn (Performance)
 
 Mỗi khi chạy lệnh, Athena sẽ báo thời gian chạy (run time) và lượng dữ liệu bị quét (data scanned). Những con số này cho bạn biết câu SQL của mình có đang tối ưu hay không (có query đúng cột không, có tận dụng định dạng Parquet không, có filter theo ngày không).
 
-{{< evidence src="images/03-cur2/04-06-athena-query-statistics.png" alt="Thống kê hoàn tất truy vấn Athena" caption="Thống kê truy vấn được quan sát là đường cơ sở để tối ưu hóa chi phí quét." >}}
+{{< capture src="images/04-athena/04-01-athena-cur2-validation.svg" alt="Bằng chứng Athena trực tiếp đã làm sạch, có hợp đồng query CUR 2.0 và execution statistics" title="Xác thực CUR 2.0 trên Athena" capture="Bằng chứng đã làm sạch từ một Athena query trực tiếp chạy thành công trên cid_data_export.cur2. Nó thể hiện hợp đồng chi phí theo service tháng 08/2026, primary workgroup, số dòng, lượng scan và mã hóa output SSE-S3; giá trị tài chính được chủ động che." caption="Một lần chạy Athena đại diện chứng minh CUR có thể query và tạo baseline chỉ số có tên để đối soát CUDOS sau này. Nó không tự chứng minh Dashboard đã khớp." >}}
+
+[Tải biên bản Athena máy có thể đọc](/data/audits/04-01-athena-cur2-validation.json)
 
 {{< cost >}}
 Athena tính tiền dựa trên lượng GB dữ liệu bạn quét (scan). Do đó, LUÔN LUÔN dùng Parquet, chỉ SELECT các cột cần thiết, phải có điều kiện filter thời gian (WHERE date = ...), và hạn chế tối đa việc dùng `SELECT *` khi không thực sự cần.

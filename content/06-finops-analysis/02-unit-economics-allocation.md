@@ -87,11 +87,11 @@ Cost per 1,000 successful requests = $2.00
 
 The example demonstrates the formula only; it is not a measured project result. Using total API attempts when the business definition requires successful requests would make efficiency appear better as failures increase.
 
-{{< capture src="images/06-finops-analysis/06-02-allocation-unit-economics.png" alt="Allocation coverage and unit-cost result with governed denominator" title="Allocation coverage and unit economics" capture="Capture a result that shows the ownership dimension, eligible-cost total, allocated and unallocated cost, coverage percentage, business denominator, reporting period, and calculated unit cost. The financial period and business-volume period must match." caption="The image supports the allocation result; the taxonomy and denominator contracts remain authoritative." >}}
+{{< capture src="images/06-finops-analysis/06-02-allocation-unit-economics.png" alt="Amazon Quick synthetic dashboard showing allocation coverage, allocated and unallocated cost, owner attribution, and cost per 1,000 requests" title="Allocation coverage and unit economics demonstration" capture="Open the published FinOps Allocation and Unit Economics [Synthetic] dashboard. Capture the $2.00 cost per 1,000 requests, 96.85 allocation coverage, owner-cost bar chart, allocated-versus-unallocated donut, and the summary table. Keep the synthetic Direct Query label visible." caption="Demonstration dataset: the allocation and business denominator are derived from the same synthetic cost source used by the CUDOS-style dashboard and the 6.1 optimization outcome." >}}
 
 ## Current project status
 
-The allocation and denominator contracts are defined, but a real ownership taxonomy, eligible-cost total, coverage result, and business-volume source have not yet been supplied. Unit economics remains pending until both financial and business evidence are available.
+The project includes a working Amazon Quick Direct Query demonstration based on the shared synthetic source: `$1,180.00` eligible cost, `$1,142.80` allocated cost, `$37.20` unallocated cost, `96.85%` allocation coverage, and `$2.00` per 1,000 successful inference requests. The production ownership taxonomy and business-volume source remain pending; these synthetic values demonstrate the governed calculation path rather than claim real AWS allocation results.
 
 {{< finops title="FinOps Takeaway" >}}
 Allocation connects cost to accountability. Unit economics connects that accountable cost to delivered value.

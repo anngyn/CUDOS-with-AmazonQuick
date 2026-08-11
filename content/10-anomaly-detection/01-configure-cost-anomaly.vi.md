@@ -42,6 +42,22 @@ Chủ sở hữu phản hồi:
 Thời gian phản hồi dự kiến:
 ```
 
+## Cấu hình đã triển khai
+
+Monitor có quản trị sau đã được tạo tại `ap-southeast-2` (Sydney):
+
+```text
+Tên monitor: FinOpsProject-ServiceMonitor
+Loại monitor: DIMENSIONAL / SERVICE
+Ngưỡng tác động do AWS quản lý: USD 10
+Tần suất cảnh báo: IMMEDIATE
+Cost Anomaly subscription: finops-project-cost-anomaly-subscription
+SNS topic: finops-project-cost-anomalies
+Quy tắc FinOps để triage: mức tăng phần trăm > 20% VÀ mức tăng tuyệt đối > USD 10
+```
+
+AWS Cost Anomaly Detection áp dụng ngưỡng USD. Quy tắc 20% là quy tắc triage minh bạch do người phụ trách FinOps áp dụng khi xem xét; nó không phải filter bổ sung của Cost Anomaly Detection.
+
 ## Tại sao phải lọc kép (% và $)?
 
 Nếu chỉ lọc theo %: Chi phí tăng từ `$0.01` lên `$0.10` (tăng 900%), hệ thống cũng sẽ hú còi. Rất phiền phức!
@@ -54,11 +70,13 @@ Dịch vụ ML này cần thời gian để "học" (train) dữ liệu lịch s
 
 Những nguyên nhân mà AWS gợi ý (VD: do EC2 tăng) chỉ là MANH MỐI. Việc của bạn là đi tìm nguyên nhân thực sự (VD: do ai bật EC2 mà quên tắt).
 
-{{< capture src="images/10-custom-anomaly/10-01-cost-anomaly-monitor.png" alt="Bằng chứng cấu hình monitor và subscription của AWS Cost Anomaly Detection" title="Monitor bất thường đang hoạt động và thông tin sở hữu" capture="Chụp phần tóm tắt monitor và subscription, thể hiện tên monitor, phạm vi dịch vụ, tần suất cảnh báo, ngưỡng trọng yếu, đích nhận và chủ sở hữu phản hồi. Có thể không có bất thường được phát hiện vì monitor mới vẫn đang học." caption="Tài liệu này chứng minh monitor được quản trị đã tồn tại; không thể dùng việc chưa xuất hiện bất thường để khẳng định rủi ro bằng không." >}}
+{{< capture src="images/10-custom-anomaly/10-01-cost-anomaly-monitor.svg" alt="Bằng chứng CLI trực tiếp đã làm sạch về cấu hình monitor và subscription AWS Cost Anomaly Detection" title="Monitor bất thường và nền tảng định tuyến" capture="Bằng chứng được tạo từ cấu hình AWS CLI trực tiếp, thể hiện tên monitor, phạm vi SERVICE, ngưỡng USD 10 immediate, SNS topic định tuyến và trạng thái detector đang học mà không lộ identifiers." caption="Tài liệu này chứng minh monitor và nền tảng routing có quản trị đã tồn tại. Nó không tuyên bố đã có bất thường, endpoint nhận tin hay rủi ro bằng không." >}}
 
 ## Trạng thái hiện tại của dự án
 
-Cấu hình Monitor, quy tắc đặt tên và ngưỡng cảnh báo đã được chốt. Tuy nhiên, tính năng này hiện vẫn đang trong giai đoạn theo dõi, chưa có dữ liệu cảnh báo thực tế nào được sinh ra.
+Đã tạo monitor và Cost Anomaly subscription dùng SNS tại Sydney. `LastEvaluatedDate` vẫn trống, điều này bình thường vì detector mới đang học mẫu chi phí của account. Chưa có bất thường nào được phát hiện hoặc tuyên bố là đã phát hiện.
+
+SNS topic hiện chưa có email, Slack hay chat endpoint. Hạ tầng định tuyến đã tồn tại, nhưng mục 10.2 vẫn chờ endpoint được phê duyệt và một tin nhắn kiểm thử có dấu thời gian.
 
 ## Tài liệu tham khảo chính thức
 

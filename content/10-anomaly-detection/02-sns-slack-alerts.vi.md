@@ -67,7 +67,7 @@ Chỉ cần một dòng tin nhắn test bắn về Slack thành công là đủ 
 
 ## Trạng thái hiện tại của dự án
 
-Kiến trúc và rule phân quyền đã chốt. Đang chờ team vận hành thực hiện bước cấu hình AWS Chatbot và chạy tin nhắn test.
+Đã tạo SNS topic `finops-project-cost-anomalies`, policy cho `costalerts.amazonaws.com` và Cost Anomaly subscription tại Sydney. Chưa gắn email, Slack hay chat endpoint đã được phê duyệt, nên chưa chạy hoặc tuyên bố thành công tin nhắn kiểm thử.
 
 {{< security >}}
 Nội dung cảnh báo chỉ được chia sẻ với người nhận đã phê duyệt; bằng chứng kiểm thử không chứa thông tin xác thực hay mã định danh nhạy cảm của tổ chức.

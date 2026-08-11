@@ -67,7 +67,7 @@ Slack receives the alert but no owner responds
 
 ## Current project status
 
-The routing and delivery contracts are defined. Live topic mapping and a timestamped delivery test remain pending.
+The SNS topic `finops-project-cost-anomalies`, its policy for `costalerts.amazonaws.com`, and the Cost Anomaly subscription have been created in Sydney. No approved email, Slack, or chat endpoint is attached yet, so no delivery test has been performed or claimed.
 
 {{< security >}}
 Alert content is shared only with approved recipients, and test evidence excludes credentials and sensitive organization identifiers.

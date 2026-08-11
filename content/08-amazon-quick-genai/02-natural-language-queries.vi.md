@@ -28,13 +28,13 @@ Mục tiêu không phải là xem AI nói chuyện có mượt hay không. Mục
 
 ## Biên bản Test
 
-| Prompt | Giá trị CUDOS/Athena có thẩm quyền | Giá trị từ agent | Đã nêu phạm vi/chỉ số | Kết quả |
+| Prompt | Giá trị có thẩm quyền | Giá trị Amazon Quick trả lời | Đã nêu phạm vi/chỉ số | Kết quả |
 |---|---:|---:|---|---|
-| Dịch vụ đứng đầu |  |  | yes/no | PASS/FAIL |
-| Thay đổi lớn nhất |  |  | yes/no | PASS/FAIL |
-| Phân bổ theo tài khoản/Region |  |  | yes/no | PASS/FAIL |
+| Dịch vụ đứng đầu | AmazonEC2 — $693.30 net unblended cost | AmazonEC2 — $693.30 net unblended cost | July 2026; `ap-southeast-2`; net unblended cost | PASS |
+| Thay đổi lớn nhất | Chưa đánh giá | Chưa đánh giá | — | CHƯA ĐÁNH GIÁ |
+| Phân bổ theo tài khoản/Region | Chưa đánh giá | Chưa đánh giá | — | CHƯA ĐÁNH GIÁ |
 
-Đánh rớt (FAIL) ngay lập tức nếu AI: Đọc sai số, quên nhắc mốc thời gian, tự biên tự diễn nguyên nhân, hoặc xúi bậy người dùng đi xóa tài nguyên. Cho dù văn phong có trôi chảy mượt mà đến đâu mà số sai thì cũng vứt.
+Dòng PASS được đối soát với dashboard dùng chung có nguồn Athena **tổng hợp (synthetic)**, không phải dữ liệu hóa đơn CUR thật. Đánh rớt (FAIL) ngay lập tức nếu AI: Đọc sai số, quên nhắc mốc thời gian, tự biên tự diễn nguyên nhân, hoặc xúi bậy người dùng đi xóa tài nguyên. Cho dù văn phong có trôi chảy mượt mà đến đâu mà số sai thì cũng vứt.
 
 ## Hướng xử lý khi AI trả lời sai
 
@@ -51,7 +51,7 @@ Mục tiêu không phải là xem AI nói chuyện có mượt hay không. Mục
 
 Bạn chỉ cần chụp lại 1-2 câu hỏi/trả lời tiêu biểu làm bằng chứng nghiệm thu là đủ. Không cần rảnh rỗi đi chụp lại toàn bộ lịch sử chat.
 
-{{< capture src="images/08-amazon-quick/08-01-grounded-finops-answer.png" alt="Câu trả lời Amazon Q có grounding dựa trên bằng chứng CUDOS và Athena đã đối soát" title="Câu trả lời Amazon Q có grounding" capture="Chụp một câu hỏi và câu trả lời đại diện, thể hiện kỳ được yêu cầu, chỉ số chi phí có tên, giá trị theo phạm vi, phân bổ và bằng chứng có nguồn. Câu trả lời phải gắn nhãn các giả thuyết và không được ngụ ý rằng hoạt động khắc phục đã được phê duyệt." caption="Một câu trả lời đã đánh giá là đủ; bảng đánh giá số liệu quyết định PASS hoặc FAIL." >}}
+{{< capture src="images/08-amazon-quick/08-01-grounded-finops-answer.png" alt="Câu trả lời Amazon Quick có grounding đúng trên dashboard CUDOS tổng hợp đã chọn" title="Câu trả lời Amazon Quick có grounding" capture="Ảnh hiển thị dashboard được chọn, câu hỏi, câu trả lời, kỳ July 2026, phạm vi ap-southeast-2, giá trị AmazonEC2 và sheet nguồn. Đây là bài test thành công trên nguồn Athena tổng hợp dùng chung." caption="Câu trả lời đã PASS: AmazonEC2 có $693.30 net unblended cost trong July 2026 tại ap-southeast-2. Bằng chứng là dữ liệu tổng hợp, không phải số hóa đơn CUR thật." >}}
 
 {{< finops title="Điểm rút ra về FinOps" >}}
 Chát chít với AI chỉ là phần ngọn cho vui vẻ dễ dùng, phần gốc rễ (nguồn dữ liệu tài chính chuẩn xác) mới là thứ quyết định thành bại của hệ thống.

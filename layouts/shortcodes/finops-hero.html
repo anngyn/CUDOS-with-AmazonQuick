@@ -1,0 +1,19 @@
+<section class="finops-hero" aria-labelledby="finops-hero-title">
+  <p class="finops-hero__eyebrow">{{ .Get "label" }}</p>
+  <h1 id="finops-hero-title">{{ .Get "headline" }}</h1>
+  <p class="finops-hero__summary">{{ .Get "summary" }}</p>
+  <div class="finops-hero__proofs" aria-label="Project proof points">
+    <div class="finops-hero__proof">
+      <span>{{ .Get "proof_one_label" }}</span>
+      <strong>{{ .Get "proof_one_value" }}</strong>
+    </div>
+    <div class="finops-hero__proof">
+      <span>{{ .Get "proof_two_label" }}</span>
+      <strong>{{ .Get "proof_two_value" }}</strong>
+    </div>
+    <div class="finops-hero__proof">
+      <span>{{ .Get "proof_three_label" }}</span>
+      <strong>{{ .Get "proof_three_value" }}</strong>
+    </div>
+  </div>
+</section>

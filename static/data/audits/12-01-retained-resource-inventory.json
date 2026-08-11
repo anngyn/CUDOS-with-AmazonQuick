@@ -1,0 +1,67 @@
+{
+  "snapshot_date": "2026-08-12",
+  "region": "ap-southeast-2",
+  "classification": "Live read-only AWS CLI inventory; pre-teardown",
+  "overall_status": "RETAINED",
+  "resources": [
+    {
+      "type": "CloudFormation stack",
+      "name": "CID-DataExports-Destination",
+      "observed_state": "CREATE_COMPLETE",
+      "status": "RETAINED",
+      "reason": "CUDOS data foundation remains in use"
+    },
+    {
+      "type": "Athena and Glue databases",
+      "name": "cid_data_export; finops_demo; primary workgroup",
+      "observed_state": "Available",
+      "status": "RETAINED",
+      "reason": "Core and synthetic FinOps queries remain reproducible"
+    },
+    {
+      "type": "Amazon Quick dashboards",
+      "name": "CUDOS Dashboard v5; CUDOS Dashboard Demo [Synthetic]; FinOps Optimization Outcomes; FinOps Decision Dashboard [Synthetic]; FinOps Allocation and Unit Economics [Synthetic]",
+      "observed_state": "Listed by Amazon Quick",
+      "status": "RETAINED",
+      "reason": "Project evidence and FinOps analysis"
+    },
+    {
+      "type": "Amazon Quick analyses and datasets",
+      "name": "Three custom FinOps analyses; CUDOS and synthetic Direct Query datasets",
+      "observed_state": "Listed by Amazon Quick",
+      "status": "RETAINED",
+      "reason": "Dashboard dependencies and evidence"
+    },
+    {
+      "type": "Amazon Quick Q&A Topic",
+      "name": "FinOps CUDOS Demo Q&A [Synthetic]",
+      "observed_state": "Indexed topic listed",
+      "status": "RETAINED",
+      "reason": "Section 8 grounded Q&A evidence"
+    },
+    {
+      "type": "Amazon Quick Flow",
+      "name": "Cost Investigation – July 2026 [Synthetic]",
+      "observed_state": "Draft; completed report export retained",
+      "status": "RETAINED",
+      "reason": "Section 9 governed investigation evidence"
+    },
+    {
+      "type": "AWS Cost Anomaly Detection",
+      "name": "FinOpsProject-ServiceMonitor; finops-project-cost-anomaly-subscription",
+      "observed_state": "SERVICE monitor; USD 10; IMMEDIATE",
+      "status": "RETAINED",
+      "reason": "Live monitor requires learning time and later delivery configuration"
+    },
+    {
+      "type": "Amazon SNS",
+      "name": "finops-project-cost-anomalies",
+      "observed_state": "Topic and Cost Anomaly publish policy present; no chat or email endpoint",
+      "status": "RETAINED",
+      "reason": "Routing foundation retained; delivery test remains pending"
+    }
+  ],
+  "owner": "Project owner",
+  "next_review_date": "2026-09-01",
+  "teardown_authorization": "Not granted"
+}

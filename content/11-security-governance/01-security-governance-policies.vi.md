@@ -64,7 +64,7 @@ Nhịp rà soát gắn với các sản phẩm bằng chứng: hồ sơ bất th
 
 ## Trạng thái hiện tại của dự án
 
-Đã lên khung ma trận quyền và luật chơi. Đang chờ các team chốt danh sách User/Role thực tế để đưa vào áp dụng.
+Đã lên khung ma trận quyền và luật chơi. Các control S3, Athena và QuickSight datasource role đã được audit tại mục 11.2; vẫn chờ các team chốt principal sở hữu, ngày review và biên bản access review nghiệp vụ thực tế.
 
 {{< finops title="Điểm rút ra về FinOps" >}}
 Quản trị FinOps là nghệ thuật bắt mọi người nhìn vào ví tiền và tự thấy xót, chứ không phải trao quyền cho team tài chính đi tắt server của team kỹ thuật.

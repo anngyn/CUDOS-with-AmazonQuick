@@ -19,7 +19,7 @@ services:
 |---|---|---|
 | 0 | Manual analysis | Supported |
 | 1 | Automated detection | Designed through Cost Anomaly Detection |
-| 2 | Automated investigation | Optional Quick Flow design |
+| 2 | Automated investigation | Evaluated Amazon Quick Flow run with synthetic data; draft and optional |
 | 3 | Automated recommendation | Optional, always reviewable |
 | 4 | Human-approved workload action | Outside the analytical agent |
 

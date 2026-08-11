@@ -36,10 +36,6 @@ SHOW TABLES IN <CUR_DATABASE>;
 
 The current evidence uses database `cid_data_export` and table `cur2`.
 
-{{< evidence src="images/03-cur2/04-01-athena-database.png" alt="Athena query editor with the CUR database and table selected" caption="Observed analytical context: the generated CUR database and table are available in Athena." >}}
-
-{{< evidence src="images/03-cur2/04-02-athena-show-tables.png" alt="Athena SHOW TABLES result containing the CUR 2.0 table" caption="Observed catalog result: the CUR 2.0 table is discoverable through SQL." >}}
-
 ## Readability and schema evidence
 
 A bounded sample proves that Glue points Athena to readable objects:
@@ -50,8 +46,6 @@ FROM <CUR_DATABASE>.<CUR2_TABLE>
 LIMIT 10;
 ```
 
-{{< evidence src="images/03-cur2/04-03-athena-first-rows.png" alt="Athena sample query returning CUR 2.0 records" caption="Observed result: Athena returns real CUR 2.0 rows; financial identifiers are redacted in the published evidence." >}}
-
 The schema is inspected before analytical SQL is written:
 
 ```sql
@@ -59,8 +53,6 @@ DESCRIBE <CUR_DATABASE>.<CUR2_TABLE>;
 ```
 
 Required groups include billing period, usage account, service/product, usage time, Region, line-item type, cost, reservation, Savings Plans, tags, and Cost Categories.
-
-{{< evidence src="images/03-cur2/04-04-athena-describe-cur2.png" alt="Athena DESCRIBE result for the CUR 2.0 table" caption="Observed schema: the table exposes billing, line-item, and cost fields required by the FinOps model." >}}
 
 ## Baseline service-cost query
 
@@ -78,13 +70,13 @@ LIMIT 20;
 
 The cost metric is named explicitly. Replacing `unblended_cost` with amortized or net cost changes the financial meaning and requires a separate metric definition.
 
-{{< evidence src="images/03-cur2/04-05-athena-cost-by-service.png" alt="Athena cost by service query and result" caption="Observed result: the CUR table can be aggregated by service using an explicitly named cost metric." >}}
-
 ## Query-efficiency evidence
 
 Runtime and bytes scanned are retained with the SQL. They show whether a recurring query projects only necessary columns and benefits from Parquet and date filtering.
 
-{{< evidence src="images/03-cur2/04-06-athena-query-statistics.png" alt="Athena query completion statistics" caption="Observed query statistics provide the baseline for scan-cost optimization." >}}
+{{< capture src="images/04-athena/04-01-athena-cur2-validation.svg" alt="Sanitized live Athena validation showing a CUR 2.0 query contract and execution statistics" title="Athena CUR 2.0 validation" capture="Sanitized evidence from a successful live Athena query against cid_data_export.cur2. It shows the August 2026 service-cost contract, primary workgroup, row count, scan size, and SSE-S3 output encryption; financial values are intentionally redacted." caption="One representative Athena execution proves the CUR data is queryable and supplies a named-metric baseline for later CUDOS reconciliation. It does not alone prove the dashboard matches." >}}
+
+[Download the machine-readable Athena validation record](/data/audits/04-01-athena-cur2-validation.json)
 
 {{< cost >}}
 Athena charges by data scanned. Reusable queries therefore use Parquet, explicit columns, billing-period filters, and aggregated views rather than recurring `SELECT *` scans.

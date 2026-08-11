@@ -28,13 +28,13 @@ The test is not whether the answer sounds useful. The test is whether the agent 
 
 ## Evaluation record
 
-| Prompt | Authoritative CUDOS/Athena value | Agent value | Scope/metric stated | Result |
+| Prompt | Authoritative value | Amazon Quick value | Scope/metric stated | Result |
 |---|---:|---:|---|---|
-| Top service |  |  | yes/no | PASS/FAIL |
-| Largest change |  |  | yes/no | PASS/FAIL |
-| Account/Region attribution |  |  | yes/no | PASS/FAIL |
+| Top service | AmazonEC2 — $693.30 net unblended cost | AmazonEC2 — $693.30 net unblended cost | July 2026; `ap-southeast-2`; net unblended cost | PASS |
+| Largest change | Not evaluated | Not evaluated | — | NOT EVALUATED |
+| Account/Region attribution | Not evaluated | Not evaluated | — | NOT EVALUATED |
 
-An answer fails if it is numerically wrong, omits the period or metric, invents a cause, or implies that remediation is approved. Fluent language does not compensate for failed grounding.
+The PASS row is evaluated against the shared **synthetic** Athena-backed dashboard, not real CUR billing data. An answer fails if it is numerically wrong, omits the period or metric, invents a cause, or implies that remediation is approved. Fluent language does not compensate for failed grounding.
 
 ## Failure handling
 
@@ -51,7 +51,7 @@ Unsupported remediation
 
 One representative question/answer can be retained as project evidence. The evaluation table is authoritative; screenshots of every prompt are unnecessary.
 
-{{< capture src="images/08-amazon-quick/08-01-grounded-finops-answer.png" alt="Amazon Quick response grounded in reconciled CUDOS and Athena evidence" title="Grounded Amazon Quick answer" capture="Capture one representative question and answer showing the requested period, named cost metric, scoped value, attribution, and source-backed evidence. The answer must label hypotheses and must not imply remediation approval." caption="One evaluated answer is sufficient; the numerical evaluation table determines PASS or FAIL." >}}
+{{< capture src="images/08-amazon-quick/08-01-grounded-finops-answer.png" alt="Amazon Quick response correctly grounded in the selected synthetic CUDOS dashboard" title="Grounded Amazon Quick answer" capture="The selected dashboard, question, answer, July 2026 period, ap-southeast-2 scope, AmazonEC2 value, and source sheet are visible. This is a successful test against the shared synthetic Athena source." caption="The single evaluated answer passes: AmazonEC2 is $693.30 net unblended cost in July 2026 for ap-southeast-2. The proof is synthetic, not a real CUR billing result." >}}
 
 {{< finops title="FinOps Takeaway" >}}
 Natural language improves accessibility only when deterministic financial evidence remains authoritative.

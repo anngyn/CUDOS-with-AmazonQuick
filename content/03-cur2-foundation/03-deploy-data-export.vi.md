@@ -23,8 +23,6 @@ Dự án này sử dụng trực tiếp CloudFormation template chuẩn của AW
 
 Quyết định này giúp giảm thiểu việc phải tự viết code hạ tầng (IaC), nhưng bù lại bạn phải theo dõi sát sao version của template và ghi nhận chính xác các parameter đã nhập vào CloudFormation.
 
-{{< evidence src="images/03-cur2/2.%20launchstack.png" alt="Hướng dẫn CID Data Exports chính thức với nút Launch Stack" caption="Nên dùng hướng dẫn chính thức của CID làm điểm bắt đầu triển khai, tránh sao chép URL của các template cũ." >}}
-
 ## Các tham số cấu hình (Parameters)
 
 Stack có tên `CID-DataExports-Destination`. Source Account và Destination Account đều dùng account hiện tại:

@@ -23,8 +23,6 @@ The project adopts the current AWS Cloud Intelligence Dashboards Data Exports de
 
 This decision reduces custom infrastructure code, but it creates a versioning responsibility: the template version and actual parameters shown by CloudFormation must be recorded with the deployment.
 
-{{< evidence src="images/03-cur2/2.%20launchstack.png" alt="Official CID Data Exports guide with Launch Stack button" caption="The official CID guide is the deployment entry point; an old copied template URL is not treated as authoritative." >}}
-
 ## Parameter decisions
 
 The stack is named `CID-DataExports-Destination`. Both source and destination use the current account:
