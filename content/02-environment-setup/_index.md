@@ -1,9 +1,9 @@
 ---
-title: "Environment Setup"
+title: "Environment & Access Boundary"
 weight: 2
 chapter: false
 pre: "2. "
-description: "Prepare AWS CLI, identity, permissions, Region, and Amazon Quick."
+description: "Execution identity, regional placement, Quick Sight ownership, and analytical access boundaries."
 duration: "20 mins"
 services:
   - AWS CLI
@@ -13,14 +13,11 @@ services:
 {{< badge "AWS CLI" >}}
 {{< badge "AWS IAM" >}}
 {{< badge "Amazon Quick" >}}
-{{< duration "20 mins" >}}
 
 
-Prepare the account before creating billing infrastructure.
+The environment is described as an architectural boundary: which account and Region own the stack, which identity may deploy it, and which identities may only consume financial data.
 
-For this workshop, use a **single-account deployment** and **Asia Pacific (Sydney), `ap-southeast-2`** so the same Region can support the Quick Sight dashboard and broader Amazon Quick capabilities.
+## Chapter contents
 
-## Module contents
-
-- **2.1 AWS CLI & Permissions Setup**
-- **2.2 Quick Sight Account Onboarding**
+- **2.1 Execution Identity, Region & Permission Boundary**
+- **2.2 Quick Sight Service, Identity & Capacity Design**

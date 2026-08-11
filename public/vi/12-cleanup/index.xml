@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dọn dẹp tài nguyên on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/</link>
+    <description>Recent content in Dọn dẹp tài nguyên on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vòng đời tài nguyên &amp; Quy trình lưu giữ</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/01-teardown/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/01-teardown/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Dọn dẹp&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS CloudFormation&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Chương này được chủ ý viết như một quy trình vận hành. Tháo dỡ là phần duy nhất của dự án mà thứ tự vận hành quan trọng hơn phần tường thuật: xóa nguồn trước khi lập danh mục các consumer có thể làm mất bằng chứng, còn để lại capacity tạm thời sẽ tạo chi phí liên tục.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Lập danh mục và quyết định sở hữu&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ tài sản AI nâng cao&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ tài sản BI tùy chỉnh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ tài sản CUDOS&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ định tuyến bất thường&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ stack Data Export và thu thập&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ xác minh billing cập nhật trễ&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;lập-danh-mục-tài-nguyên&#34;&gt;Lập danh mục tài nguyên&lt;/h2&gt;&#xA;&lt;p&gt;Ghi nhận:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xác minh vòng đời &amp; Kiểm tra chi phí còn sót</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/02-verify-deletion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/02-verify-deletion/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Xác thực&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Dọn dẹp&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Các lệnh xóa không phải là bằng chứng hoàn tất vòng đời. Trạng thái cuối cùng được đối soát trên các control plane và được kiểm tra lại sau khi dữ liệu billing đã cập nhật.&lt;/p&gt;&#xA;&lt;h2 id=&#34;xác-minh-cloudformation&#34;&gt;Xác minh CloudFormation&lt;/h2&gt;&#xA;&lt;p&gt;Xác nhận stack Data Exports của dự án không còn hoạt động.&lt;/p&gt;&#xA;&lt;h2 id=&#34;xác-minh-data-exports&#34;&gt;Xác minh Data Exports&lt;/h2&gt;&#xA;&lt;p&gt;Xác nhận export của dự án đã biến mất nếu bạn chủ định xóa nó.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

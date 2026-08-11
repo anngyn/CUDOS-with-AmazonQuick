@@ -1,10 +1,9 @@
 ---
-title: "Unit Economics & Allocation Breakdown"
+title: "Allocation Coverage & Unit Economics Model"
 weight: 2
 chapter: false
 pre: "6.2 "
-description: "Use allocation dimensions and business denominators to make cloud cost accountable."
-duration: "15 mins"
+description: "Define ownership coverage and connect allocated cloud cost to a governed business denominator."
 services:
   - CUR 2.0
   - Cost Allocation Tags
@@ -14,89 +13,86 @@ services:
 {{< badge "Unit Economics" >}}
 {{< badge "Cost Allocation" >}}
 {{< badge "FinOps" >}}
-{{< duration "15 mins" >}}
 
+## Ownership model
 
-## Step 1 — Inspect available allocation metadata
+Allocation answers who is accountable for cost. The available hierarchy can combine linked account, Cost Categories, cost allocation tags, account taxonomy, team, product, application, and environment.
 
-Determine which exist:
-
-- linked/source account
-- Cost Categories
-- cost allocation tags
-- account taxonomy
-- team/project/product tags
-
-{{< note >}}
-📸 **Screenshot placeholder — `06-05-allocation-metadata.png`**
-
-Capture the available allocation dimensions.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Choose one ownership dimension
-
-Use a meaningful real dimension such as:
+One canonical ownership dimension is selected for reporting. Mixing `Team`, `CostCenter`, and `Application` without precedence rules would allow the same charge to be attributed differently by different reports.
 
 ```text
-Team
-Cost Center
-Environment
-Application
-Linked Account
+Primary ownership dimension:
+Fallback dimension:
+Recognized values:
+Unknown/unallocated value:
+Taxonomy owner:
+Review cadence:
 ```
 
-Create a cost breakdown by that dimension.
+## Coverage definition
 
-{{< note >}}
-📸 **Screenshot placeholder — `06-06-cost-by-owner.png`**
-
-Capture the cost breakdown by the selected ownership dimension.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Identify unallocated spend
-
-Look for null, blank, unknown, or uncategorized values.
-
-Document the rule:
+The project distinguishes eligible cost from all billing rows. Tax, support, credits, or centrally managed shared services may be excluded, but every exclusion is explicit.
 
 ```text
 Allocated = a recognized ownership tag or Cost Category is present
+
+Allocation coverage %
+= allocated eligible cost / total eligible cost × 100
+
+Unallocated cost
+= total eligible cost - allocated eligible cost
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `06-07-unallocated-spend.png`**
+Without an eligible-cost definition, two teams can produce different coverage percentages from the same CUR table.
 
-Capture allocated versus unallocated spend.
+## Shared-cost treatment
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+Shared services are not silently forced into a product team. The project chooses one documented treatment:
 
-## Step 4 — Define a unit-economics candidate
+- retain as a central platform cost;
+- allocate using a measured driver;
+- split using an approved fixed rule;
+- leave unallocated and track it as a data-quality backlog.
 
-Examples:
+The allocation rule, owner, effective date, and rationale are versioned because changing the rule changes historical accountability.
+
+## Unit-economics contract
+
+Unit economics combines allocated cloud cost with a verified business metric:
 
 ```text
-AWS cost / API requests
-AWS cost / active users
-AWS cost / orders
-AWS cost / inference requests
-AWS cost / tenant
+Unit cost = allocated workload cost / verified business volume
 ```
 
-Choose one workload and document where the denominator would come from.
-
-## Step 5 — State the limitation
-
-Do not invent unit economics when the denominator is unavailable.
+The denominator has its own contract:
 
 ```text
-Cloud cost + business metric = unit economics
+Business metric:
+Source system/table:
+Owner:
+Aggregation period and timezone:
+Refresh frequency:
+Join key or allocation rule:
+Quality rule:
+Known exclusions:
 ```
+
+Example:
+
+```text
+Monthly inference workload cost = $1,200
+Verified successful inference requests = 600,000
+Cost per 1,000 successful requests = $2.00
+```
+
+The example demonstrates the formula only; it is not a measured project result. Using total API attempts when the business definition requires successful requests would make efficiency appear better as failures increase.
+
+{{< capture src="images/06-finops-analysis/06-02-allocation-unit-economics.png" alt="Allocation coverage and unit-cost result with governed denominator" title="Allocation coverage and unit economics" capture="Capture a result that shows the ownership dimension, eligible-cost total, allocated and unallocated cost, coverage percentage, business denominator, reporting period, and calculated unit cost. The financial period and business-volume period must match." caption="The image supports the allocation result; the taxonomy and denominator contracts remain authoritative." >}}
+
+## Current project status
+
+The allocation and denominator contracts are defined, but a real ownership taxonomy, eligible-cost total, coverage result, and business-volume source have not yet been supplied. Unit economics remains pending until both financial and business evidence are available.
 
 {{< finops title="FinOps Takeaway" >}}
-Allocation answers “who owns the cost?” Unit economics answers “what value did the cost produce?”
+Allocation connects cost to accountability. Unit economics connects that accountable cost to delivered value.
 {{< /finops >}}

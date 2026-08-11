@@ -1,9 +1,9 @@
 ---
-title: "Workshop Overview & Objectives"
+title: "Business Context, Goals & Success Criteria"
 weight: 1
 chapter: false
 pre: "1.1 "
-description: "Overview of the AWS FinOps Intelligence Workshop architecture and objectives."
+description: "Define the business problem, project goals, scope, success criteria, and evidence model."
 duration: "10 mins"
 services:
   - AWS Billing
@@ -15,14 +15,21 @@ services:
 {{< badge "AWS Billing" >}}
 {{< badge "FinOps" >}}
 {{< badge "Amazon Quick" >}}
-{{< duration "10 mins" >}}
 
 
-Welcome to the **AWS FinOps Intelligence Workshop**. This hands-on workshop guides you through building a modern AWS-native FinOps environment from the billing-data foundation to dashboards, investigation, and optional agentic workflows.
+## Organizational context
 
-## Scenario
+The reference organization runs production, staging, and shared-service workloads on AWS. Cost information exists in AWS billing systems, but the people responsible for finance, platforms, and applications do not yet share one reproducible analytical model.
 
-Assume a fictional organization runs production, staging, and shared-service workloads on AWS. The FinOps team wants to answer:
+This creates predictable failure modes:
+
+- finance sees a monthly total but cannot attribute the technical driver;
+- engineering sees utilization but not the financial effect;
+- dashboard users compare different metrics or time windows;
+- optimization ideas are recorded without an owner or measured outcome;
+- AI-generated explanations can sound plausible even when the underlying number is stale.
+
+## Questions the project must answer
 
 - How much are we spending?
 - Which services and accounts generate the largest spend?
@@ -31,62 +38,57 @@ Assume a fictional organization runs production, staging, and shared-service wor
 - Which cost spikes need investigation?
 - Can repetitive investigations be accelerated safely?
 
-## What you will build
+## Project goals
+
+The core goal is not merely to display AWS cost. It is to create a traceable decision system:
 
 ```text
-AWS Billing
-     ↓
-AWS Data Exports
-     ↓
-CUR 2.0
-     ↓
-Amazon S3
-     ↓
-AWS Glue Data Catalog
-     ↓
-Amazon Athena
-     ↓
-CUDOS v5
-     ↓
-Amazon Quick Sight
-     ↓
-Amazon Quick
+Billing record
+→ reproducible metric
+→ reconciled dashboard
+→ attributed finding
+→ accountable action
+→ measured outcome
 ```
 
-The advanced path adds:
+The AI components are an optional extension. They are useful only after the deterministic path is working.
 
-```text
-CUDOS / FinOps dashboards
-        ↓
-Amazon Quick Space
-        ↓
-FinOps Chat Agent
-        ↓
-Quick Flow
-```
+## Success criteria
 
-## Learning objectives
+| Area | Acceptance criterion |
+|---|---|
+| Data foundation | CUR 2.0 reaches S3 as Parquet and is catalogued correctly |
+| Reproducibility | Athena can reproduce a named CUDOS metric for the same period and scope |
+| Decision support | At least one material cost mover is attributed to an owner and technical driver |
+| Optimization | Proposed savings are separated from measured savings |
+| Allocation | Allocation coverage is calculated with an explicit eligible-cost definition |
+| Unit economics | The business denominator has a source, owner, period, and quality rule |
+| Operations | An anomaly signal reaches an approved destination with an accountable response owner |
+| Governance | Analytical identities cannot perform destructive workload changes |
+| Lifecycle | Every project resource is deleted or explicitly retained with owner and review date |
 
-By the end of the workshop you will be able to:
+## Scope boundary
 
-1. Explain CUR 2.0 and AWS Data Exports.
-2. Validate CUR delivery to S3.
-3. Inspect the Glue catalog and query CUR with Athena.
-4. Deploy CUDOS v5.
-5. Navigate CUDOS using real FinOps questions.
-6. Customize Quick Sight analyses and calculated fields.
-7. Ground Amazon Quick with CUDOS and custom FinOps context.
-8. Ask natural-language FinOps questions and verify answers against source evidence.
-9. Build a repeatable Quick Flow for cost investigation.
-10. Configure AWS Cost Anomaly Detection and alerting.
-11. Apply least privilege and governance controls.
-12. Remove workshop resources cleanly.
+The core system ends at CUR, Athena, CUDOS, Quick Sight, and the FinOps operating model. Amazon Quick chat agents and Flows are optional because availability, licensing, and organizational approval can vary. Their absence does not invalidate the core FinOps implementation.
 
-## Core versus advanced path
+## Evidence model
 
-The core path ends after CUDOS and Quick Sight customization. Amazon Quick chat agents and Flows are advanced modules and can be skipped if the account does not have the required capabilities.
+Evidence is retained for an **outcome**, not for every console click. The project record uses the following compact set:
 
-## Workshop principles
+| Outcome | Evidence to retain | Why it matters |
+|---|---|---|
+| CUR delivery | Current billing partition with at least one Parquet object | Proves that billing data reached the analytical layer |
+| Athena validation | Saved SQL, result, selected database/table, period, and cost metric | Makes the number reproducible |
+| CUDOS readiness | Successful dataset ingestion plus one dashboard view with filters visible | Proves the BI layer is operational |
+| Financial reconciliation | Athena total versus CUDOS total for the same period and metric | Detects refresh, scope, or metric mismatches |
+| FinOps finding | Baseline, cost driver, owner, proposed action, and verification method | Converts visibility into accountable work |
+| Allocation or unit economics | Coverage formula or business denominator and its source | Connects cloud cost to ownership or value |
+| Alerting | Monitor/subscription configuration and one supported delivery test | Proves that the operating loop works |
+| Cleanup | Resource inventory showing deleted and intentionally retained resources | Prevents project spend from becoming waste |
+
+Screenshots are optional unless they prove one of these outcomes. Prefer a small result table, saved SQL, or resource inventory when it is easier to audit than an image.
+
+## Design principles
 
 ### Evidence before AI
 
@@ -100,10 +102,10 @@ Understand **what changed, where, and who owns it** before recommending a change
 
 ### Human review before remediation
 
-This workshop does not give an AI agent unrestricted permission to terminate instances, delete databases, change IAM, or purchase commitments.
+This project does not give an AI agent unrestricted permission to terminate instances, delete databases, change IAM, or purchase commitments.
 
 {{< validation >}}
-Before moving on, make sure you can explain the difference between the core data/BI path and the advanced AI workflow path.
+The project scope is coherent when every reported cost can be traced to a metric, period, filter set, data refresh, and authoritative source.
 {{< /validation >}}
 
 {{< finops title="FinOps Takeaway" >}}

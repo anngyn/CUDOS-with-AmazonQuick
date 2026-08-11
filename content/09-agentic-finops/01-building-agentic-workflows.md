@@ -1,10 +1,9 @@
 ---
-title: "Building Autonomous Agentic FinOps Workflows"
+title: "Governed Cost Investigation Flow"
 weight: 1
 chapter: false
 pre: "9.1 "
-description: "Build a repeatable CUDOS-backed cost anomaly investigation flow."
-duration: "20 mins"
+description: "Model a repeatable CUDOS-backed investigation that automates evidence preparation without executing workload changes."
 services:
   - Amazon Quick
   - Quick Flows
@@ -12,168 +11,85 @@ services:
 ---
 {{< badge "Amazon Quick" >}}
 {{< badge "Quick Flows" >}}
-{{< badge "Cost Investigation" >}}
-{{< duration "20 mins" >}}
+{{< badge "Governed Investigation" >}}
 
+## Workflow purpose
 
-The flow automates **investigation**, not production changes.
-
-## Step 1 — Create a Flow
-
-1. Select **Flows**.
-2. Choose **Create Flow**.
-3. Choose **Create a blank flow**.
-
-Name:
+Repeated cost investigations usually follow the same analytical sequence. The `Cost Anomaly Investigation` Flow standardizes that sequence while keeping remediation outside the agent’s authority.
 
 ```text
-Cost Anomaly Investigation
+Period + materiality threshold
+→ extract CUDOS evidence
+→ identify material movers
+→ separate driver from hypothesis
+→ propose verification
+→ produce human-review package
 ```
 
-Description:
+## Inputs and materiality
+
+The Flow receives explicit inputs rather than assuming them:
 
 ```text
-Analyzes CUDOS cost changes, summarizes evidence, and recommends human-reviewed investigation actions.
+Alert Threshold: 20% increase
+Analysis Time Period: Last 30 days vs previous 30 days
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `09-01-create-flow.png`**
+Production use should pair percentage materiality with an absolute-cost threshold so low-value percentage spikes do not dominate the queue.
 
-Capture the new blank Flow and name.
+## Evidence extraction
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Add Alert Threshold input
-
-Add a **Text input**:
-
-```text
-Alert Threshold
-```
-
-Default:
-
-```text
-20% increase
-```
-
-{{< note >}}
-📸 **Screenshot placeholder — `09-02-threshold-input.png`**
-
-Capture the Alert Threshold input step.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Add Analysis Time Period
-
-Add:
-
-```text
-Analysis Time Period
-```
-
-Default:
-
-```text
-Last 30 days vs previous 30 days
-```
-
-## Step 4 — Add CUDOS dashboard analysis
-
-Add **Dashboards and topics**.
-
-Title:
-
-```text
-Extract CUDOS Cost Data
-```
-
-Source:
-
-```text
-CUDOS Dashboard v5
-```
-
-Prompt:
+The dashboard stage uses CUDOS as its approved source:
 
 ```text
 Analyze cost trends for @Analysis Time Period.
 Identify cost increases above @Alert Threshold.
-Report the largest changes by service and include relevant account, Region, or resource context available in CUDOS.
+Report the largest changes by service and include available account,
+Region, usage-type, or resource context.
 Do not infer root cause yet.
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `09-03-cudos-flow-step.png`**
+The `do not infer root cause yet` boundary prevents the evidence-extraction stage from presenting hypotheses as observed facts.
 
-Capture the CUDOS dashboard step and prompt.
+## Reasoning and review package
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 5 — Add reasoning
-
-Create a Reasoning group:
+The reasoning stage ranks possible causes and states what evidence would confirm each one. Its final output contains:
 
 ```text
-Cost Investigation
+Observed evidence
+Financial impact
+Affected scope
+Possible causes
+Verification required
+Owner
+Proposed action
+Risk and rollback
+Status: REVIEW REQUIRED
 ```
 
-Instruction:
+No workload-changing tool is attached to the Flow.
+
+## Run evaluation
 
 ```text
-If CUDOS evidence shows a material increase above the threshold,
-investigate likely explanations and propose verification steps.
-If no material increase exists, produce a short no-action report.
+Flow version/run time:
+Input period and threshold:
+Largest mover reported by Flow:
+Authoritative CUDOS/Athena value:
+Observed drivers:
+Hypotheses clearly separated: yes/no
+Human-review status present: yes/no
+Workload-changing action executed: no
+Result: PASS / FAIL
 ```
 
-## Step 6 — Add Root Cause Analysis
+One final Flow result and its evaluation record are sufficient evidence. Node-by-node configuration screenshots are not required.
 
-Prompt:
+{{< capture src="images/09-agentic-finops/09-01-cost-investigation-flow-result.png" alt="Evaluated Cost Anomaly Investigation Flow result requiring human review" title="Governed investigation Flow result" capture="Capture the final evaluated Flow run with its input period and thresholds, largest reconciled mover, observed evidence, separated hypotheses, verification required, owner, risk and rollback, and the status REVIEW REQUIRED. Show that no workload-changing action executed." caption="The final run and evaluation are evidence; node configuration screens are not." >}}
 
-```text
-Use @Extract CUDOS Cost Data.
-Separate observed cost drivers from possible operational causes.
-Rank possible causes and state what evidence would confirm each one.
-```
+## Current project status
 
-## Step 7 — Add Human Review Plan
-
-Prompt:
-
-```text
-Create a concise FinOps action plan.
-For each action include evidence, owner to contact, verification required, and risk.
-Do not execute infrastructure changes.
-```
-
-{{< note >}}
-📸 **Screenshot placeholder — `09-04-flow-reasoning.png`**
-
-Capture the reasoning group and Human Review Plan.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 8 — Publish and run
-
-1. **Share and publish**
-2. **Run mode**
-3. **Start**
-
-{{< note >}}
-📸 **Screenshot placeholder — `09-05-flow-result.png`**
-
-Capture a real Flow execution result.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 9 — Verify against CUDOS
-
-Compare the largest mover and reported numbers with CUDOS.
+The Flow design and evaluation contract are defined. A published Flow and real evaluated run have not yet been supplied, so the capability remains pending and optional.
 
 ## Official reference
 

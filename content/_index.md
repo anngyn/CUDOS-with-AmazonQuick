@@ -1,56 +1,80 @@
 ---
-title: "AWS FinOps Intelligence Workshop"
+title: "AWS FinOps Intelligence with CUDOS v5"
 chapter: false
-description: "Build an end-to-end AWS FinOps environment with CUR 2.0, CUDOS v5, Amazon Quick Sight, and Amazon Quick."
+description: "An evidence-backed AWS FinOps implementation built on CUR 2.0, Athena, CUDOS v5, QuickSight, and governed automation."
 ---
 
+This repository documents an AWS FinOps implementation as a technical project: the business problem, architecture, implementation decisions, validation evidence, operating model, and remaining gaps.
 
-Build an end-to-end AWS FinOps environment using **AWS Data Exports / CUR 2.0**, **Amazon S3**, **AWS Glue**, **Amazon Athena**, **CUDOS v5**, **Amazon Quick Sight**, and **Amazon Quick**.
-
-{{< badge "Intermediate" >}}
 {{< badge "FinOps" >}}
 {{< badge "CUDOS v5" >}}
-{{< duration "3–4 hours" >}}
+{{< badge "CUR 2.0" >}}
 
-## What you will build
+## Business problem
+
+AWS billing data is detailed but fragmented. Finance needs trusted totals, engineering needs resource-level drivers, and service owners need actionable findings. Without a governed analytical path, teams either depend on manual Cost Explorer reviews or circulate numbers whose period, metric, filters, and refresh state are unclear.
+
+The project addresses that problem by creating one traceable path from billing records to decisions.
+
+## Implemented architecture
 
 ```text
 AWS Billing
    ↓
-AWS Data Exports / CUR 2.0
+AWS Data Exports / CUR 2.0       Financial evidence
    ↓
-Amazon S3
+Amazon S3 + AWS Glue             Storage and catalog
    ↓
-AWS Glue Data Catalog
+Amazon Athena                    Reproducible validation
    ↓
-Amazon Athena
+CUDOS v5 + QuickSight            FinOps analysis product
    ↓
-CUDOS v5
+Amazon Q / Flows                 Optional assisted investigation
    ↓
-Amazon Quick Sight
-   ↓
-Amazon Quick
-   ↓
-Natural-language analysis + Quick Flows
+Human review + operating cadence Governed action
 ```
 
-The workshop also introduces AWS-native cost anomaly monitoring, alerting, and a transparent deterministic anomaly pattern for comparison.
+Cost Anomaly Detection and SNS provide the operational signal around this analytical path.
 
-## Workshop modules
+## Project outcomes
 
-1. Introduction
-2. Environment Setup
-3. CUR 2.0 Foundation
-4. Amazon Athena Integration
-5. CUDOS v5 Dashboards
-6. FinOps Cost Analysis
-7. Customize Quick Sight
-8. Amazon Quick & Generative AI FinOps
-9. Agentic FinOps Workflows
-10. Custom Anomaly Detection
-11. Security & Governance
-12. Clean Up Resources
+- a CUR 2.0 collection layer with real Parquet delivery;
+- a catalogued Athena table and reproducible validation queries;
+- a CUDOS deployment model with SPICE readiness checks;
+- a reconciliation contract between Athena and CUDOS;
+- structured FinOps findings with owner, evidence, action, and measured outcome;
+- allocation and unit-economics definitions;
+- anomaly notification, access governance, and lifecycle controls;
+- an optional AI layer that explains approved evidence but does not replace it.
+
+## Current delivery status
+
+| Capability | Status | Evidence |
+|---|---|---|
+| CUR 2.0 delivery | Validated | Real Parquet delivery in the current billing partition |
+| Athena and Glue | Validated | Database, table, schema, query result, and scan statistics |
+| CUDOS v5 and SPICE | Implementation record required | Validation contract is defined; live dashboard evidence remains to be added |
+| FinOps findings | Method defined | A reconciled real-account finding and measured outcome remain to be completed |
+| Amazon Q and Flows | Optional extension | Grounding and run-evaluation criteria are defined |
+| Alerting and governance | Design defined | Live delivery test and final access review remain to be completed |
+
+We intentionally track this status clearly: a documented design does not count as a working system.
+
+## Project chapters
+
+1. Business Context & Architecture
+2. Environment & Access Boundary
+3. CUR 2.0 Data Foundation
+4. Athena Validation & Data Lineage
+5. CUDOS v5 Analytical Product
+6. FinOps Findings & Unit Economics
+7. QuickSight Presentation Layer
+8. Amazon Q AI Extension
+9. Governed Investigation Workflow
+10. Anomaly Detection & Notification
+11. Security & Operating Model
+12. Resource Lifecycle
 
 {{< cost >}}
-This workshop can create billable S3, Athena, SPICE, Amazon Quick, and supporting resources. Complete Module 12 when you finish.
+The implementation can create billable S3, Athena, SPICE, Amazon Q, and supporting resources. Every created resource must have an owner and a retain-or-delete decision.
 {{< /cost >}}

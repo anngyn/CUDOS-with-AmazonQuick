@@ -1,120 +1,68 @@
 ---
-title: "Customizing Quick Sight Visuals"
+title: "Quick Sight Decision View Design"
 weight: 1
 chapter: false
 pre: "7.1 "
-description: "Create filters, KPIs, and trend visuals from CUDOS data."
-duration: "15 mins"
+description: "Design a focused FinOps decision view without rebuilding the CUDOS semantic model."
 services:
   - Amazon Quick Sight
   - CUDOS v5
 ---
 {{< badge "Amazon Quick Sight" >}}
-{{< badge "Visuals" >}}
-{{< badge "Filters" >}}
-{{< duration "15 mins" >}}
+{{< badge "Visual Design" >}}
+{{< badge "FinOps" >}}
 
+## Product intent
 
-## Step 1 — Create an editable analysis
+CUDOS provides broad AWS cost intelligence. The custom Quick Sight analysis narrows that model to one recurring decision rather than duplicating the entire dashboard.
 
-Open CUDOS and use the available **Save as / Create analysis from dashboard** capability.
-
-Name:
+The reference decision view answers:
 
 ```text
-FinOps Workshop Analysis
+What did the selected scope cost?
+How is that cost changing daily?
+Which service and account filters explain the view?
+When was the data last refreshed?
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `07-01-save-as-analysis.png`**
+## Visual contract
 
-Capture the CUDOS save-as/create-analysis operation.
+The analysis is created from the approved CUDOS dataset and published as `FinOps Project Dashboard`. Its minimum visual contract is:
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+| Element | Purpose |
+|---|---|
+| Date control | Defines the financial period explicitly |
+| Cost metric label | Prevents unblended/amortized/net ambiguity |
+| Service filter | Supports product/service attribution |
+| Account filter | Supports ownership and environment attribution |
+| KPI | Shows selected-period cost |
+| Daily trend | Shows direction and timing of change |
+| Refresh timestamp | Exposes data freshness |
 
-## Step 2 — Open the analysis editor
+## Design choices
 
-{{< note >}}
-📸 **Screenshot placeholder — `07-02-analysis-editor.png`**
+The KPI title includes the financial metric, for example `Selected Period Unblended Cost`. A generic title such as `Total Cost` is rejected because it hides metric semantics.
 
-Capture the Quick Sight analysis editor.
+The trend uses usage date on the x-axis and the same cost metric as the KPI. Optional service grouping is applied only when the resulting series remain readable.
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+Filters are visible in the published view so another reviewer can reproduce the same number.
 
-## Step 3 — Add a service filter
-
-Create a filter using the service field and expose it as a control.
-
-{{< note >}}
-📸 **Screenshot placeholder — `07-03-service-filter.png`**
-
-Capture the service filter/control configuration.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Add an account filter
-
-Repeat for linked/source account.
-
-{{< note >}}
-📸 **Screenshot placeholder — `07-04-account-filter.png`**
-
-Capture the account filter/control.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 5 — Create a KPI visual
-
-Use the chosen cost metric and title it explicitly, for example:
+## Asset record
 
 ```text
-Selected Period Unblended Cost
+Dashboard:
+Source dataset:
+Cost metric:
+Date field/timezone:
+Filters and defaults:
+Refresh status/time:
+Owner:
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `07-05-cost-kpi.png`**
+One final dashboard artifact is retained when it shows this context together. Screenshots of individual filter configuration screens are not project evidence.
 
-Capture the KPI configuration and result.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 6 — Create a daily cost trend
-
-Add a line chart:
-
-- X axis: usage date
-- Value: chosen cost metric
-- Optional group: service
-
-{{< note >}}
-📸 **Screenshot placeholder — `07-06-cost-trend.png`**
-
-Capture the finished daily cost trend visual.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 7 — Publish
-
-Publish as:
-
-```text
-FinOps Workshop Dashboard
-```
-
-{{< note >}}
-📸 **Screenshot placeholder — `07-07-published-dashboard.png`**
-
-Capture the published custom FinOps dashboard.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+{{< capture src="images/07-customize-quick-sight/07-01-finops-decision-dashboard.png" alt="Published QuickSight FinOps decision dashboard with scope and freshness context" title="Published FinOps decision view" capture="Capture the final published dashboard with the date control, named cost metric, service and account filters, selected-period KPI, daily trend, and last-refresh timestamp visible in one view." caption="The final decision view is retained; filter-setup and visual-formatting screens are intentionally omitted." >}}
 
 {{< finops title="FinOps Takeaway" >}}
-Customize the decision view, not the entire data model. Keep shared financial semantics consistent.
+The custom view adds decision focus while preserving shared CUDOS financial semantics.
 {{< /finops >}}

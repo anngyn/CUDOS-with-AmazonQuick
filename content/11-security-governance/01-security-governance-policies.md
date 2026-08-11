@@ -1,96 +1,71 @@
 ---
-title: "Security & Governance Policies"
+title: "FinOps Operating Model & Access Governance"
 weight: 1
 chapter: false
 pre: "11.1 "
-description: "Review data access, dashboard sharing, ownership, and human-review controls."
-duration: "10 mins"
+description: "Define data ownership, dashboard sharing, review cadence, and accountability around the FinOps platform."
 services:
   - Amazon Quick
   - Amazon S3
   - FinOps Governance
 ---
 {{< badge "Security" >}}
-{{< badge "Governance" >}}
-{{< badge "Amazon Quick" >}}
-{{< duration "10 mins" >}}
+{{< badge "Operating Model" >}}
+{{< badge "FinOps" >}}
 
+## Governance objective
 
-## Step 1 — Review billing-data access
+The platform creates visibility, but visibility changes behavior only when access, ownership, review cadence, and decision authority are explicit.
 
-Identify who can access:
+## Access matrix
 
-- Data Exports S3 bucket
-- Glue database
-- Athena query results
-- CUDOS dashboard
-- custom Quick Sight dashboard
-- Quick Space and agent
+| Asset | Read principals | Admin/owner | Public sharing | Review result |
+|---|---|---|---|---|
+| Data Exports S3 |  |  | disabled | PASS/FAIL |
+| Glue/Athena |  |  | n/a | PASS/FAIL |
+| CUDOS/Quick Sight |  |  | disabled | PASS/FAIL |
+| Quick Space/agent |  |  | disabled | PASS/FAIL |
 
-{{< note >}}
-📸 **Screenshot placeholder — `11-01-data-access-review.png`**
+Role and group names are recorded; credentials and temporary sessions are not.
 
-Capture the relevant access configuration without exposing sensitive principal details.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Review dashboard sharing
-
-In Quick Sight, inspect sharing for CUDOS and the custom dashboard.
-
-{{< note >}}
-📸 **Screenshot placeholder — `11-02-dashboard-sharing.png`**
-
-Capture the dashboard sharing configuration.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Review the FinOps Space
-
-Inspect:
-
-- members
-- linked dashboards
-- linked resources
-- agent access
-
-{{< note >}}
-📸 **Screenshot placeholder — `11-03-space-sharing.png`**
-
-Capture the Space membership/resource view.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Define ownership
+## Ownership model
 
 ```text
 FinOps data owner:
-Dashboard owner:
+Dashboard product owner:
+Metric/semantic owner:
 Optimization review owner:
+Workload action owner:
 Security owner:
 ```
 
-## Step 5 — Define review cadence
+The dashboard owner maintains the analytical product. The workload owner approves operational changes. Combining these responsibilities would allow a dashboard recommendation to become an uncontrolled infrastructure action.
 
-Example:
+## Review cadence
 
 ```text
-Daily: anomaly alerts
-Weekly: material cost movers
-Monthly: allocation coverage + commitments + optimization backlog
+Daily     anomaly queue and notification health
+Weekly    material cost movers and investigation backlog
+Monthly   allocation coverage, commitments, and realized savings
+Quarterly access review, metric definitions, and retained resources
 ```
 
-## Step 6 — Define governance rules
+The cadence is tied to artifacts: anomaly record, finding backlog, allocation report, savings measurement, and access matrix.
 
-- every recommendation has an owner
-- financial claims are evidence-backed
-- unallocated spend is tracked
-- AI recommendations do not bypass approval
-- workshop cost data is not public
+## Governance rules
+
+- every financial claim includes period, metric, scope, and freshness;
+- every recommendation has an owner and verification requirement;
+- unallocated spend is measured rather than hidden;
+- AI output does not bypass approval;
+- public sharing is disabled unless explicitly reviewed;
+- proposed savings and realized savings are reported separately;
+- retained project resources have an owner and next review date.
+
+## Current project status
+
+The operating model and matrix are defined. Real principals, owners, review dates, and completed access-review results remain to be populated.
 
 {{< finops title="FinOps Takeaway" >}}
-Governance connects visibility to ownership. A dashboard without an operating process rarely changes behavior.
+Governance turns cost visibility into accountable decisions without giving the analytical platform unnecessary workload authority.
 {{< /finops >}}

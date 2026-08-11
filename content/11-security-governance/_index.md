@@ -1,9 +1,9 @@
 ---
-title: "Security & Governance"
+title: "Security & Operating Model"
 weight: 11
 chapter: false
 pre: "11. "
-description: "Apply least privilege, encryption, sharing controls, and FinOps governance."
+description: "Access governance, ownership, cadence, least privilege, encryption, and analytical security boundaries."
 duration: "25 mins"
 services:
   - AWS IAM
@@ -14,12 +14,11 @@ services:
 {{< badge "Security" >}}
 {{< badge "Governance" >}}
 {{< badge "FinOps" >}}
-{{< duration "25 mins" >}}
 
 
 FinOps data can expose resource identifiers, account structure, tags, and financial information.
 
-## Module contents
+## Chapter contents
 
-- **11.1 Security & Governance Policies**
-- **11.2 IAM Least Privilege & KMS Encryption**
+- **11.1 FinOps Operating Model & Access Governance**
+- **11.2 IAM, Encryption & Analytical Security Boundary**

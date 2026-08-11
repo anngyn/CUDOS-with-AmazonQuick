@@ -1,10 +1,9 @@
 ---
-title: "Querying CUR 2.0 with Amazon Athena"
+title: "Athena Validation & CUDOS Reconciliation"
 weight: 1
 chapter: false
 pre: "4.1 "
-description: "Run real validation and cost-analysis SQL over CUR 2.0."
-duration: "15 mins"
+description: "Use Athena as an independent, reproducible validation layer for CUR 2.0 and CUDOS metrics."
 services:
   - Amazon Athena
   - CUR 2.0
@@ -12,123 +11,115 @@ services:
 {{< badge "Amazon Athena" >}}
 {{< badge "SQL" >}}
 {{< badge "CUR 2.0" >}}
-{{< duration "15 mins" >}}
 
+## Validation role
 
-## Step 1 — Open Athena
+Athena is the project’s independent calculation layer. CUDOS is trusted only after a named metric can be reproduced from the same CUR data, period, account scope, and filters.
 
-1. Open **Amazon Athena** in `ap-southeast-2`.
-2. Open **Query editor**.
-3. Select the Glue Data Catalog.
-4. Select database:
+This separation catches two common problems:
 
 ```text
-cid_data_exports
+Correct SQL + stale SPICE
+→ Athena and CUDOS differ because refresh times differ.
+
+Fresh data + different cost metrics
+→ both numbers are internally correct but answer different questions.
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `04-01-athena-database.png`**
+## Environment-specific identifiers
 
-Capture Athena with `cid_data_exports` selected.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Discover the actual CUR table name
-
-Run:
+The generated database and table names are discovered from the deployed environment and recorded as `<CUR_DATABASE>` and `<CUR2_TABLE>`. They are not hard-coded from an older template version.
 
 ```sql
-SHOW TABLES IN cid_data_exports;
+SHOW TABLES IN <CUR_DATABASE>;
 ```
 
-Identify the CUR 2.0 table and record it as:
+The current evidence uses database `cid_data_export` and table `cur2`.
 
-```text
-<CUR2_TABLE>
-```
+{{< evidence src="images/03-cur2/04-01-athena-database.png" alt="Athena query editor with the CUR database and table selected" caption="Observed analytical context: the generated CUR database and table are available in Athena." >}}
 
-{{< note >}}
-📸 **Screenshot placeholder — `04-02-athena-show-tables.png`**
+{{< evidence src="images/03-cur2/04-02-athena-show-tables.png" alt="Athena SHOW TABLES result containing the CUR 2.0 table" caption="Observed catalog result: the CUR 2.0 table is discoverable through SQL." >}}
 
-Capture the `SHOW TABLES` result and highlight the CUR 2.0 table.
+## Readability and schema evidence
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Inspect a small sample
+A bounded sample proves that Glue points Athena to readable objects:
 
 ```sql
 SELECT *
-FROM cid_data_exports.<CUR2_TABLE>
+FROM <CUR_DATABASE>.<CUR2_TABLE>
 LIMIT 10;
 ```
 
-This is a one-time sanity check, not a recurring analytics pattern.
+{{< evidence src="images/03-cur2/04-03-athena-first-rows.png" alt="Athena sample query returning CUR 2.0 records" caption="Observed result: Athena returns real CUR 2.0 rows; financial identifiers are redacted in the published evidence." >}}
 
-{{< note >}}
-📸 **Screenshot placeholder — `04-03-athena-first-rows.png`**
-
-Capture the successful query and a few returned CUR rows.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Inspect column names
+The schema is inspected before analytical SQL is written:
 
 ```sql
-DESCRIBE cid_data_exports.<CUR2_TABLE>;
+DESCRIBE <CUR_DATABASE>.<CUR2_TABLE>;
 ```
 
-Look for billing period, usage account, product code, usage start time, Region, line item type, usage type, cost, reservation, Savings Plans, and tag fields.
+Required groups include billing period, usage account, service/product, usage time, Region, line-item type, cost, reservation, Savings Plans, tags, and Cost Categories.
 
-{{< note >}}
-📸 **Screenshot placeholder — `04-04-athena-describe-cur2.png`**
+{{< evidence src="images/03-cur2/04-04-athena-describe-cur2.png" alt="Athena DESCRIBE result for the CUR 2.0 table" caption="Observed schema: the table exposes billing, line-item, and cost fields required by the FinOps model." >}}
 
-Capture the schema returned by `DESCRIBE`.
+## Baseline service-cost query
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 5 — Query cost by service
-
-After confirming the actual field names, run:
+The first analytical result groups unblended cost by service:
 
 ```sql
 SELECT
     line_item_product_code AS service,
     ROUND(SUM(line_item_unblended_cost), 2) AS unblended_cost
-FROM cid_data_exports.<CUR2_TABLE>
+FROM <CUR_DATABASE>.<CUR2_TABLE>
 GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 20;
 ```
 
-If your table differs, adapt the query to the real schema.
+The cost metric is named explicitly. Replacing `unblended_cost` with amortized or net cost changes the financial meaning and requires a separate metric definition.
 
-{{< note >}}
-📸 **Screenshot placeholder — `04-05-athena-cost-by-service.png`**
+{{< evidence src="images/03-cur2/04-05-athena-cost-by-service.png" alt="Athena cost by service query and result" caption="Observed result: the CUR table can be aggregated by service using an explicitly named cost metric." >}}
 
-Capture the real service-cost result.
+## Query-efficiency evidence
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+Runtime and bytes scanned are retained with the SQL. They show whether a recurring query projects only necessary columns and benefits from Parquet and date filtering.
 
-## Step 6 — Review query statistics
-
-Record:
-
-- run time
-- data scanned
-
-{{< note >}}
-📸 **Screenshot placeholder — `04-06-athena-query-statistics.png`**
-
-Capture the Athena query statistics.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+{{< evidence src="images/03-cur2/04-06-athena-query-statistics.png" alt="Athena query completion statistics" caption="Observed query statistics provide the baseline for scan-cost optimization." >}}
 
 {{< cost >}}
-Athena cost is driven by scanned data. Date filters, column projection, Parquet, and aggregated views reduce recurring scan cost.
+Athena charges by data scanned. Reusable queries therefore use Parquet, explicit columns, billing-period filters, and aggregated views rather than recurring `SELECT *` scans.
 {{< /cost >}}
+
+## Reconciliation contract with CUDOS
+
+After CUDOS is deployed, the same period total is calculated in Athena:
+
+```sql
+SELECT
+    DATE_TRUNC('month', line_item_usage_start_date) AS usage_month,
+    ROUND(SUM(line_item_unblended_cost), 2) AS unblended_cost
+FROM <CUR_DATABASE>.<CUR2_TABLE>
+WHERE line_item_usage_start_date >= TIMESTAMP '<START_YYYY-MM-DD 00:00:00>'
+  AND line_item_usage_start_date <  TIMESTAMP '<END_EXCLUSIVE_YYYY-MM-DD 00:00:00>'
+GROUP BY 1
+ORDER BY 1;
+```
+
+```text
+Period and timezone:
+Account/Region filters:
+Cost metric:
+Athena value:
+CUDOS value:
+Absolute variance = CUDOS - Athena:
+Variance % = absolute variance / Athena × 100:
+Last CUR delivery:
+Last SPICE refresh:
+Status: MATCH / EXPLAINED DIFFERENCE / INVESTIGATE
+```
+
+A `1%` tolerance is only an example. It is valid only when scope and metric are identical. Differences are investigated through refresh lag, partial-month data, credits/refunds, account filters, currency, and metric semantics before business conclusions are drawn.
+
+{{< validation >}}
+Athena validation is complete when the data is readable, required columns exist, the saved SQL produces a named metric, and the metric has a documented reconciliation contract with CUDOS.
+{{< /validation >}}

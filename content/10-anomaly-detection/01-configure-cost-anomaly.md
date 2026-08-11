@@ -1,118 +1,22 @@
 ---
-title: "Configuring AWS Cost Anomaly Detection"
+title: "Anomaly Detection Strategy & Materiality"
 weight: 1
 chapter: false
 pre: "10.1 "
-description: "Create a cost monitor and alert subscription using AWS Cost Anomaly Detection."
-duration: "15 mins"
+description: "Combine AWS-managed anomaly detection with transparent materiality rules and an accountable response model."
 services:
   - AWS Cost Anomaly Detection
   - AWS Cost Explorer
 ---
 {{< badge "AWS Cost Anomaly Detection" >}}
-{{< badge "AWS Cost Explorer" >}}
+{{< badge "Materiality" >}}
 {{< badge "FinOps" >}}
-{{< duration "15 mins" >}}
 
+## Detection strategy
 
-AWS Cost Anomaly Detection uses machine learning to identify unusual spend patterns. AWS documents that it uses Cost Explorer data, monitors net unblended cost, and can rank root causes across service, account, Region, and usage type.
+AWS Cost Anomaly Detection provides the managed signal. It uses Cost Explorer data, monitors net unblended cost, and can rank likely contributors across service, account, Region, and usage type.
 
-## Step 1 — Open Cost Anomaly Detection
-
-Go to:
-
-**Billing and Cost Management → Cost Anomaly Detection**
-
-If Cost Explorer is not enabled, enable it first.
-
-{{< note >}}
-📸 **Screenshot placeholder — `10-01-cost-anomaly-home.png`**
-
-Capture the Cost Anomaly Detection landing page.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Review existing monitors
-
-Inspect current AWS-managed or custom monitors before creating duplicates.
-
-{{< note >}}
-📸 **Screenshot placeholder — `10-02-existing-monitors.png`**
-
-Capture the current monitors list.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Create a monitor if needed
-
-Choose **Create monitor**.
-
-For the workshop:
-
-```text
-Name: FinOpsWorkshop-ServiceMonitor
-```
-
-Use a service-oriented scope or another monitor type appropriate to the account.
-
-{{< note >}}
-📸 **Screenshot placeholder — `10-03-create-monitor.png`**
-
-Capture the monitor configuration before creation.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Create an alert subscription
-
-Create/edit:
-
-```text
-FinOpsWorkshop-AnomalyAlerts
-```
-
-Select:
-
-- the workshop monitor
-- alert frequency
-- a cost-impact threshold that avoids excessive noise
-
-{{< note >}}
-📸 **Screenshot placeholder — `10-04-alert-subscription.png`**
-
-Capture the anomaly alert subscription configuration.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 5 — Allow learning/detection time
-
-AWS notes that new monitors and new services need historical data before meaningful anomaly detection. Do not expect a detected anomaly immediately.
-
-## Step 6 — Inspect a real anomaly when available
-
-Review:
-
-- impact
-- service
-- account
-- Region
-- usage type
-- ranked root causes
-
-{{< note >}}
-📸 **Screenshot placeholder — `10-05-detected-anomaly.png`**
-
-Capture a real detected anomaly if available. If none exists, do not fabricate one.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Comparison — deterministic workshop rule
-
-A transparent custom rule can be:
+The project complements that model with a transparent rule:
 
 ```text
 percentage increase > threshold
@@ -120,7 +24,39 @@ AND
 absolute increase > threshold
 ```
 
-This is useful for testing explicit materiality logic, while AWS Cost Anomaly Detection provides managed ML-based monitoring.
+The two approaches answer different needs. Managed ML detects unusual behavior relative to historical patterns; the deterministic rule makes organizational materiality explicit and testable.
+
+## Monitor scope
+
+The reference monitor is service-oriented and named `FinOpsProject-ServiceMonitor`. Existing monitors are reviewed before a new one is introduced because duplicate scopes create duplicate alerts and unclear ownership.
+
+```text
+Monitor name:
+Scope/type:
+Accounts/services included:
+Managed cost-impact threshold:
+Deterministic percentage threshold:
+Deterministic absolute threshold:
+Alert frequency:
+Response owner:
+Expected response time:
+```
+
+## Materiality effect
+
+Percentage alone is misleading on tiny baselines. A move from `$0.01` to `$0.10` is a 900% increase but may not justify incident handling. Absolute cost alone can miss a rapidly growing small workload. Requiring both produces a more useful review queue.
+
+## Learning and interpretation limits
+
+New monitors and services require historical data before managed anomaly detection becomes meaningful. Absence of an immediate anomaly is therefore not validation failure.
+
+Ranked root causes remain analytical leads. They identify cost contributors but do not prove the operational event that caused them.
+
+{{< capture src="images/10-custom-anomaly/10-01-cost-anomaly-monitor.png" alt="AWS Cost Anomaly Detection monitor and subscription configuration" title="Live anomaly monitor and ownership" capture="Capture the monitor and subscription summary showing the monitor name, service scope, alert frequency, materiality threshold, destination, and response owner. A detected anomaly is optional because a new monitor may still be learning." caption="This artifact proves the governed monitor exists; it does not claim that absence of an anomaly means zero risk." >}}
+
+## Current project status
+
+The monitor strategy, naming, materiality model, and ownership record are defined. A live monitor, subscription, detected anomaly, and response-time result have not yet been evidenced.
 
 ## Official reference
 

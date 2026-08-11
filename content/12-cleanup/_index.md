@@ -1,9 +1,9 @@
 ---
-title: "Clean Up Resources"
+title: "Resource Lifecycle"
 weight: 12
 chapter: false
 pre: "12. "
-description: "Safely remove workshop resources and verify residual cost is controlled."
+description: "Dependency-aware teardown, retention decisions, and residual-cost verification."
 duration: "20 mins"
 services:
   - AWS CloudFormation
@@ -14,16 +14,15 @@ services:
 {{< badge "Cleanup" >}}
 {{< badge "FinOps" >}}
 {{< badge "AWS CloudFormation" >}}
-{{< duration "20 mins" >}}
 
 
-Temporary workshop resources should not become permanent cloud waste.
+Temporary project resources should not become permanent cloud waste.
 
-## Module contents
+## Chapter contents
 
-- **12.1 Teardown & Resource Cleanup**
-- **12.2 Verifying Complete Resource Deletion**
+- **12.1 Resource Lifecycle & Retention Runbook**
+- **12.2 Lifecycle Verification & Residual Cost Check**
 
 {{< security >}}
-Cleanup is destructive. Verify every resource belongs to this workshop before deleting it.
+Cleanup is destructive. Verify every resource belongs to this project before deleting it.
 {{< /security >}}

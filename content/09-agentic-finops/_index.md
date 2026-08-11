@@ -1,9 +1,9 @@
 ---
-title: "Agentic FinOps Workflows"
+title: "Governed Investigation Workflow"
 weight: 9
 chapter: false
 pre: "9. "
-description: "Turn repeated FinOps investigations into structured Quick Flows with human control."
+description: "Optional investigation automation, evaluation, approval packages, and workload-action boundaries."
 duration: "30 mins"
 services:
   - Amazon Quick
@@ -13,14 +13,13 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< badge "Quick Flows" >}}
 {{< badge "Advanced" >}}
-{{< duration "30 mins" >}}
 
 
 A chat answer handles a question. A Flow captures a repeatable process.
 
-## Module contents
+## Chapter contents
 
-- **9.1 Building Autonomous Agentic FinOps Workflows**
-- **9.2 Automated Governance & Remediation**
+- **9.1 Governed Cost Investigation Flow**
+- **9.2 Automation Levels, Approval & Remediation Boundary**
 
-In this workshop, “autonomous” is constrained: analysis can run automatically, but workload-changing remediation remains human-controlled.
+In this project, “autonomous” is constrained: analysis can run automatically, but workload-changing remediation remains human-controlled.

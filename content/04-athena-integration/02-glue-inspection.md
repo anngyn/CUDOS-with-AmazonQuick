@@ -1,10 +1,9 @@
 ---
-title: "AWS Glue Data Catalog Inspection"
+title: "Glue Catalog, Schema Contract & S3 Lineage"
 weight: 2
 chapter: false
 pre: "4.2 "
-description: "Inspect the database, table schema, partitions, and S3 location behind Athena."
-duration: "10 mins"
+description: "Show how Glue connects CUR Parquet objects to reproducible Athena and CUDOS queries."
 services:
   - AWS Glue
   - Amazon S3
@@ -13,82 +12,66 @@ services:
 {{< badge "AWS Glue" >}}
 {{< badge "Data Catalog" >}}
 {{< badge "Amazon S3" >}}
-{{< duration "10 mins" >}}
 
+## Catalog role
 
-## Step 1 — Open the database
+Glue is the data contract between storage and calculation. It tells Athena which S3 prefix contains the dataset and how each Parquet field should be interpreted.
 
-Go to:
+If the catalog points to the wrong prefix, SQL can still be syntactically valid while reporting incomplete or unrelated financial data. Catalog inspection is therefore a lineage check rather than a console tour.
 
-**AWS Glue → Data Catalog → Databases**
+## Observed catalog
 
-Open:
+The database name is taken from the deployed environment. Current evidence shows `cid_data_export`:
+
+{{< evidence src="images/03-cur2/04-07-glue-database.png" alt="AWS Glue Data Catalog database list containing the CUR database" caption="Observed catalog result: the CUR database exists in Glue and matches the database used by Athena." >}}
+
+The project records:
 
 ```text
-cid_data_exports
+Glue database:
+Glue table:
+S3 table location:
+Input/output format:
+Partition model:
+Current billing partition:
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `04-07-glue-database.png`**
+## Schema contract
 
-Capture the Glue database created by the Data Exports foundation.
+The table must expose the groups required by the financial model:
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+- bill and billing period;
+- line item and usage account;
+- product/service and pricing;
+- reservation and Savings Plans;
+- resource tags and Cost Categories;
+- cost fields used by the selected metrics.
 
-## Step 2 — Open the CUR 2.0 table
+A column being present does not mean it is populated for every charge. Metric SQL must handle service- and line-item-specific sparsity.
 
-Open the table discovered in Athena.
+## S3 lineage
 
-Review:
+The table `Location` is compared with the Data Exports prefix validated in Chapter 3:
 
-- Table name
-- Database
-- S3 location
-- Input/output format
-- Parameters
+```text
+Data Export destination
+        ↓ must match
+Glue table Location
+        ↓ interpreted by
+Athena table
+        ↓ consumed by
+CUDOS datasets
+```
 
-{{< note >}}
-📸 **Screenshot placeholder — `04-08-glue-cur2-table.png`**
-
-Capture the CUR 2.0 Glue table details.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Inspect the schema
-
-Identify representative groups for:
-
-- bill
-- line item
-- product
-- pricing
-- reservation
-- Savings Plans
-- tags
-- Cost Categories
-
-{{< note >}}
-📸 **Screenshot placeholder — `04-09-glue-cur2-schema.png`**
-
-Capture a representative section of the CUR 2.0 schema.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Match Glue to S3
-
-Copy the table **Location** and compare it to the real Data Exports S3 prefix from Module 3.
-
-{{< note >}}
-📸 **Screenshot placeholder — `04-10-glue-s3-location.png`**
-
-Capture the Glue table location and matching S3 prefix.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+```text
+Glue database:
+Glue table:
+S3 table location:
+Validated delivery prefix:
+Location match: yes/no
+Lineage status: PASS / INVESTIGATE
+```
 
 {{< finops title="FinOps Takeaway" >}}
-A wrong schema or wrong S3 location can produce misleading financial analysis even when the SQL is syntactically valid.
+Financial lineage is part of metric credibility. A chart cannot be trusted if its table-to-S3 mapping is unknown.
 {{< /finops >}}

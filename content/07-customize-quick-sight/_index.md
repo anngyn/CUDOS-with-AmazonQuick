@@ -1,9 +1,9 @@
 ---
-title: "Customize Quick Sight"
+title: "Quick Sight Presentation Layer"
 weight: 7
 chapter: false
 pre: "7. "
-description: "Create a focused FinOps analysis without rebuilding CUDOS."
+description: "Decision-view design and the boundary between presentation logic and governed financial semantics."
 duration: "30 mins"
 services:
   - Amazon Quick Sight
@@ -12,12 +12,11 @@ services:
 {{< badge "Amazon Quick Sight" >}}
 {{< badge "CUDOS v5" >}}
 {{< badge "FinOps" >}}
-{{< duration "30 mins" >}}
 
 
 Use CUDOS as the AWS-provided foundation, then create a smaller analysis that matches your own FinOps operating view.
 
-## Module contents
+## Chapter contents
 
-- **7.1 Customizing Quick Sight Visuals**
-- **7.2 Creating Custom Calculated Fields**
+- **7.1 Quick Sight Decision View Design**
+- **7.2 Presentation Logic & Calculated-Field Boundary**

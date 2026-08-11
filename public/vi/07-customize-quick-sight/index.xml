@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Trực quan hóa dữ liệu với QuickSight on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/</link>
+    <description>Recent content in Trực quan hóa dữ liệu với QuickSight on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thiết kế chế độ xem quyết định trên Quick Sight</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/01-custom-visuals/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/01-custom-visuals/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick Sight&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Thiết kế trực quan&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;mục-đích-sản-phẩm&#34;&gt;Mục đích sản phẩm&lt;/h2&gt;&#xA;&lt;p&gt;CUDOS cung cấp thông tin tình báo toàn diện về chi phí AWS. Bản phân tích Quick Sight tùy chỉnh thu hẹp mô hình đó vào một quyết định lặp lại cụ thể, thay vì sao chép toàn bộ dashboard.&lt;/p&gt;&#xA;&lt;p&gt;Chế độ xem quyết định tham chiếu trả lời các câu hỏi sau:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Phạm vi được chọn có chi phí bao nhiêu?&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Chi phí đó thay đổi thế nào theo ngày?&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Bộ lọc dịch vụ và tài khoản nào giải thích chế độ xem?&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Dữ liệu được làm mới lần cuối khi nào?&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;hợp-đồng-trực-quan&#34;&gt;Hợp đồng trực quan&lt;/h2&gt;&#xA;&lt;p&gt;Bản phân tích được tạo từ dataset CUDOS đã được phê duyệt và phát hành với tên &lt;code&gt;FinOps Project Dashboard&lt;/code&gt;. Hợp đồng trực quan tối thiểu gồm:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Logic trình bày và ranh giới trường tính toán</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/02-calculated-fields/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/02-calculated-fields/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick Sight&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Trường tính toán&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Quản trị ngữ nghĩa&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;quyết-định-về-ranh-giới&#34;&gt;Quyết định về ranh giới&lt;/h2&gt;&#xA;&lt;p&gt;Các trường tính toán của Quick Sight phù hợp với logic trình bày cục bộ. Đây không phải vị trí thích hợp để định nghĩa dùng chung cho amortized cost, chargeback, allocation hoặc commitment treatment, vì các định nghĩa đó sẽ bị ẩn bên trong một bản phân tích.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Ngữ nghĩa tài chính có thể tái sử dụng&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ Athena view hoặc lớp ngữ nghĩa có quản trị&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Phân loại trực quan cục bộ&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ Trường tính toán Quick Sight&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;phân-loại-tham-chiếu&#34;&gt;Phân loại tham chiếu&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;Spend Band&lt;/code&gt; được cố ý giữ đơn giản:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

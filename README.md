@@ -1,64 +1,73 @@
-# End-to-End MLOps Pipeline with SageMaker, GitHub, and GitHub Actions
+# AWS FinOps Intelligence với CUDOS v5
 
-A reference implementation of a GitHub-native MLOps pipeline for Amazon SageMaker — model training, evaluation, registry-gated approval, and staged deployment, all driven by GitHub Actions instead of AWS-native CI/CD tooling.
+Dự án triển khai AWS FinOps dựa trên bằng chứng (evidence-backed), kết nối dữ liệu cước phí CUR 2.0 để đối soát qua Athena, trực quan hóa trên Dashboard CUDOS v5, phân bổ và tối ưu hóa chi phí có trách nhiệm, cảnh báo bất thường, và tích hợp các luồng Amazon Q tùy chọn.
 
-Based on the AWS blog post ["Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions"](https://aws.amazon.com/blogs/machine-learning/build-an-end-to-end-mlops-pipeline-using-amazon-sagemaker-pipelines-github-and-github-actions/), adapted and hardened for a real AWS account: OIDC-based auth instead of long-lived keys, current GitHub Actions versions, and fixes for several IAM/S3 permission gaps in the original AWS sample.
+Toàn bộ tài liệu hướng dẫn của dự án này đã được **Việt hóa hoàn toàn** với văn phong kỹ thuật (Tech-savvy/Cloud Architect) giúp các team tại Việt Nam dễ dàng tiếp cận và triển khai quy trình Quản trị chi phí (FinOps) trên AWS.
 
-## Why this exists
+## Kiến trúc Hệ thống
 
-Teams already living in GitHub don't want a second CI/CD system just for ML. This pipeline keeps GitHub as the single source of truth for both application code and ML pipeline code, while SageMaker stays purely the execution engine for training, evaluation, and hosting — no CodePipeline, no CodeBuild.
-
-## Architecture
-
-```
-push to main ──▶ GitHub Actions (build.yml) ──▶ SageMaker Pipeline
-                                                   │
-                                    preprocess → train → evaluate
-                                                   │
-                                                   ▼
-                                        SageMaker Model Registry
-                                                   │
-                                      (human approves the model)
-                                                   ▼
-                                     EventBridge ──▶ Lambda
-                                                   │
-                                                   ▼
-                              GitHub Actions (deploy.yml) dispatched
-                                                   │
-                                      staging endpoint ──▶ tests
-                                                   │
-                                    (required reviewer approves)
-                                                   ▼
-                                          production endpoint
+```text
+AWS Billing / Data Exports
+          ↓
+        CUR 2.0
+          ↓
+          S3
+          ↓
+   Glue Data Catalog
+          ↓
+        Athena
+          ↓
+       CUDOS v5
+          ↓
+      Quick Sight
+          ↓
+Amazon Q (tùy chọn)
 ```
 
-## Highlights
+## Mục tiêu Dự án
 
-- **GitHub as the control plane** — a repo push starts training; a Model Registry approval starts deployment. No polling, no manual CLI steps in between.
-- **Two-stage deployment with a real approval gate** — staging deploys automatically, production requires a GitHub Environment reviewer to sign off.
-- **OIDC, not access keys** — GitHub Actions assumes an IAM role via short-lived federated credentials; nothing long-lived sits in repository secrets.
-- **Self-contained toolchain** — a custom SageMaker Project template (via Service Catalog) provisions the Lambda trigger, EventBridge rule, and artifact bucket in one shot from SageMaker Studio.
-- **Built for a real account, not just a demo** — includes the IAM policy fixes, correct-architecture Lambda layer build, and bucket-naming constraints needed to actually get `CREATE_COMPLETE` on a fresh AWS account.
+Dự án thiết lập một lộ trình ra quyết định có thể truy vết được. Một con số chi phí sẽ không được chấp nhận cho đến khi xác định rõ kỳ hạn, số liệu đo lường, các bộ lọc, và trạng thái làm mới (refresh) dữ liệu. Một đề xuất tối ưu hóa sẽ không được tính là khoản tiết kiệm cho đến khi một thay đổi đã được phê duyệt được đo lường dựa trên một baseline tương đương.
 
-## Use cases
+Vì vậy, triển khai bao gồm:
 
-- Teams standardizing ML delivery on the same GitHub Actions pipelines already used for application code.
-- Workshops/onboarding for engineers learning SageMaker Pipelines + Model Registry without adopting AWS-native CI/CD.
-- A starting point for a production MLOps pipeline that needs staged rollout with human-in-the-loop approval before hitting production.
+- Xác minh luồng truyền dữ liệu cước phí (billing delivery) và truy vấn dữ liệu gốc;
+- Đối soát một metric Athena với CUDOS cho cùng một phạm vi dữ liệu;
+- Xác định điểm thay đổi chi phí lớn (cost mover) và chủ sở hữu của nó;
+- Ghi nhận giả thuyết tối ưu hóa mà không "phóng đại" khoản tiết kiệm;
+- Định nghĩa độ phủ phân bổ (allocation coverage) hoặc mẫu số unit-economics;
+- Cấu hình một tín hiệu vận hành thông qua Cost Anomaly Detection;
+- Dọn dẹp hoặc chủ đích giữ lại từng tài nguyên dự án rõ ràng.
 
-## Repository layout
+## Trạng thái Bàn giao
 
-- `seedcode/` — SageMaker pipeline code (abalone example), deployment scripts, staging/prod configs
-- `.github/workflows/` — `build.yml` (train) and `deploy.yml` (staging → production)
-- `project/template.yml` — CloudFormation template for the custom SageMaker Service Catalog product
-- `iam/` — IAM policies for the GitHub Actions role, OIDC trust policy, and Service Catalog launch role fix
-- `lambda_functions/lambda_github_workflow_trigger/` — Lambda that dispatches `deploy.yml` on model approval
-- `content/` — the full setup walkthrough, published as a Hugo site (EN/VI)
+- **Đã xác thực:** Phân phối file Parquet CUR 2.0, hiện diện trong Glue catalog, cấu trúc/truy vấn Athena, và thống kê quét (scan) truy vấn.
+- **Đã định nghĩa nhưng chờ chạy thực tế:** Mức độ sẵn sàng CUDOS/SPICE, ghi nhận lỗi FinOps đã đối soát, độ bao phủ phân bổ, kiểm tra truyền tải cảnh báo, và nhật ký dọn dẹp.
+- **Phần mở rộng tùy chọn:** Chatbot Amazon Q và Q Flows điều tra có quản trị.
 
-## Workshop site
+## Chạy Local
+
+Yêu cầu: Hugo Extended. Workflow Pages hiện tại sử dụng Hugo `0.150.0`.
 
 ```bash
 hugo server -D
 ```
 
-Open `http://localhost:1313` for the step-by-step setup guide. Deploys automatically to GitHub Pages on push to `main`/`update`.
+Truy cập `http://localhost:1313/CUDOS-with-AmazonQuick/`.
+
+Kiểm tra build production-style mà không ghi ra folder `public/`:
+
+```bash
+hugo --renderToMemory --minify --baseURL "https://example.com/CUDOS-with-AmazonQuick/"
+```
+
+## Cấu trúc Repository
+
+- `content/` — Các chương tài liệu dự án (đã được Việt hóa)
+- `static/images/` — Hình ảnh minh họa dự án
+- `layouts/shortcodes/` — Các thành phần tái sử dụng (callout/cảnh báo)
+- `docs/` — Ghi chú planning của dự án
+- `.github/workflows/hugo-pages.yml` — Build và deploy lên GitHub Pages
+
+## Nguyên tắc Xuất bản
+
+Trước khi publish hình ảnh/ảnh chụp màn hình, hãy kiểm tra lại Account ID, ARN, tên bucket, địa chỉ email, mã định danh tổ chức và các giá trị tài chính thực tế. Account ID không phải là password, nhưng KHÔNG NÊN vô tình để lộ ra ngoài. Hãy đảm bảo bạn đã che (redact) các thông tin nhạy cảm.

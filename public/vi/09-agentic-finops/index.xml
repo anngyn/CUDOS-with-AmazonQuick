@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xây dựng quy trình FinOps tự động on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/</link>
+    <description>Recent content in Xây dựng quy trình FinOps tự động on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flow điều tra chi phí có quản trị</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/01-building-agentic-workflows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/01-building-agentic-workflows/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Quick Flows&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Điều tra có quản trị&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;mục-đích-quy-trình&#34;&gt;Mục đích quy trình&lt;/h2&gt;&#xA;&lt;p&gt;Các cuộc điều tra chi phí lặp lại thường tuân theo cùng một chuỗi phân tích. Flow &lt;code&gt;Cost Anomaly Investigation&lt;/code&gt; chuẩn hóa chuỗi đó nhưng vẫn giữ hoạt động khắc phục ngoài thẩm quyền của agent.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Kỳ + ngưỡng trọng yếu&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ trích xuất bằng chứng CUDOS&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ xác định các biến động trọng yếu&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ tách yếu tố tác động khỏi giả thuyết&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ đề xuất kiểm chứng&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ tạo gói để con người xem xét&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;đầu-vào-và-tính-trọng-yếu&#34;&gt;Đầu vào và tính trọng yếu&lt;/h2&gt;&#xA;&lt;p&gt;Flow nhận các đầu vào cụ thể thay vì tự giả định:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Các mức tự động hóa, phê duyệt và ranh giới khắc phục</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/02-governance-remediation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/02-governance-remediation/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Quản trị&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Con người xem xét&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;phân-loại-mức-tự-động-hóa&#34;&gt;Phân loại mức tự động hóa&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Mức&lt;/th&gt;&#xA;          &lt;th&gt;Năng lực&lt;/th&gt;&#xA;          &lt;th&gt;Trạng thái dự án&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;0&lt;/td&gt;&#xA;          &lt;td&gt;Phân tích thủ công&lt;/td&gt;&#xA;          &lt;td&gt;Được hỗ trợ&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;1&lt;/td&gt;&#xA;          &lt;td&gt;Phát hiện tự động&lt;/td&gt;&#xA;          &lt;td&gt;Đã thiết kế thông qua Cost Anomaly Detection&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;2&lt;/td&gt;&#xA;          &lt;td&gt;Điều tra tự động&lt;/td&gt;&#xA;          &lt;td&gt;Thiết kế Quick Flow tùy chọn&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;3&lt;/td&gt;&#xA;          &lt;td&gt;Đề xuất tự động&lt;/td&gt;&#xA;          &lt;td&gt;Tùy chọn, luôn có thể xem xét&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;4&lt;/td&gt;&#xA;          &lt;td&gt;Hành động trên workload được con người phê duyệt&lt;/td&gt;&#xA;          &lt;td&gt;Nằm ngoài agent phân tích&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;p&gt;Dự án nhắm tới các Mức 1–3. Mức 4 thuộc quy trình chuyển giao của chủ sở hữu workload, nơi có sẵn thời gian thay đổi, kiểm thử, rollback và khả năng đánh giá rủi ro kinh doanh.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

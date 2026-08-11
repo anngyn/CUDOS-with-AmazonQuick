@@ -1,10 +1,9 @@
 ---
-title: "IAM Least Privilege & KMS Encryption"
+title: "IAM, Encryption & Analytical Security Boundary"
 weight: 2
 chapter: false
 pre: "11.2 "
-description: "Inspect analytical permissions and encryption choices."
-duration: "15 mins"
+description: "Define least privilege and encryption controls across the CUR, Athena, CUDOS, and AI path."
 services:
   - AWS IAM
   - AWS KMS
@@ -14,80 +13,61 @@ services:
 {{< badge "AWS IAM" >}}
 {{< badge "AWS KMS" >}}
 {{< badge "Least Privilege" >}}
-{{< duration "15 mins" >}}
 
+## Security boundary
 
-## Step 1 — Inspect CID roles/policies
-
-Identify roles/policies created by the official stacks.
-
-Record what they allow across:
-
-- S3
-- Glue
-- Athena
-- Quick Sight
-- supporting custom resources
-
-{{< note >}}
-📸 **Screenshot placeholder — `11-04-cid-iam-role.png`**
-
-Capture one relevant CID/Quick Sight IAM role and its attached policies.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Verify the analytics boundary
-
-The BI/query path should not require unrelated permissions such as:
+The analytical stack is read-oriented:
 
 ```text
-ec2:TerminateInstances
-rds:DeleteDBInstance
-iam:CreateUser
+Data delivery roles
+→ write approved CUR objects and metadata
+
+Query/BI roles
+→ read approved S3 prefixes and Glue metadata
+→ execute Athena queries
+→ refresh and consume Quick Sight assets
+
+AI/Flow roles
+→ read approved analytical sources
+→ produce explanation/recommendation
 ```
 
-## Step 3 — Inspect S3 encryption
+Permissions such as `ec2:TerminateInstances`, `rds:DeleteDBInstance`, and `iam:CreateUser` are outside this boundary.
 
-Open:
+## IAM review record
 
-**Data Exports bucket → Properties → Default encryption**
+Roles and policies created by the official CID templates are mapped to S3, Glue, Athena, Quick Sight, and supporting custom resources. Each permission is associated with a runtime responsibility rather than accepted because the template is AWS-maintained.
 
-{{< note >}}
-📸 **Screenshot placeholder — `11-05-s3-encryption.png`**
+```text
+Role/policy:
+Principal/service:
+Required actions/resources:
+Reason:
+Unexpected permission:
+Review result:
+```
 
-Capture the S3 default-encryption configuration.
+## Encryption model
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+The review covers:
 
-## Step 4 — Inspect Athena results encryption
+- default encryption on the Data Exports S3 bucket;
+- Athena workgroup/query-result encryption;
+- KMS permissions required by delivery and query identities;
+- key ownership and rotation when a customer-managed key is used.
 
-Open Athena settings/workgroup and inspect query-result configuration.
+## KMS decision
 
-{{< note >}}
-📸 **Screenshot placeholder — `11-06-athena-encryption.png`**
+A customer-managed KMS key adds policy control and audit ownership, but also introduces key policy, IAM dependency, recurring cost, and failure modes. It is selected only when an organizational requirement justifies that operational responsibility.
 
-Capture the Athena query-results encryption settings.
+More KMS configuration is not automatically more secure if nobody owns the key policy or recovery path.
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+## Evidence hygiene
 
-## Step 5 — Understand KMS trade-offs
+Published images are reviewed for access keys, session tokens, emails, organization IDs, account/catalog IDs, bucket names, ARNs, and financial values. Redaction changes the published artifact, not the underlying validation record.
 
-A customer-managed KMS key can add control, but also adds:
-
-- key policies
-- IAM/KMS dependencies
-- operational ownership
-- cost
-
-Do not create a CMK only to make the architecture diagram look more secure.
-
-## Step 6 — Review screenshot hygiene
-
-Check public images for credentials, email addresses, organization IDs, access keys, session tokens, and sensitive resource names.
+{{< capture src="images/11-security-governance/11-01-iam-kms-boundary.png" alt="Sanitized evidence of the IAM and encryption boundary for the FinOps analytical stack" title="IAM and encryption boundary" capture="Create one sanitized evidence composite showing the analytical role scoped to required S3/Glue/Athena/QuickSight access, S3 default encryption, and Athena query-result encryption. Confirm that workload-changing permissions are absent; redact principals, ARNs, bucket names, account IDs, and key IDs." caption="Security evidence demonstrates the read-oriented boundary without publishing sensitive identifiers." >}}
 
 {{< security >}}
-Least privilege means the minimum required permission for the correct identity, not simply more IAM and KMS configuration.
+Least privilege means the minimum permission for the correct identity and resource scope, supported by runtime evidence.
 {{< /security >}}

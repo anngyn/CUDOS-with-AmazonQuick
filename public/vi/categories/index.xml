@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on AWS FinOps Intelligence Workshop</title>
-    <link>http://localhost:1313/CUDOS-with-AmazonQuick/vi/categories/</link>
-    <description>Recent content in Categories on AWS FinOps Intelligence Workshop</description>
+    <title>Categories on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/categories/</link>
+    <description>Recent content in Categories on AWS FinOps Intelligence with CUDOS v5</description>
     <generator>Hugo</generator>
-    <language>vi</language>
-    <atom:link href="http://localhost:1313/CUDOS-with-AmazonQuick/vi/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -1,10 +1,9 @@
 ---
-title: "Validate Data Export & S3 Delivery"
+title: "Delivery Validation, Freshness & Data Contract"
 weight: 4
 chapter: false
 pre: "3.4 "
-description: "Verify the generated CUR 2.0 export and its first delivery to S3."
-duration: "10 mins + delivery wait"
+description: "Prove that real CUR 2.0 Parquet data reached the intended S3 partition and define its freshness limits."
 services:
   - AWS Data Exports
   - Amazon S3
@@ -13,80 +12,60 @@ services:
 {{< badge "AWS Data Exports" >}}
 {{< badge "Amazon S3" >}}
 {{< badge "CUR 2.0" >}}
-{{< duration "10 mins + delivery wait" >}}
 
+## Validation question
 
-## Step 1 — Verify the export exists
+The data-foundation gate asks one concrete question: did the configured export deliver a real CUR 2.0 object to the S3 location that the catalog and dashboards will consume?
 
-Open:
+A successful CloudFormation stack is insufficient. It can exist for hours before the first billing delivery.
 
-**Billing and Cost Management → Data Exports**
+## Delivery contract
 
-Find the CUR 2.0 export created by the stack.
-
-Check:
-
-- Export type is CUR 2.0.
-- Destination is the workshop collection bucket.
-- Export configuration looks healthy.
-
-{{< note >}}
-📸 **Screenshot placeholder — `03-10-cur2-export.png`**
-
-Capture the CUR 2.0 export entry and destination. Do not fabricate an export name.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Open the destination bucket
-
-Open the S3 bucket created by `CID-DataExports-Destination`.
-
-The official collection pattern uses a structure similar to:
+The official collection pattern produces a path similar to:
 
 ```text
 s3://<prefix>-<destination-account-id>-data-exports/
-    <export-name>/<source-account-id>/<export-name>/data/<month-partition>/*.parquet
+    <export-name>/<source-account-id>/<export-name>/data/
+    <billing-period>/*.parquet
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `03-11-data-export-bucket.png`**
+The contract requires:
 
-Capture the destination S3 bucket and top-level prefix structure.
+- the export type is CUR 2.0;
+- the destination matches the stack-owned bucket;
+- a current billing-period partition exists;
+- at least one `.parquet` object is present;
+- the object timestamp is consistent with the recorded export refresh.
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+## Observed evidence
 
-## Step 3 — Wait for first delivery
+{{< evidence src="images/03-cur2/03-12-cur2-parquet-delivery.png" alt="S3 billing-period partition containing a CUR 2.0 Parquet object" caption="Observed result: the current billing partition contains a real CUR 2.0 Parquet object." >}}
 
-AWS documents:
+The retained machine-readable record is more important than screenshots of S3 navigation:
 
-- typically about 24 hours
-- potentially up to 72 hours
+```text
+Export name:
+Bucket/prefix:
+Billing partition:
+Object count:
+Latest object timestamp:
+Validation status: PASS / FAIL
+```
 
-If Parquet objects are not present yet, return later. Do not create synthetic evidence.
+## Freshness limitation
 
-## Step 4 — Inspect the Parquet delivery
+AWS documents that the first delivery typically takes about 24 hours and can take up to 72 hours. Therefore, “no object yet” during that window is a pending state rather than proof of deployment failure.
 
-After data arrives:
+This latency also affects downstream interpretation: Athena may read newer objects than a CUDOS dataset whose SPICE ingestion has not refreshed yet.
 
-1. Open the export prefix.
-2. Navigate to the `data` path.
-3. Open the current month partition.
-4. Confirm one or more `.parquet` objects exist.
+## Historical data decision
 
-{{< note >}}
-📸 **Screenshot placeholder — `03-12-cur2-parquet-delivery.png`**
+Backfill of CUR/FOCUS history can be requested through AWS Support, subject to account and support-plan conditions. It is an optional data migration decision, not a prerequisite for proving the current-period pipeline.
 
-Capture the S3 object list showing real CUR 2.0 Parquet delivery.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Optional — Historical backfill
-
-AWS documentation describes requesting CUR/FOCUS backfill through AWS Support for up to 36 months. This is optional and support-plan/account dependent.
+{{< security >}}
+Bucket names and prefixes can expose account identifiers. Public evidence is reviewed or redacted without changing the underlying validation record.
+{{< /security >}}
 
 {{< finops title="FinOps Takeaway" >}}
-A successful CloudFormation stack is not the same thing as fresh financial data. Validate delivery separately.
+The first credible result of the project is not a dashboard; it is a verified, timestamped financial dataset in the expected partition.
 {{< /finops >}}

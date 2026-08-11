@@ -1,9 +1,9 @@
 ---
-title: "Verifying Complete Resource Deletion"
+title: "Lifecycle Verification & Residual Cost Check"
 weight: 2
 chapter: false
 pre: "12.2 "
-description: "Verify that no unintended workshop resources remain."
+description: "Reconcile the final resource inventory and check delayed billing for residual project cost."
 duration: "5–10 mins"
 services:
   - AWS CloudFormation
@@ -14,38 +14,26 @@ services:
 {{< badge "Validation" >}}
 {{< badge "Cleanup" >}}
 {{< badge "FinOps" >}}
-{{< duration "5–10 mins" >}}
 
 
-## Step 1 — Verify CloudFormation
+Deletion commands are not proof of lifecycle completion. The final state is reconciled across control planes and revisited after billing data has caught up.
 
-Confirm the workshop Data Exports stack is no longer active.
 
-{{< note >}}
-📸 **Screenshot placeholder — `12-07-cloudformation-final.png`**
+## Verify CloudFormation
 
-Capture the final CloudFormation state.
+Confirm the project Data Exports stack is no longer active.
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
 
-## Step 2 — Verify Data Exports
+## Verify Data Exports
 
-Confirm the workshop export is gone if you intended to remove it.
+Confirm the project export is gone if you intended to remove it.
 
-{{< note >}}
-📸 **Screenshot placeholder — `12-08-data-exports-final.png`**
 
-Capture the final Data Exports list.
+## Verify S3 and Glue
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+Check that project-owned S3 and Glue resources are removed or intentionally retained.
 
-## Step 3 — Verify S3 and Glue
-
-Check that workshop-owned S3 and Glue resources are removed or intentionally retained.
-
-## Step 4 — Verify Quick assets
+## Verify Quick assets
 
 Check:
 
@@ -57,15 +45,8 @@ Check:
 - Dashboards
 - SPICE capacity/usage
 
-{{< note >}}
-📸 **Screenshot placeholder — `12-09-quick-final.png`**
 
-Capture the Quick/Quick Sight state after cleanup.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 5 — Verify alert resources
+## Verify alert resources
 
 Check:
 
@@ -73,7 +54,7 @@ Check:
 - SNS topic
 - Slack/chat mapping
 
-## Step 6 — Document anything retained
+## Document anything retained
 
 ```text
 Resource:
@@ -83,12 +64,16 @@ Expected recurring cost:
 Next review date:
 ```
 
-## Step 7 — Review future billing
+Use one final inventory as the cleanup evidence. It should list every project-created resource with status `DELETED` or `RETAINED`, rather than separate screenshots for each service console.
 
-Cost systems are not real-time. Revisit billing later to make sure no unexpected workshop resource continues generating spend.
+{{< capture src="images/12-cleanup/12-01-final-resource-inventory.png" alt="Final project resource inventory with deleted and retained status" title="Final lifecycle inventory" capture="Capture the reconciled resource inventory showing every project-created stack, export, bucket or retained data prefix, Glue/Athena asset, Quick asset, anomaly monitor, SNS topic, and chat mapping with status DELETED or RETAINED, owner, reason, and expected recurring cost." caption="One lifecycle inventory replaces separate deletion screenshots from every AWS console." >}}
+
+## Review future billing
+
+Cost systems are not real-time. Revisit billing later to make sure no unexpected project resource continues generating spend.
 
 {{< validation >}}
-The workshop is complete when every created resource is either removed or explicitly documented as intentionally retained.
+The project is complete when every created resource is either removed or explicitly documented as intentionally retained.
 {{< /validation >}}
 
 {{< finops title="FinOps Takeaway" >}}

@@ -1,9 +1,9 @@
 ---
-title: "Custom Anomaly Detection"
+title: "Anomaly Detection & Notification"
 weight: 10
 chapter: false
 pre: "10. "
-description: "Configure AWS-native anomaly detection and compare it with transparent custom logic."
+description: "Managed detection, transparent materiality, decoupled alert routing, and delivery validation."
 duration: "30 mins + learning period"
 services:
   - AWS Cost Anomaly Detection
@@ -13,12 +13,11 @@ services:
 {{< badge "AWS Cost Anomaly Detection" >}}
 {{< badge "Alerts" >}}
 {{< badge "FinOps" >}}
-{{< duration "30 mins + learning period" >}}
 
 
-This module adds AWS-native anomaly monitoring and notifications. It also explains where a transparent deterministic rule can complement the managed service.
+This chapter adds AWS-native anomaly monitoring and notifications. It also explains where a transparent deterministic rule can complement the managed service.
 
-## Module contents
+## Chapter contents
 
-- **10.1 Configuring AWS Cost Anomaly Detection**
-- **10.2 Setting Up SNS & Slack Alerts**
+- **10.1 Anomaly Detection Strategy & Materiality**
+- **10.2 Alert Routing & Delivery Contract**

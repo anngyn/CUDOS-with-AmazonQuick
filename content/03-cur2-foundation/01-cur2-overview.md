@@ -1,9 +1,9 @@
 ---
-title: "CUR 2.0 Overview & Architecture"
+title: "CUR 2.0 as the Financial Evidence Layer"
 weight: 1
 chapter: false
 pre: "3.1 "
-description: "Understand the CUR 2.0 billing dataset and Data Exports collection architecture."
+description: "Explain why CUR 2.0 is the project source of truth and how its delivery characteristics affect the design."
 duration: "10 mins"
 services:
   - AWS Data Exports
@@ -13,7 +13,6 @@ services:
 {{< badge "CUR 2.0" >}}
 {{< badge "AWS Data Exports" >}}
 {{< badge "Amazon S3" >}}
-{{< duration "10 mins" >}}
 
 
 ## What is CUR 2.0?
@@ -25,7 +24,7 @@ The exact fields populated depend on the charge type and service.
 ## Collection architecture
 
 ```text
-Single workshop AWS account
+Single project AWS account
         │
         ├── Source: AWS Billing / Data Exports
         │
@@ -35,13 +34,6 @@ Single workshop AWS account
                 └── Athena query layer
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `03-01-cur2-architecture.png`**
-
-Create a workshop diagram for the single-account Data Exports architecture.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
 
 ## Why CUR instead of dashboard-only data?
 
@@ -53,7 +45,7 @@ The Data Exports collection pattern stores analytical data as Parquet. Columnar 
 
 ## Data delivery
 
-AWS documents that the first Data Exports delivery typically takes around 24 hours and can take up to 72 hours. Plan the workshop accordingly.
+AWS documents that the first Data Exports delivery typically takes around 24 hours and can take up to 72 hours. Plan the project accordingly.
 
 ## FinOps implications
 

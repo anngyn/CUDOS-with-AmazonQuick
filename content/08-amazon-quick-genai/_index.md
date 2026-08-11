@@ -1,9 +1,9 @@
 ---
-title: "Amazon Quick & Generative AI FinOps"
+title: "Amazon Quick AI Extension"
 weight: 8
 chapter: false
 pre: "8. "
-description: "Ground Amazon Quick with CUDOS and ask natural-language FinOps questions."
+description: "Optional grounding architecture, trust boundary, and numerical evaluation for AI-assisted FinOps."
 duration: "30 mins"
 services:
   - Amazon Quick
@@ -14,15 +14,14 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< badge "Generative AI" >}}
 {{< badge "Advanced" >}}
-{{< duration "30 mins" >}}
 
 
-This advanced module uses Amazon Quick on top of the FinOps dashboards already built.
+This advanced chapter uses Amazon Quick on top of the FinOps dashboards already built.
 
-## Module contents
+## Chapter contents
 
-- **8.1 Amazon Quick Generative AI Integration**
-- **8.2 Natural Language FinOps Queries**
+- **8.1 Amazon Quick Grounding Architecture**
+- **8.2 AI Grounding & Numerical Evaluation**
 
 {{< cost >}}
 Amazon Quick generative AI features can incur additional charges and may require specific account editions/user roles.

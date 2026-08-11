@@ -1,10 +1,9 @@
 ---
-title: "AWS CLI & Permissions Setup"
+title: "Execution Identity, Region & Permission Boundary"
 weight: 1
 chapter: false
 pre: "2.1 "
-description: "Verify CLI access, identity, Region, and deployment permissions."
-duration: "10 mins"
+description: "Define the identity, Region, and least-privilege boundary used to deploy and validate the FinOps stack."
 services:
   - AWS CLI
   - AWS STS
@@ -13,97 +12,76 @@ services:
 {{< badge "AWS CLI" >}}
 {{< badge "AWS STS" >}}
 {{< badge "AWS IAM" >}}
-{{< duration "10 mins" >}}
 
+## Role in the project
 
-## Step 1 — Verify AWS CLI
+The deployment identity is part of the architecture, not a preparatory checkbox. It creates or inspects billing exports, S3, Glue, Athena, IAM resources from AWS-maintained templates, and Quick Sight assets. If that identity is ambiguous, later evidence cannot prove which account or Region owns the data.
 
-Open PowerShell:
+The implementation uses a named AWS CLI profile and fixes the analytical Region to `ap-southeast-2`. This produces a repeatable execution context while keeping credentials outside the repository.
+
+## Identity contract
+
+The following probes establish the account and principal used for the project:
 
 ```powershell
 aws --version
+
+aws sts get-caller-identity `
+  --profile <PROFILE>
 ```
 
-You should receive the installed AWS CLI version.
+The retained record contains only:
 
-{{< note >}}
-📸 **Screenshot placeholder — `02-01-aws-cli-version.png`**
-
-Capture the PowerShell window showing a successful `aws --version` command.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Verify the workshop identity
-
-Use your configured profile:
-
-```powershell
-aws sts get-caller-identity --profile <PROFILE>
+```text
+Profile alias:
+AWS account ID:
+Principal ARN/type:
+Validation timestamp:
 ```
 
-Record the account ID and ARN locally. Do not paste credentials into the workshop.
+Access keys, session tokens, and credential files are never project artifacts.
 
-{{< note >}}
-📸 **Screenshot placeholder — `02-02-caller-identity.png`**
+## Region decision
 
-Capture the STS caller identity. Redact account-specific information before publishing if desired.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Set the workshop Region for the current terminal
+The collection and BI components are implemented in Sydney:
 
 ```powershell
 $env:AWS_PROFILE="<PROFILE>"
 $env:AWS_REGION="ap-southeast-2"
 $env:AWS_DEFAULT_REGION="ap-southeast-2"
-```
 
-Check Region availability:
-
-```powershell
 aws ec2 describe-regions `
   --region ap-southeast-2 `
   --query "Regions[?RegionName=='ap-southeast-2'].RegionName" `
   --output text
 ```
 
-Expected:
+Using one Region reduces ambiguity across CloudFormation, Glue, Athena, Quick Sight, and SPICE. Billing management is global, but the supporting analytical resources are regional.
+
+## Permission boundary
+
+The deployment identity needs enough access to create the official CID data-collection and dashboard resources. The analytical users that consume the finished system need only read/query/dashboard permissions.
 
 ```text
-ap-southeast-2
+Deployment identity
+→ create/update collection and BI assets
+
+Analyst identity
+→ read S3 through approved query paths
+→ query Glue/Athena
+→ consume or edit approved Quick Sight assets
+
+AI/Flow identity
+→ read approved analytical sources
+→ no EC2/RDS/IAM destructive permissions
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `02-03-sydney-region.png`**
-
-Capture the AWS Console Region selector or the CLI result confirming Asia Pacific (Sydney).
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Understand required permission areas
-
-The identity used to deploy the workshop needs access to the resources created in later modules, including CloudFormation, Billing/Data Exports, S3, Glue, Athena, IAM resources required by official templates, and Quick Sight.
-
-Do **not** attach `AdministratorAccess` merely because a later step fails. Use the CloudFormation event or AWS error to identify the missing permission.
-
-## Step 5 — Record the Account ID
-
-```powershell
-aws sts get-caller-identity `
-  --profile <PROFILE> `
-  --query Account `
-  --output text
-```
-
-Store it as `<ACCOUNT_ID>` in your notes. Module 3 uses it for Data Collection parameters.
-
-{{< security >}}
-Never publish access keys, session tokens, or credential files. Account IDs and ARNs are not passwords, but public workshop screenshots should still be reviewed before publication.
-{{< /security >}}
+An `AccessDenied` event is investigated at the failed CloudFormation logical resource. Attaching `AdministratorAccess` would hide the missing permission and weaken the project’s security claim.
 
 {{< validation >}}
-You are ready when the CLI authenticates successfully and the target Region is `ap-southeast-2`.
+The execution context is valid when the CLI resolves one known account/principal, the target Region is `ap-southeast-2`, and the deployment and analytical identities have distinct responsibilities.
 {{< /validation >}}
+
+{{< security >}}
+Account IDs and ARNs are identifiers rather than passwords, but public artifacts are still reviewed to avoid disclosing internal account structure unintentionally.
+{{< /security >}}

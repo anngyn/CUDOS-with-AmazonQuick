@@ -1,110 +1,74 @@
 ---
-title: "Setting Up SNS & Slack Alerts"
+title: "Alert Routing & Delivery Contract"
 weight: 2
 chapter: false
 pre: "10.2 "
-description: "Route cost anomaly notifications through SNS and an approved Slack channel."
-duration: "15 mins"
+description: "Route approved anomaly signals through SNS to a governed collaboration channel and prove delivery safely."
 services:
   - Amazon SNS
   - AWS Cost Anomaly Detection
   - Amazon Q Developer in chat applications
 ---
 {{< badge "Amazon SNS" >}}
-{{< badge "Alerts" >}}
+{{< badge "Alert Routing" >}}
 {{< badge "Slack" >}}
-{{< duration "15 mins" >}}
 
-
-AWS Cost Anomaly Detection subscriptions can notify an Amazon SNS topic. AWS documentation supports mapping SNS notifications into Slack or Amazon Chime through **Amazon Q Developer in chat applications**.
-
-## Step 1 — Create an SNS topic
-
-Open:
-
-**Amazon SNS → Topics → Create topic**
-
-Use:
+## Routing architecture
 
 ```text
-Type: Standard
-Name: finops-workshop-cost-anomalies
+AWS Cost Anomaly Detection
+        ↓
+Amazon SNS topic
+        ↓
+Amazon Q Developer in chat applications
+        ↓
+Approved private Slack channel
+        ↓
+Named FinOps response owner
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `10-06-sns-topic.png`**
+SNS decouples anomaly generation from the collaboration destination. A future consumer can subscribe without changing the anomaly monitor itself.
 
-Capture the created SNS topic and ARN.
+## Topic and ownership contract
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+The reference topic is `finops-project-cost-anomalies`. The anomaly subscription, topic policy, chat client, destination channel, and owner are documented together.
 
-## Step 2 — Connect SNS to Cost Anomaly Detection
+The Slack destination is private because notifications can contain financial scope, account, service, and usage information.
 
-Return to the workshop anomaly subscription and add the SNS topic as a notification target according to the current console options.
+## Safe delivery validation
 
-{{< note >}}
-📸 **Screenshot placeholder — `10-07-anomaly-sns-subscription.png`**
-
-Capture the anomaly subscription showing the SNS topic.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Configure Slack integration
-
-If you have an approved Slack workspace:
-
-1. Open **Amazon Q Developer in chat applications**.
-2. Create/configure a Slack chat client.
-3. Complete the AWS/Slack authorization workflow.
-4. Select the approved private channel.
-
-{{< note >}}
-📸 **Screenshot placeholder — `10-08-chat-app-slack-config.png`**
-
-Capture the AWS chat-application Slack configuration. Redact workspace/user details.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Map the SNS topic
-
-Map:
+The project does not create artificial AWS spend to force an anomaly. A supported test notification is sufficient to prove the routing path:
 
 ```text
-finops-workshop-cost-anomalies
+SNS topic:
+Anomaly subscription:
+Destination channel/team:
+Test timestamp:
+Delivery result: PASS / FAIL
+Owner notified:
 ```
 
-to the approved channel.
+A real anomaly may later be retained as operational evidence, but it is not required to validate transport.
 
-{{< note >}}
-📸 **Screenshot placeholder — `10-09-sns-slack-mapping.png`**
+## Failure isolation
 
-Capture the SNS topic mapped to the Slack channel.
+```text
+Anomaly exists but no SNS publish
+→ inspect subscription target and topic policy.
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+SNS publish succeeds but Slack receives nothing
+→ inspect chat-client authorization and topic mapping.
 
-## Step 5 — Test safely
+Slack receives the alert but no owner responds
+→ the technical route works; the operating model fails.
+```
 
-Do not create artificial cloud spend just to force an anomaly.
+{{< capture src="images/10-custom-anomaly/10-02-sns-slack-delivery.png" alt="Timestamped SNS test notification delivered to the approved Slack channel" title="SNS-to-Slack delivery test" capture="Capture one supported test notification in the approved channel with a visible timestamp and delivery result. Retain enough topic or subscription context to identify the route, but redact account IDs, ARNs, emails, financial values, and private channel details." caption="A timestamped test proves transport without creating artificial AWS spend." >}}
 
-Verify:
+## Current project status
 
-- SNS topic exists
-- anomaly subscription references it
-- chat application configuration is healthy
-- supported test notification reaches the channel
-
-{{< note >}}
-📸 **Screenshot placeholder — `10-10-slack-test-message.png`**
-
-Capture a test or real anomaly notification. Do not fabricate anomaly content.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+The routing and delivery contracts are defined. Live topic mapping and a timestamped delivery test remain pending.
 
 {{< security >}}
-Cost alerts can contain service, account, and financial information. Use an approved private channel.
+Alert content is shared only with approved recipients, and test evidence excludes credentials and sensitive organization identifiers.
 {{< /security >}}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Triển khai CUDOS v5 on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/</link>
+    <description>Recent content in Triển khai CUDOS v5 on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mô hình triển khai CUDOS v5 &amp; Hợp đồng sẵn sàng</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/01-deploy-cudos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/01-deploy-cudos/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;CUDOS v5&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;cid-cmd&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick Sight&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;Tài liệu tham khảo chính thức:&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;https://docs.aws.amazon.com/guidance/latest/cloud-intelligence-dashboards/deployment-in-global-regions.html&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;vai-trò-trong-dự-án&#34;&gt;Vai trò trong dự án&lt;/h2&gt;&#xA;&lt;p&gt;CUDOS là sản phẩm phân tích được xây dựng trên CUR và Athena. CUDOS chuyển các bản ghi billing thành các góc nhìn về điều hành, dịch vụ, account, Region, tài nguyên, cam kết và tối ưu hóa. Bản thân CUDOS không phải là lớp bằng chứng; độ tin cậy của CUDOS phụ thuộc vào tuyến truy xuất và việc đối soát được thiết lập trong Chương 3 và Chương 4.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hợp đồng KPI CUDOS &amp; Mô hình phát hiện FinOps</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/02-navigation-kpis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/02-navigation-kpis/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;CUDOS v5&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;KPIs&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;bối-cảnh-chỉ-số&#34;&gt;Bối cảnh chỉ số&lt;/h2&gt;&#xA;&lt;p&gt;Một con số CUDOS chỉ có ý nghĩa khi đi kèm bối cảnh phân tích:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Khoảng ngày và múi giờ&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Chỉ số chi phí và tiền tệ&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Bộ lọc account/Region/service&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Lần làm mới SPICE gần nhất&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Định nghĩa kỳ so sánh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Bối cảnh này được lưu cùng mọi phát hiện. Nếu không, hai view dashboard có thể hiển thị các tổng khác nhau trong khi cả hai đều có vẻ đúng.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

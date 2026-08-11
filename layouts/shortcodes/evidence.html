@@ -1,0 +1,10 @@
+<figure class="workshop-evidence">
+    <img
+        src="{{ (.Get "src") | relURL }}"
+        alt="{{ .Get "alt" }}"
+        loading="lazy"
+    />
+    {{ with .Get "caption" }}
+    <figcaption>{{ . | markdownify }}</figcaption>
+    {{ end }}
+</figure>

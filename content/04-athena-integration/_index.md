@@ -1,10 +1,10 @@
 ---
-title: "Amazon Athena Integration"
+title: "Athena Validation & Data Lineage"
 weight: 4
 chapter: false
 pre: "4. "
-description: "Catalog and query real CUR 2.0 data."
-duration: "25 mins"
+description: "Reproduce financial metrics with SQL and prove the lineage from S3 through Glue to CUDOS."
+duration: "35 mins"
 services:
   - AWS Glue
   - Amazon Athena
@@ -13,12 +13,11 @@ services:
 {{< badge "AWS Glue" >}}
 {{< badge "Amazon Athena" >}}
 {{< badge "CUR 2.0" >}}
-{{< duration "25 mins" >}}
 
 
-The collection stack creates the metadata required to query exported billing data. This module validates the Glue catalog and executes real SQL against CUR 2.0.
+This chapter establishes an independent validation path for dashboard metrics and documents the lineage from delivered Parquet objects to catalog, SQL, and CUDOS.
 
-## Module contents
+## Chapter contents
 
-- **4.1 Querying CUR 2.0 with Amazon Athena**
-- **4.2 AWS Glue Data Catalog Inspection**
+- **4.1 Athena Validation & CUDOS Reconciliation**
+- **4.2 Glue Catalog, Schema Contract & S3 Lineage**

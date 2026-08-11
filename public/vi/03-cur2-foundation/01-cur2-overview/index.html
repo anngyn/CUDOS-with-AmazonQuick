@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head><script src="/CUDOS-with-AmazonQuick/livereload.js?mindelay=10&amp;v=2&amp;port=62999&amp;path=CUDOS-with-AmazonQuick/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.152.2">
+    <meta name="description" content="Giải thích lý do CUR 2.0 được chọn làm nguồn dữ liệu chuẩn cho dự án (Source of Truth) và cách thức phân phối dữ liệu của nó.">
+<meta name="author" content="Nguyễn Ấn">
+
+    <link rel="icon" href="http://localhost:62999/CUDOS-with-AmazonQuick/images/favicon.png" type="image/png">
+
+    <title>Sử dụng CUR 2.0 làm dữ liệu gốc đối soát :: AWS FinOps Intelligence with CUDOS v5</title>
+
+    
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/nucleus.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/fontawesome-all.min.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/hybrid.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/featherlight.min.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/perfect-scrollbar.min.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/auto-complete.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/atom-one-dark-reasonable.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/theme.css?1786435617" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/hugo-theme.css?1786435617" rel="stylesheet">
+    
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/theme-workshop.css?1786435617" rel="stylesheet">
+    
+    
+
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/jquery-3.3.1.min.js?1786435617"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/01-cur2-overview/">
+    <nav
+  id="sidebar"
+  class="showVisitedLinks"
+>
+   
+  <div id="header-wrapper">
+    <div id="header"><a id="logo" href="http://localhost:62999/CUDOS-with-AmazonQuick/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+</div>
+     <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Tìm kiếm...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="http://localhost:62999/CUDOS-with-AmazonQuick/js/lunr.min.js?1786435617"></script>
+<script type="text/javascript" src="http://localhost:62999/CUDOS-with-AmazonQuick/js/auto-complete.js?1786435617"></script>
+<script type="text/javascript">
+    
+        
+            var baseurl = "http:\/\/localhost:62999\/CUDOS-with-AmazonQuick\/\/vi";
+        
+    
+</script>
+<script type="text/javascript" src="http://localhost:62999/CUDOS-with-AmazonQuick/js/search.js?1786435617"></script>
+ 
+  </div>
+
+  <div class="highlightable">
+    <ul class="topics">
+               
+<li
+  data-nav-id="/vi/01-introduction/"
+  title="Bối cảnh và Kiến trúc"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/01-introduction/">
+    1. Bối cảnh và Kiến trúc 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/01-introduction/01-workshop-overview/"
+  title="Bối cảnh, mục tiêu và tiêu chí thành công"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/01-introduction/01-workshop-overview/">
+    1.1 Bối cảnh, mục tiêu và tiêu chí thành công <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/01-introduction/02-architecture-deep-dive/"
+  title="Kiến trúc &amp; quyết định thiết kế"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/01-introduction/02-architecture-deep-dive/">
+    1.2 Kiến trúc &amp; quyết định thiết kế <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/02-environment-setup/"
+  title="Thiết lập môi trường và Phân quyền"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/">
+    2. Thiết lập môi trường và Phân quyền 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/02-environment-setup/01-cli-permissions/"
+  title="Thiết lập Identity, Region và Ranh giới phân quyền"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/01-cli-permissions/">
+    2.1 Thiết lập Identity, Region và Ranh giới phân quyền <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/02-environment-setup/02-quicksight-onboarding/"
+  title="Thiết lập QuickSight, Identity và Quản lý dung lượng"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/02-quicksight-onboarding/">
+    2.2 Thiết lập QuickSight, Identity và Quản lý dung lượng <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/03-cur2-foundation/"
+  title="Xây dựng nền tảng dữ liệu CUR 2.0"
+  class="dd-item 
+        parent
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/">
+    3. Xây dựng nền tảng dữ liệu CUR 2.0 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/03-cur2-foundation/01-cur2-overview/"
+  title="Sử dụng CUR 2.0 làm dữ liệu gốc đối soát"
+  class="dd-item active"
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/01-cur2-overview/">
+    3.1 Sử dụng CUR 2.0 làm dữ liệu gốc đối soát <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/03-cur2-foundation/02-prerequisites-identity/"
+  title="Topology account &amp; bối cảnh triển khai"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/02-prerequisites-identity/">
+    3.2 Topology account &amp; bối cảnh triển khai <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/03-cur2-foundation/03-deploy-data-export/"
+  title="Kiến trúc collection &amp; triển khai CUR 2.0"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/03-deploy-data-export/">
+    3.3 Kiến trúc collection &amp; triển khai CUR 2.0 <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/03-cur2-foundation/04-validate-delivery/"
+  title="Xác thực delivery, độ mới &amp; hợp đồng dữ liệu"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/04-validate-delivery/">
+    3.4 Xác thực delivery, độ mới &amp; hợp đồng dữ liệu <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/04-athena-integration/"
+  title="Tích hợp Athena và Đối soát dữ liệu"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/">
+    4. Tích hợp Athena và Đối soát dữ liệu 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/04-athena-integration/01-query-cur2/"
+  title="Xác thực Athena &amp; Đối soát CUDOS"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/01-query-cur2/">
+    4.1 Xác thực Athena &amp; Đối soát CUDOS <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/04-athena-integration/02-glue-inspection/"
+  title="Glue Catalog, Hợp đồng lược đồ &amp; Truy xuất nguồn gốc S3"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/02-glue-inspection/">
+    4.2 Glue Catalog, Hợp đồng lược đồ &amp; Truy xuất nguồn gốc S3 <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/05-cudos-v5/"
+  title="Triển khai CUDOS v5"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/">
+    5. Triển khai CUDOS v5 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/05-cudos-v5/01-deploy-cudos/"
+  title="Mô hình triển khai CUDOS v5 &amp; Hợp đồng sẵn sàng"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/01-deploy-cudos/">
+    5.1 Mô hình triển khai CUDOS v5 &amp; Hợp đồng sẵn sàng <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/05-cudos-v5/02-navigation-kpis/"
+  title="Hợp đồng KPI CUDOS &amp; Mô hình phát hiện FinOps"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/02-navigation-kpis/">
+    5.2 Hợp đồng KPI CUDOS &amp; Mô hình phát hiện FinOps <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/06-finops-analysis/"
+  title="Phân tích số liệu FinOps và Unit Economics"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/">
+    6. Phân tích số liệu FinOps và Unit Economics 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/06-finops-analysis/01-cost-optimization/"
+  title="Tối ưu hóa chi phí: Từ biến động đến kết quả thực tế"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/01-cost-optimization/">
+    6.1 Tối ưu hóa chi phí: Từ biến động đến kết quả thực tế <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/06-finops-analysis/02-unit-economics-allocation/"
+  title="Tỷ lệ phân bổ chi phí và Unit Economics"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/02-unit-economics-allocation/">
+    6.2 Tỷ lệ phân bổ chi phí và Unit Economics <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/07-customize-quick-sight/"
+  title="Trực quan hóa dữ liệu với QuickSight"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/">
+    7. Trực quan hóa dữ liệu với QuickSight 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/07-customize-quick-sight/01-custom-visuals/"
+  title="Thiết kế chế độ xem quyết định trên Quick Sight"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/01-custom-visuals/">
+    7.1 Thiết kế chế độ xem quyết định trên Quick Sight <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/07-customize-quick-sight/02-calculated-fields/"
+  title="Logic trình bày và ranh giới trường tính toán"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/07-customize-quick-sight/02-calculated-fields/">
+    7.2 Logic trình bày và ranh giới trường tính toán <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/08-amazon-quick-genai/"
+  title="Tích hợp AI với Amazon Q"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/08-amazon-quick-genai/">
+    8. Tích hợp AI với Amazon Q 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/08-amazon-quick-genai/01-quick-integration/"
+  title="Kiến trúc grounding của Amazon Quick"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/08-amazon-quick-genai/01-quick-integration/">
+    8.1 Kiến trúc grounding của Amazon Quick <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/08-amazon-quick-genai/02-natural-language-queries/"
+  title="Grounding AI và đánh giá số liệu"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/08-amazon-quick-genai/02-natural-language-queries/">
+    8.2 Grounding AI và đánh giá số liệu <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/09-agentic-finops/"
+  title="Xây dựng quy trình FinOps tự động"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/">
+    9. Xây dựng quy trình FinOps tự động 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/09-agentic-finops/01-building-agentic-workflows/"
+  title="Flow điều tra chi phí có quản trị"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/01-building-agentic-workflows/">
+    9.1 Flow điều tra chi phí có quản trị <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/09-agentic-finops/02-governance-remediation/"
+  title="Các mức tự động hóa, phê duyệt và ranh giới khắc phục"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/09-agentic-finops/02-governance-remediation/">
+    9.2 Các mức tự động hóa, phê duyệt và ranh giới khắc phục <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/10-anomaly-detection/"
+  title="Hệ thống cảnh báo chi phí bất thường"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/">
+    10. Hệ thống cảnh báo chi phí bất thường 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/10-anomaly-detection/01-configure-cost-anomaly/"
+  title="Chiến lược phát hiện bất thường &amp; Tính trọng yếu"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/01-configure-cost-anomaly/">
+    10.1 Chiến lược phát hiện bất thường &amp; Tính trọng yếu <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/10-anomaly-detection/02-sns-slack-alerts/"
+  title="Định tuyến cảnh báo &amp; Hợp đồng phân phối"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/02-sns-slack-alerts/">
+    10.2 Định tuyến cảnh báo &amp; Hợp đồng phân phối <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/11-security-governance/"
+  title="Bảo mật và Quản trị hệ thống"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/11-security-governance/">
+    11. Bảo mật và Quản trị hệ thống 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/11-security-governance/01-security-governance-policies/"
+  title="Mô hình vận hành FinOps &amp; Quản trị quyền truy cập"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/11-security-governance/01-security-governance-policies/">
+    11.1 Mô hình vận hành FinOps &amp; Quản trị quyền truy cập <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/11-security-governance/02-iam-kms/"
+  title="IAM, Mã hóa &amp; Ranh giới bảo mật phân tích"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/11-security-governance/02-iam-kms/">
+    11.2 IAM, Mã hóa &amp; Ranh giới bảo mật phân tích <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+           
+<li
+  data-nav-id="/vi/12-cleanup/"
+  title="Dọn dẹp tài nguyên"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/">
+    12. Dọn dẹp tài nguyên 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+  <ul>
+        
+            
+<li
+  data-nav-id="/vi/12-cleanup/01-teardown/"
+  title="Vòng đời tài nguyên &amp; Quy trình lưu giữ"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/01-teardown/">
+    12.1 Vòng đời tài nguyên &amp; Quy trình lưu giữ <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+     
+            
+<li
+  data-nav-id="/vi/12-cleanup/02-verify-deletion/"
+  title="Xác minh vòng đời &amp; Kiểm tra chi phí còn sót"
+  class="dd-item "
+>
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/12-cleanup/02-verify-deletion/">
+    12.2 Xác minh vòng đời &amp; Kiểm tra chi phí còn sót <i
+      class="fas fa-check read-icon"
+    ></i
+    >
+  </a>
+</li>
+      
+  </ul>
+  
+</li>
+    
+    </ul>
+
+     
+    <section id="shortcuts">
+      <h3>
+        Liên kết khác
+      </h3>
+      <ul>
+        
+        <li>
+          <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj/"
+            ><i class='fab fa-facebook'></i> AWS Study Group</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+     
+    <section id="prefooter">
+      <hr />
+      <ul>
+        
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+            <div class="select-style">
+              <select id="select-language" onchange="location = this.value;">
+                       
+                <option
+                  id="en"
+                  value="http://localhost:62999/CUDOS-with-AmazonQuick/03-cur2-foundation/01-cur2-overview/"
+                >
+                  English
+                </option>
+                            
+                <option
+                  id="vi"
+                  value="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/01-cur2-overview/"
+                  selected
+                >
+                  Tiếng Việt
+                </option>
+                   
+              </select>
+              <svg
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="255px"
+                height="255px"
+                viewBox="0 0 255 255"
+                style="enable-background: new 0 0 255 255"
+                xml:space="preserve"
+              >
+                <g>
+                  <g id="arrow-drop-down">
+                    <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </a>
+        </li>
+         
+        <li>
+          <a class="padding" href="#" data-clear-history-toggle=""
+            ><i class="fas fa-history fa-fw"></i> Xóa lịch sử</a
+          >
+        </li>
+        
+      </ul>
+    </section>
+    
+    <section id="footer"><left>
+    
+    <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Migrate" alt="web counter" border="0" /> <br>
+    <b><a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0"
+        title="Total Cloud Journey" alt="web counter" border="0" />
+</left>
+<left>
+    <br>
+    <br>
+    <b> Last Updated </b> <br>
+    <i>
+        <font color=orange>15-04-2025</font>
+    </i>
+</left>
+<left>
+    <br>
+    <br>
+    <br>
+    <b> Người thực hiện </b>
+    <br />
+    <i>
+        <a href="https://www.linkedin.com/in/an-nguyen-57b55a35a/" style="color:orange">Nguyễn Ấn</a>
+    </i>
+</left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script></section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='http://localhost:62999/CUDOS-with-AmazonQuick/vi/'>AWS FinOps Intelligence với CUDOS v5</a> > <a href='http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/'>Xây dựng nền tảng dữ liệu CUR 2.0</a> > Sử dụng CUR 2.0 làm dữ liệu gốc đối soát
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#cur-20-là-gì">CUR 2.0 là gì?</a></li>
+    <li><a href="#kiến-trúc-thu-thập-dữ-liệu">Kiến trúc Thu thập dữ liệu</a></li>
+    <li><a href="#vì-sao-nên-dùng-cur-thay-vì-chỉ-xem-dữ-liệu-trên-dashboard">Vì sao nên dùng CUR thay vì chỉ xem dữ liệu trên Dashboard?</a></li>
+    <li><a href="#định-dạng-parquet">Định dạng Parquet</a></li>
+    <li><a href="#thời-gian-phân-phối-dữ-liệu-data-delivery">Thời gian phân phối dữ liệu (Data Delivery)</a></li>
+    <li><a href="#lưu-ý-về-finops">Lưu ý về FinOps</a></li>
+    <li><a href="#tài-liệu-tham-chiếu-chính-thức">Tài liệu tham chiếu chính thức</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Sử dụng CUR 2.0 làm dữ liệu gốc đối soát
+            </h1>
+          
+
+        
+
+
+<p><span class="aws-badge ">CUR 2.0</span>
+
+<span class="aws-badge ">AWS Data Exports</span>
+
+<span class="aws-badge ">Amazon S3</span>
+</p>
+<h2 id="cur-20-là-gì">CUR 2.0 là gì?</h2>
+<p>CUR 2.0 (Cost and Usage Report 2.0) là bộ dữ liệu chi tiết nhất về chi phí và mức độ sử dụng tài nguyên AWS, được phân phối thông qua dịch vụ AWS Data Exports. Dataset này bao gồm thông tin chi tiết về hóa đơn (billing), từng dòng chi phí (line-item), thông tin sản phẩm, bảng giá, các gói Reservation/Savings Plans, cũng như các Tag tài nguyên và Cost Category.</p>
+<p>Dữ liệu sẽ được tự động điền vào các trường (field) tương ứng tùy thuộc vào loại chi phí và từng AWS Service cụ thể.</p>
+<h2 id="kiến-trúc-thu-thập-dữ-liệu">Kiến trúc Thu thập dữ liệu</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>AWS account của dự án (một account)
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ├── Source: AWS Billing / Data Exports
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        └── Destination: Data Collection
+</span></span><span style="display:flex;"><span>                ├── S3 bucket
+</span></span><span style="display:flex;"><span>                ├── Glue database/table
+</span></span><span style="display:flex;"><span>                └── Lớp truy vấn Athena
+</span></span></code></pre></div><h2 id="vì-sao-nên-dùng-cur-thay-vì-chỉ-xem-dữ-liệu-trên-dashboard">Vì sao nên dùng CUR thay vì chỉ xem dữ liệu trên Dashboard?</h2>
+<p>CUDOS và QuickSight thực chất chỉ là lớp trình bày (consumer) lấy dữ liệu để hiển thị. Bạn vẫn cần CUR 2.0 làm &ldquo;lớp dữ liệu gốc&rdquo; (Source of Truth) lưu trữ lâu dài để đối soát, chạy truy vấn SQL tùy chỉnh, xây dựng công cụ BI, phân tích chuyên sâu hoặc cấp dữ liệu cho các hệ thống khác trong tương lai.</p>
+<h2 id="định-dạng-parquet">Định dạng Parquet</h2>
+<p>Cơ chế thu thập của AWS Data Exports sẽ lưu dữ liệu phân tích dưới định dạng Parquet. Đây là định dạng lưu trữ theo cột (columnar), giúp Athena chạy truy vấn (query) hiệu quả hơn, tốc độ đọc nhanh hơn và tốn ít chi phí quét (scan) hơn hẳn so với định dạng văn bản theo hàng (như CSV hoặc JSON).</p>
+<h2 id="thời-gian-phân-phối-dữ-liệu-data-delivery">Thời gian phân phối dữ liệu (Data Delivery)</h2>
+<p>Xin lưu ý: AWS thông báo rằng lần xuất dữ liệu (delivery) đầu tiên của Data Exports thường mất khoảng 24 giờ, đôi khi có thể lên đến 72 giờ. Bạn cần đưa độ trễ này vào kế hoạch dự án thực tế để tránh việc ngồi chờ dữ liệu một cách vô ích.</p>
+<h2 id="lưu-ý-về-finops">Lưu ý về FinOps</h2>
+<p>Hãy chủ động kích hoạt và quản lý Cost Allocation Tags cùng Cost Categories trước khi bạn muốn chia tiền (phân bổ chi phí) cho từng team hay từng sản phẩm cụ thể. Dữ liệu CUR sẽ KHÔNG TỰ ĐỘNG sinh ra các cột như <code>team</code> hay <code>project</code> nếu tổ chức của bạn không thiết lập sẵn hệ thống đánh tag chuẩn (taxonomy).</p>
+<div class="aws-callout callout-finops">
+    <h4>Điểm rút ra về FinOps</h4>
+    <p>Dashboard tốt phải bắt nguồn từ một bộ dữ liệu chi phí chuẩn chỉnh. Hãy xây dựng lớp thu thập dữ liệu (Data Collection) thật vững chắc trước khi thiết kế các KPI phức tạp.</p>
+</div>
+
+<h2 id="tài-liệu-tham-chiếu-chính-thức">Tài liệu tham chiếu chính thức</h2>
+<p><a href="https://docs.aws.amazon.com/guidance/latest/cloud-intelligence-dashboards/data-exports.html">https://docs.aws.amazon.com/guidance/latest/cloud-intelligence-dashboards/data-exports.html</a></p>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/" title="Xây dựng nền tảng dữ liệu CUR 2.0"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/02-prerequisites-identity/" title="Topology account &amp; bối cảnh triển khai" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/clipboard.min.js?1786435617"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/perfect-scrollbar.min.js?1786435617"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/perfect-scrollbar.jquery.min.js?1786435617"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/jquery.sticky.js?1786435617"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/featherlight.min.js?1786435617"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/highlight.pack.js?1786435617"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/modernizr.custom-3.6.0.js?1786435617"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/learn.js?1786435617"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/hugo-learn.js?1786435617"></script>
+
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/mermaid/mermaid.css?1786435617" rel="stylesheet" />
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/mermaid/mermaid.js?1786435617"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hệ thống cảnh báo chi phí bất thường on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/</link>
+    <description>Recent content in Hệ thống cảnh báo chi phí bất thường on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chiến lược phát hiện bất thường &amp; Tính trọng yếu</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/01-configure-cost-anomaly/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/01-configure-cost-anomaly/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS Cost Anomaly Detection&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Tính trọng yếu&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;chiến-lược-phát-hiện&#34;&gt;Chiến lược phát hiện&lt;/h2&gt;&#xA;&lt;p&gt;AWS Cost Anomaly Detection cung cấp tín hiệu do dịch vụ quản lý. Dịch vụ sử dụng dữ liệu Cost Explorer, theo dõi metric &lt;code&gt;net unblended cost&lt;/code&gt;, và có thể xếp hạng các yếu tố đóng góp có khả năng cao theo dịch vụ, tài khoản, Region và loại sử dụng.&lt;/p&gt;&#xA;&lt;p&gt;Dự án bổ trợ mô hình đó bằng một quy tắc minh bạch:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Định tuyến cảnh báo &amp; Hợp đồng phân phối</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/02-sns-slack-alerts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/10-anomaly-detection/02-sns-slack-alerts/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon SNS&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Định tuyến cảnh báo&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Slack&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;kiến-trúc-định-tuyến&#34;&gt;Kiến trúc định tuyến&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;AWS Cost Anomaly Detection&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ↓&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Amazon SNS topic&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ↓&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Amazon Q Developer in chat applications&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ↓&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Kênh Slack riêng tư đã phê duyệt&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ↓&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Chủ sở hữu phản hồi FinOps được chỉ định&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;SNS tách việc tạo bất thường khỏi đích cộng tác. Một consumer trong tương lai có thể đăng ký mà không cần thay đổi monitor bất thường.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

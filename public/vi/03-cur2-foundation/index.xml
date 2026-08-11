@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xây dựng nền tảng dữ liệu CUR 2.0 on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/</link>
+    <description>Recent content in Xây dựng nền tảng dữ liệu CUR 2.0 on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CUR 2.0 như lớp bằng chứng tài chính</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/01-cur2-overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/01-cur2-overview/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;CUR 2.0&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS Data Exports&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon S3&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;cur-20-là-gì&#34;&gt;CUR 2.0 là gì?&lt;/h2&gt;&#xA;&lt;p&gt;CUR 2.0 là dataset chi phí và mức sử dụng AWS chi tiết, được phân phối thông qua AWS Data Exports. Dataset có thể bao gồm thông tin billing, line-item, product, pricing, reservation, Savings Plans, resource-tag và Cost Category.&lt;/p&gt;&#xA;&lt;p&gt;Các field được điền cụ thể phụ thuộc vào loại charge và service.&lt;/p&gt;&#xA;&lt;h2 id=&#34;kiến-trúc-collection&#34;&gt;Kiến trúc collection&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;AWS account của dự án (một account)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ├── Source: AWS Billing / Data Exports&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        │&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        └── Destination: Data Collection&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                ├── S3 bucket&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                ├── Glue database/table&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                └── Lớp truy vấn Athena&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;vì-sao-dùng-cur-thay-vì-chỉ-dùng-dữ-liệu-dashboard&#34;&gt;Vì sao dùng CUR thay vì chỉ dùng dữ liệu dashboard?&lt;/h2&gt;&#xA;&lt;p&gt;CUDOS và Quick Sight là các consumer của dữ liệu chi phí. CUR 2.0 vẫn là lớp bằng chứng có thể tái sử dụng cho SQL, BI, phân tích tùy chỉnh và các công cụ tương lai.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Topology account &amp; bối cảnh triển khai</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/02-prerequisites-identity/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/02-prerequisites-identity/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS STS&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS Billing&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS CloudFormation&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;quyết-định-về-topology&#34;&gt;Quyết định về topology&lt;/h2&gt;&#xA;&lt;p&gt;Triển khai ban đầu sử dụng một AWS account vừa làm nguồn dữ liệu billing vừa làm đích data collection. Cách này giảm chính sách cross-account và việc phối hợp source stack trong khi dự án chứng minh delivery dữ liệu, schema và khả năng tương thích với CUDOS.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Account nguồn billing&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        =&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Account data collection&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Thiết kế về sau có thể phát triển thành source management/payer với một data account riêng, nhưng không nên trộn phần mở rộng đó vào lần xác thực đầu tiên vì nó đưa vào một miền lỗi IAM và tổ chức riêng.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Kiến trúc collection &amp; triển khai CUR 2.0</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/03-deploy-data-export/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/03-deploy-data-export/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS CloudFormation&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS Data Exports&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;CUR 2.0&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;pattern-triển-khai&#34;&gt;Pattern triển khai&lt;/h2&gt;&#xA;&lt;p&gt;Dự án áp dụng template đích Data Exports hiện tại của AWS Cloud Intelligence Dashboards thay vì duy trì một fork cục bộ. Hướng dẫn chính thức vẫn là nguồn có thẩm quyền của template:&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;https://docs.aws.amazon.com/guidance/latest/cloud-intelligence-dashboards/data-exports.html&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;Quyết định này giảm lượng code hạ tầng tùy chỉnh, nhưng tạo ra trách nhiệm về version: phải ghi nhận version của template và các parameter thực tế mà CloudFormation hiển thị cùng lần triển khai.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xác thực delivery, độ mới &amp; hợp đồng dữ liệu</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/04-validate-delivery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/03-cur2-foundation/04-validate-delivery/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS Data Exports&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon S3&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;CUR 2.0&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;câu-hỏi-xác-thực&#34;&gt;Câu hỏi xác thực&lt;/h2&gt;&#xA;&lt;p&gt;Cổng dữ liệu đặt ra một câu hỏi cụ thể: export đã cấu hình có phân phối object CUR 2.0 thật đến vị trí S3 mà catalog và dashboard sẽ tiêu thụ hay chưa?&lt;/p&gt;&#xA;&lt;p&gt;Một CloudFormation stack thành công là chưa đủ. Stack có thể tồn tại hàng giờ trước khi lần delivery billing đầu tiên xuất hiện.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

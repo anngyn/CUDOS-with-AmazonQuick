@@ -12,7 +12,7 @@ home = [ "HTML", "RSS", "JSON"]
   themeVariant = "workshop"
   # Git hub repo link
   editURL = ""
-  description = "AWS FinOps Intelligence Workshop"
+  description = "AWS FinOps Intelligence with CUDOS v5"
   author = "Nguyễn Ấn"
   showVisitedLinks = true
   disableBreadcrumb = false
@@ -20,9 +20,10 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.en]
-title = "AWS FinOps Intelligence Workshop"
+title = "AWS FinOps Intelligence with CUDOS v5"
 weight = 1
 languageName = "English"
+languageCode = "en-US"
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group"
@@ -31,9 +32,10 @@ url = "https://www.facebook.com/groups/awsstudygroupfcj/"
 weight = 20
 
 [Languages.vi]
-title = "AWS FinOps Intelligence Workshop"
+title = "AWS FinOps Intelligence with CUDOS v5"
 weight = 2
 languageName = "Tiếng Việt"
+languageCode = "vi-VN"
 
 [[Languages.vi.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group"

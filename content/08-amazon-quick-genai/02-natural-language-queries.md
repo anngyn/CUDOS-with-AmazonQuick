@@ -1,100 +1,58 @@
 ---
-title: "Natural Language FinOps Queries"
+title: "AI Grounding & Numerical Evaluation"
 weight: 2
 chapter: false
 pre: "8.2 "
-description: "Ask evidence-backed cost questions and verify answers against CUDOS."
-duration: "15 mins"
+description: "Evaluate whether natural-language answers preserve period, metric, attribution, and evidence."
 services:
   - Amazon Quick
   - Chat Agents
   - CUDOS v5
 ---
 {{< badge "Amazon Quick" >}}
-{{< badge "Natural Language" >}}
+{{< badge "Evaluation" >}}
 {{< badge "FinOps" >}}
-{{< duration "15 mins" >}}
 
+## Evaluation objective
 
-## Step 1 — Visibility
+The test is not whether the answer sounds useful. The test is whether the agent reports the same scoped values as the connected CUDOS/Athena evidence and labels hypotheses correctly.
 
-Ask:
+## Query classes
 
-```text
-Which AWS services had the highest spend in the last 30 days?
-Show the top five and state the cost metric you used.
-```
+| Class | Example question | Required evidence behavior |
+|---|---|---|
+| Visibility | Which five services had the highest spend? | State period and cost metric |
+| Change | Which services increased most? | Separate absolute and percentage change |
+| Attribution | Which account or Region drove the largest increase? | Use connected dashboard dimensions only |
+| Investigation | What should be investigated first? | Separate observations, hypotheses, and verification |
 
-{{< note >}}
-📸 **Screenshot placeholder — `08-07-agent-top-services.png`**
+## Evaluation record
 
-Capture the question and answer.
+| Prompt | Authoritative CUDOS/Athena value | Agent value | Scope/metric stated | Result |
+|---|---:|---:|---|---|
+| Top service |  |  | yes/no | PASS/FAIL |
+| Largest change |  |  | yes/no | PASS/FAIL |
+| Account/Region attribution |  |  | yes/no | PASS/FAIL |
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+An answer fails if it is numerically wrong, omits the period or metric, invents a cause, or implies that remediation is approved. Fluent language does not compensate for failed grounding.
 
-Verify against CUDOS.
-
-## Step 2 — Change
-
-Ask:
-
-```text
-Which services increased the most compared with the previous equivalent period?
-Separate absolute change from percentage change.
-```
-
-{{< note >}}
-📸 **Screenshot placeholder — `08-08-agent-cost-change.png`**
-
-Capture the comparative response.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Attribution
-
-Ask:
+## Failure handling
 
 ```text
-For the largest increase, which account or Region contributed most?
-Only state values supported by the connected dashboards.
+Wrong number
+→ verify linked dashboard, filters, and refresh state.
+
+Correct number, wrong explanation
+→ constrain instructions and require source-backed attribution.
+
+Unsupported remediation
+→ block the output from the action workflow and require human review.
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `08-09-agent-attribution.png`**
+One representative question/answer can be retained as project evidence. The evaluation table is authoritative; screenshots of every prompt are unnecessary.
 
-Capture the attribution response.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Investigation
-
-Ask:
-
-```text
-Based on the connected FinOps data, what should the FinOps team investigate first?
-Separate observations from hypotheses and give verification steps.
-```
-
-{{< note >}}
-📸 **Screenshot placeholder — `08-10-agent-investigation.png`**
-
-Capture the recommended investigation.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 5 — Evaluate grounding
-
-Check:
-
-- correct period
-- numbers consistent with CUDOS
-- observations separated from hypotheses
-- no fabricated remediation
+{{< capture src="images/08-amazon-quick/08-01-grounded-finops-answer.png" alt="Amazon Quick response grounded in reconciled CUDOS and Athena evidence" title="Grounded Amazon Quick answer" capture="Capture one representative question and answer showing the requested period, named cost metric, scoped value, attribution, and source-backed evidence. The answer must label hypotheses and must not imply remediation approval." caption="One evaluated answer is sufficient; the numerical evaluation table determines PASS or FAIL." >}}
 
 {{< finops title="FinOps Takeaway" >}}
-Natural language improves accessibility, but source dashboards and cost data remain authoritative.
+Natural language improves accessibility only when deterministic financial evidence remains authoritative.
 {{< /finops >}}

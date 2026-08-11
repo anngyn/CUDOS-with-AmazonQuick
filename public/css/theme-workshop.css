@@ -234,6 +234,91 @@ a:hover {
     font-size: 14px;
 }
 
+/* Outcome evidence and console references */
+.workshop-evidence {
+    margin: 24px 0;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #D5DBDB;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+.workshop-evidence img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.workshop-evidence figcaption {
+    margin-top: 10px;
+    color: #545B64;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Evidence placeholders become real figures when the suggested file exists. */
+.evidence-placeholder {
+    padding: 0;
+    overflow: hidden;
+    border: 2px dashed #879596;
+    box-shadow: none;
+}
+.evidence-placeholder__panel {
+    min-height: 260px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    background: #F7F8F8;
+}
+.evidence-placeholder__status {
+    padding: 4px 10px;
+    color: #FFFFFF;
+    background: var(--AWS-SQUID-INK);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.evidence-placeholder__title {
+    color: var(--AWS-SQUID-INK);
+    font-size: 20px;
+}
+.evidence-placeholder__capture {
+    max-width: 780px;
+    margin: 0;
+    color: #3F4B55;
+}
+.evidence-placeholder__label {
+    margin-top: 6px;
+    color: #545B64;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.evidence-placeholder__file {
+    padding: 7px 10px;
+    color: #FFFFFF;
+    background: #232F3E;
+    border-radius: 4px;
+    word-break: break-all;
+}
+.evidence-placeholder__hint {
+    max-width: 780px;
+    margin: 2px 0 0;
+    color: #687078;
+    font-size: 13px;
+}
+.evidence-placeholder__hint code {
+    white-space: normal;
+    word-break: break-all;
+}
+
 /* Ensure code blocks stand out */
 pre {
     background-color: #16191F !important;

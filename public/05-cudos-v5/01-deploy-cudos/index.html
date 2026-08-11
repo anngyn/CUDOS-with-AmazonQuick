@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
-  <head><script src="/CUDOS-with-AmazonQuick/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=CUDOS-with-AmazonQuick/livereload" data-no-instant defer></script>
+  <head><script src="/CUDOS-with-AmazonQuick/livereload.js?mindelay=10&amp;v=2&amp;port=62999&amp;path=CUDOS-with-AmazonQuick/livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.152.2">
-    <meta name="description" content="Deploy the current CUDOS v5 dashboard with cid-cmd.">
+    <meta name="description" content="Describe how CUDOS is deployed, which assets it creates, and what evidence is required before it is accepted.">
 <meta name="author" content="Nguyễn Ấn">
 
-    <link rel="icon" href="http://localhost:1313/CUDOS-with-AmazonQuick/images/favicon.png" type="image/png">
+    <link rel="icon" href="http://localhost:62999/CUDOS-with-AmazonQuick/images/favicon.png" type="image/png">
 
-    <title>Deploy CUDOS v5 Dashboards :: AWS FinOps Intelligence Workshop</title>
+    <title>CUDOS v5 Deployment Model &amp; Readiness Contract :: AWS FinOps Intelligence with CUDOS v5</title>
 
     
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/nucleus.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/fontawesome-all.min.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/hybrid.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/featherlight.min.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/perfect-scrollbar.min.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/auto-complete.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/atom-one-dark-reasonable.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/theme.css?1786176874" rel="stylesheet">
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/hugo-theme.css?1786176874" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/nucleus.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/fontawesome-all.min.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/hybrid.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/featherlight.min.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/perfect-scrollbar.min.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/auto-complete.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/atom-one-dark-reasonable.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/theme.css?1786443172" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/hugo-theme.css?1786443172" rel="stylesheet">
     
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/css/theme-workshop.css?1786176874" rel="stylesheet">
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/css/theme-workshop.css?1786443172" rel="stylesheet">
     
     
 
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/jquery-3.3.1.min.js?1786176874"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/jquery-3.3.1.min.js?1786443172"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,14 +36,14 @@
     </style>
     
   </head>
-  <body class="" data-url="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/01-deploy-cudos/">
+  <body class="" data-url="http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/01-deploy-cudos/">
     <nav
   id="sidebar"
   class="showVisitedLinks"
 >
    
   <div id="header-wrapper">
-    <div id="header"><a id="logo" href="http://localhost:1313/CUDOS-with-AmazonQuick/">
+    <div id="header"><a id="logo" href="http://localhost:62999/CUDOS-with-AmazonQuick/">
 
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
 
@@ -55,16 +55,16 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/lunr.min.js?1786176874"></script>
-<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/auto-complete.js?1786176874"></script>
+<script type="text/javascript" src="http://localhost:62999/CUDOS-with-AmazonQuick/js/lunr.min.js?1786443172"></script>
+<script type="text/javascript" src="http://localhost:62999/CUDOS-with-AmazonQuick/js/auto-complete.js?1786443172"></script>
 <script type="text/javascript">
     
         
-            var baseurl = "http:\/\/localhost:1313\/CUDOS-with-AmazonQuick\/";
+            var baseurl = "http:\/\/localhost:62999\/CUDOS-with-AmazonQuick\/";
         
     
 </script>
-<script type="text/javascript" src="http://localhost:1313/CUDOS-with-AmazonQuick/js/search.js?1786176874"></script>
+<script type="text/javascript" src="http://localhost:62999/CUDOS-with-AmazonQuick/js/search.js?1786443172"></script>
  
   </div>
 
@@ -73,15 +73,15 @@
                
 <li
   data-nav-id="/01-introduction/"
-  title="Introduction"
+  title="Business Context &amp; Architecture"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/">
-    1. Introduction 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/01-introduction/">
+    1. Business Context &amp; Architecture 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -91,11 +91,11 @@
             
 <li
   data-nav-id="/01-introduction/01-workshop-overview/"
-  title="Workshop Overview &amp; Objectives"
+  title="Business Context, Goals &amp; Success Criteria"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/01-workshop-overview/">
-    1.1 Workshop Overview &amp; Objectives <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/01-introduction/01-workshop-overview/">
+    1.1 Business Context, Goals &amp; Success Criteria <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -105,11 +105,11 @@
             
 <li
   data-nav-id="/01-introduction/02-architecture-deep-dive/"
-  title="FinOps Architecture Deep-Dive"
+  title="Architecture &amp; Design Decisions"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/01-introduction/02-architecture-deep-dive/">
-    1.2 FinOps Architecture Deep-Dive <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/01-introduction/02-architecture-deep-dive/">
+    1.2 Architecture &amp; Design Decisions <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -122,15 +122,15 @@
            
 <li
   data-nav-id="/02-environment-setup/"
-  title="Environment Setup"
+  title="Environment &amp; Access Boundary"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/02-environment-setup/">
-    2. Environment Setup 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/02-environment-setup/">
+    2. Environment &amp; Access Boundary 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -140,11 +140,11 @@
             
 <li
   data-nav-id="/02-environment-setup/01-cli-permissions/"
-  title="AWS CLI &amp; Permissions Setup"
+  title="Execution Identity, Region &amp; Permission Boundary"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/02-environment-setup/01-cli-permissions/">
-    2.1 AWS CLI &amp; Permissions Setup <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/02-environment-setup/01-cli-permissions/">
+    2.1 Execution Identity, Region &amp; Permission Boundary <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -154,11 +154,11 @@
             
 <li
   data-nav-id="/02-environment-setup/02-quicksight-onboarding/"
-  title="Quick Sight Account Onboarding"
+  title="Quick Sight Service, Identity &amp; Capacity Design"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/02-environment-setup/02-quicksight-onboarding/">
-    2.2 Quick Sight Account Onboarding <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/02-environment-setup/02-quicksight-onboarding/">
+    2.2 Quick Sight Service, Identity &amp; Capacity Design <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -171,15 +171,15 @@
            
 <li
   data-nav-id="/03-cur2-foundation/"
-  title="CUR 2.0 Foundation"
+  title="CUR 2.0 Data Foundation"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/">
-    3. CUR 2.0 Foundation 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/03-cur2-foundation/">
+    3. CUR 2.0 Data Foundation 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -189,11 +189,11 @@
             
 <li
   data-nav-id="/03-cur2-foundation/01-cur2-overview/"
-  title="CUR 2.0 Overview &amp; Architecture"
+  title="CUR 2.0 as the Financial Evidence Layer"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/01-cur2-overview/">
-    3.1 CUR 2.0 Overview &amp; Architecture <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/03-cur2-foundation/01-cur2-overview/">
+    3.1 CUR 2.0 as the Financial Evidence Layer <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -203,11 +203,11 @@
             
 <li
   data-nav-id="/03-cur2-foundation/02-prerequisites-identity/"
-  title="Prerequisites &amp; AWS Identity Check"
+  title="Account Topology &amp; Deployment Context"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/02-prerequisites-identity/">
-    3.2 Prerequisites &amp; AWS Identity Check <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/03-cur2-foundation/02-prerequisites-identity/">
+    3.2 Account Topology &amp; Deployment Context <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -217,11 +217,11 @@
             
 <li
   data-nav-id="/03-cur2-foundation/03-deploy-data-export/"
-  title="Deploy the CUR 2.0 Data Export Foundation"
+  title="CUR 2.0 Collection Architecture &amp; Deployment"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/03-deploy-data-export/">
-    3.3 Deploy the CUR 2.0 Data Export Foundation <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/03-cur2-foundation/03-deploy-data-export/">
+    3.3 CUR 2.0 Collection Architecture &amp; Deployment <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -231,11 +231,11 @@
             
 <li
   data-nav-id="/03-cur2-foundation/04-validate-delivery/"
-  title="Validate Data Export &amp; S3 Delivery"
+  title="Delivery Validation, Freshness &amp; Data Contract"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/03-cur2-foundation/04-validate-delivery/">
-    3.4 Validate Data Export &amp; S3 Delivery <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/03-cur2-foundation/04-validate-delivery/">
+    3.4 Delivery Validation, Freshness &amp; Data Contract <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -248,15 +248,15 @@
            
 <li
   data-nav-id="/04-athena-integration/"
-  title="Amazon Athena Integration"
+  title="Athena Validation &amp; Data Lineage"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/04-athena-integration/">
-    4. Amazon Athena Integration 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/04-athena-integration/">
+    4. Athena Validation &amp; Data Lineage 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -266,11 +266,11 @@
             
 <li
   data-nav-id="/04-athena-integration/01-query-cur2/"
-  title="Querying CUR 2.0 with Amazon Athena"
+  title="Athena Validation &amp; CUDOS Reconciliation"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/04-athena-integration/01-query-cur2/">
-    4.1 Querying CUR 2.0 with Amazon Athena <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/04-athena-integration/01-query-cur2/">
+    4.1 Athena Validation &amp; CUDOS Reconciliation <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -280,11 +280,11 @@
             
 <li
   data-nav-id="/04-athena-integration/02-glue-inspection/"
-  title="AWS Glue Data Catalog Inspection"
+  title="Glue Catalog, Schema Contract &amp; S3 Lineage"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/04-athena-integration/02-glue-inspection/">
-    4.2 AWS Glue Data Catalog Inspection <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/04-athena-integration/02-glue-inspection/">
+    4.2 Glue Catalog, Schema Contract &amp; S3 Lineage <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -297,15 +297,15 @@
            
 <li
   data-nav-id="/05-cudos-v5/"
-  title="CUDOS v5 Dashboards"
+  title="CUDOS v5 Analytical Product"
   class="dd-item 
         parent
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/">
-    5. CUDOS v5 Dashboards 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/">
+    5. CUDOS v5 Analytical Product 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -315,11 +315,11 @@
             
 <li
   data-nav-id="/05-cudos-v5/01-deploy-cudos/"
-  title="Deploy CUDOS v5 Dashboards"
+  title="CUDOS v5 Deployment Model &amp; Readiness Contract"
   class="dd-item active"
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/01-deploy-cudos/">
-    5.1 Deploy CUDOS v5 Dashboards <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/01-deploy-cudos/">
+    5.1 CUDOS v5 Deployment Model &amp; Readiness Contract <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -329,11 +329,11 @@
             
 <li
   data-nav-id="/05-cudos-v5/02-navigation-kpis/"
-  title="CUDOS Dashboard Navigation &amp; KPIs"
+  title="CUDOS KPI Contract &amp; FinOps Finding Model"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/02-navigation-kpis/">
-    5.2 CUDOS Dashboard Navigation &amp; KPIs <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/02-navigation-kpis/">
+    5.2 CUDOS KPI Contract &amp; FinOps Finding Model <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -346,15 +346,15 @@
            
 <li
   data-nav-id="/06-finops-analysis/"
-  title="FinOps Cost Analysis"
+  title="FinOps Findings &amp; Unit Economics"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/">
-    6. FinOps Cost Analysis 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/06-finops-analysis/">
+    6. FinOps Findings &amp; Unit Economics 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -364,11 +364,11 @@
             
 <li
   data-nav-id="/06-finops-analysis/01-cost-optimization/"
-  title="FinOps Cost Optimization Analysis"
+  title="Optimization Finding: From Cost Change to Measured Outcome"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/01-cost-optimization/">
-    6.1 FinOps Cost Optimization Analysis <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/06-finops-analysis/01-cost-optimization/">
+    6.1 Optimization Finding: From Cost Change to Measured Outcome <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -378,11 +378,11 @@
             
 <li
   data-nav-id="/06-finops-analysis/02-unit-economics-allocation/"
-  title="Unit Economics &amp; Allocation Breakdown"
+  title="Allocation Coverage &amp; Unit Economics Model"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/06-finops-analysis/02-unit-economics-allocation/">
-    6.2 Unit Economics &amp; Allocation Breakdown <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/06-finops-analysis/02-unit-economics-allocation/">
+    6.2 Allocation Coverage &amp; Unit Economics Model <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -395,15 +395,15 @@
            
 <li
   data-nav-id="/07-customize-quick-sight/"
-  title="Customize Quick Sight"
+  title="Quick Sight Presentation Layer"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/">
-    7. Customize Quick Sight 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/07-customize-quick-sight/">
+    7. Quick Sight Presentation Layer 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -413,11 +413,11 @@
             
 <li
   data-nav-id="/07-customize-quick-sight/01-custom-visuals/"
-  title="Customizing Quick Sight Visuals"
+  title="Quick Sight Decision View Design"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/01-custom-visuals/">
-    7.1 Customizing Quick Sight Visuals <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/07-customize-quick-sight/01-custom-visuals/">
+    7.1 Quick Sight Decision View Design <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -427,11 +427,11 @@
             
 <li
   data-nav-id="/07-customize-quick-sight/02-calculated-fields/"
-  title="Creating Custom Calculated Fields"
+  title="Presentation Logic &amp; Calculated-Field Boundary"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/07-customize-quick-sight/02-calculated-fields/">
-    7.2 Creating Custom Calculated Fields <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/07-customize-quick-sight/02-calculated-fields/">
+    7.2 Presentation Logic &amp; Calculated-Field Boundary <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -444,15 +444,15 @@
            
 <li
   data-nav-id="/08-amazon-quick-genai/"
-  title="Amazon Quick &amp; Generative AI FinOps"
+  title="Amazon Quick AI Extension"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick-genai/">
-    8. Amazon Quick &amp; Generative AI FinOps 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/08-amazon-quick-genai/">
+    8. Amazon Quick AI Extension 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -462,11 +462,11 @@
             
 <li
   data-nav-id="/08-amazon-quick-genai/01-quick-integration/"
-  title="Amazon Quick Generative AI Integration"
+  title="Amazon Quick Grounding Architecture"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick-genai/01-quick-integration/">
-    8.1 Amazon Quick Generative AI Integration <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/08-amazon-quick-genai/01-quick-integration/">
+    8.1 Amazon Quick Grounding Architecture <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -476,11 +476,11 @@
             
 <li
   data-nav-id="/08-amazon-quick-genai/02-natural-language-queries/"
-  title="Natural Language FinOps Queries"
+  title="AI Grounding &amp; Numerical Evaluation"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/08-amazon-quick-genai/02-natural-language-queries/">
-    8.2 Natural Language FinOps Queries <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/08-amazon-quick-genai/02-natural-language-queries/">
+    8.2 AI Grounding &amp; Numerical Evaluation <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -493,15 +493,15 @@
            
 <li
   data-nav-id="/09-agentic-finops/"
-  title="Agentic FinOps Workflows"
+  title="Governed Investigation Workflow"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/">
-    9. Agentic FinOps Workflows 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/09-agentic-finops/">
+    9. Governed Investigation Workflow 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -511,11 +511,11 @@
             
 <li
   data-nav-id="/09-agentic-finops/01-building-agentic-workflows/"
-  title="Building Autonomous Agentic FinOps Workflows"
+  title="Governed Cost Investigation Flow"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/01-building-agentic-workflows/">
-    9.1 Building Autonomous Agentic FinOps Workflows <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/09-agentic-finops/01-building-agentic-workflows/">
+    9.1 Governed Cost Investigation Flow <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -525,11 +525,11 @@
             
 <li
   data-nav-id="/09-agentic-finops/02-governance-remediation/"
-  title="Automated Governance &amp; Remediation"
+  title="Automation Levels, Approval &amp; Remediation Boundary"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/09-agentic-finops/02-governance-remediation/">
-    9.2 Automated Governance &amp; Remediation <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/09-agentic-finops/02-governance-remediation/">
+    9.2 Automation Levels, Approval &amp; Remediation Boundary <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -542,15 +542,15 @@
            
 <li
   data-nav-id="/10-anomaly-detection/"
-  title="Custom Anomaly Detection"
+  title="Anomaly Detection &amp; Notification"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/10-anomaly-detection/">
-    10. Custom Anomaly Detection 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/10-anomaly-detection/">
+    10. Anomaly Detection &amp; Notification 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -560,11 +560,11 @@
             
 <li
   data-nav-id="/10-anomaly-detection/01-configure-cost-anomaly/"
-  title="Configuring AWS Cost Anomaly Detection"
+  title="Anomaly Detection Strategy &amp; Materiality"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/10-anomaly-detection/01-configure-cost-anomaly/">
-    10.1 Configuring AWS Cost Anomaly Detection <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/10-anomaly-detection/01-configure-cost-anomaly/">
+    10.1 Anomaly Detection Strategy &amp; Materiality <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -574,11 +574,11 @@
             
 <li
   data-nav-id="/10-anomaly-detection/02-sns-slack-alerts/"
-  title="Setting Up SNS &amp; Slack Alerts"
+  title="Alert Routing &amp; Delivery Contract"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/10-anomaly-detection/02-sns-slack-alerts/">
-    10.2 Setting Up SNS &amp; Slack Alerts <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/10-anomaly-detection/02-sns-slack-alerts/">
+    10.2 Alert Routing &amp; Delivery Contract <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -591,15 +591,15 @@
            
 <li
   data-nav-id="/11-security-governance/"
-  title="Security &amp; Governance"
+  title="Security &amp; Operating Model"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/">
-    11. Security &amp; Governance 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/11-security-governance/">
+    11. Security &amp; Operating Model 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -609,11 +609,11 @@
             
 <li
   data-nav-id="/11-security-governance/01-security-governance-policies/"
-  title="Security &amp; Governance Policies"
+  title="FinOps Operating Model &amp; Access Governance"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/01-security-governance-policies/">
-    11.1 Security &amp; Governance Policies <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/11-security-governance/01-security-governance-policies/">
+    11.1 FinOps Operating Model &amp; Access Governance <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -623,11 +623,11 @@
             
 <li
   data-nav-id="/11-security-governance/02-iam-kms/"
-  title="IAM Least Privilege &amp; KMS Encryption"
+  title="IAM, Encryption &amp; Analytical Security Boundary"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/11-security-governance/02-iam-kms/">
-    11.2 IAM Least Privilege &amp; KMS Encryption <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/11-security-governance/02-iam-kms/">
+    11.2 IAM, Encryption &amp; Analytical Security Boundary <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -640,15 +640,15 @@
            
 <li
   data-nav-id="/12-cleanup/"
-  title="Clean Up Resources"
+  title="Resource Lifecycle"
   class="dd-item 
         
         
         
         "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/">
-    12. Clean Up Resources 
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/12-cleanup/">
+    12. Resource Lifecycle 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -658,11 +658,11 @@
             
 <li
   data-nav-id="/12-cleanup/01-teardown/"
-  title="Teardown &amp; Resource Cleanup"
+  title="Resource Lifecycle &amp; Retention Runbook"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/01-teardown/">
-    12.1 Teardown &amp; Resource Cleanup <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/12-cleanup/01-teardown/">
+    12.1 Resource Lifecycle &amp; Retention Runbook <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -672,11 +672,11 @@
             
 <li
   data-nav-id="/12-cleanup/02-verify-deletion/"
-  title="Verifying Complete Resource Deletion"
+  title="Lifecycle Verification &amp; Residual Cost Check"
   class="dd-item "
 >
-  <a href="http://localhost:1313/CUDOS-with-AmazonQuick/12-cleanup/02-verify-deletion/">
-    12.2 Verifying Complete Resource Deletion <i
+  <a href="http://localhost:62999/CUDOS-with-AmazonQuick/12-cleanup/02-verify-deletion/">
+    12.2 Lifecycle Verification &amp; Residual Cost Check <i
       class="fas fa-check read-icon"
     ></i
     >
@@ -717,12 +717,19 @@
                        
                 <option
                   id="en"
-                  value="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/01-deploy-cudos/"
+                  value="http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/01-deploy-cudos/"
                   selected
                 >
                   English
                 </option>
-                     
+                            
+                <option
+                  id="vi"
+                  value="http://localhost:62999/CUDOS-with-AmazonQuick/vi/05-cudos-v5/01-deploy-cudos/"
+                >
+                  Tiếng Việt
+                </option>
+                   
               </select>
               <svg
                 version="1.1"
@@ -822,7 +829,7 @@
             
           
           
-            <a href='http://localhost:1313/CUDOS-with-AmazonQuick/'>AWS FinOps Intelligence Workshop</a> > <a href='http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/'>CUDOS v5 Dashboards</a> > Deploy CUDOS v5 Dashboards
+            <a href='http://localhost:62999/CUDOS-with-AmazonQuick/'>AWS FinOps Intelligence with CUDOS v5</a> > <a href='http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/'>CUDOS v5 Analytical Product</a> > CUDOS v5 Deployment Model & Readiness Contract
           
         
           
@@ -837,14 +844,23 @@
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#step-1--verify-prerequisites">Step 1 — Verify prerequisites</a></li>
-    <li><a href="#step-2--open-aws-cloudshell">Step 2 — Open AWS CloudShell</a></li>
-    <li><a href="#step-3--install-cid-cli">Step 3 — Install CID CLI</a></li>
-    <li><a href="#step-4--deploy-cudos-v5">Step 4 — Deploy CUDOS v5</a></li>
-    <li><a href="#step-5--wait-for-deployment">Step 5 — Wait for deployment</a></li>
-    <li><a href="#step-6--verify-quick-sight-datasets">Step 6 — Verify Quick Sight datasets</a></li>
-    <li><a href="#step-7--verify-spice-refresh">Step 7 — Verify SPICE refresh</a></li>
-    <li><a href="#step-8--open-cudos">Step 8 — Open CUDOS</a></li>
+    <li><a href="#role-in-the-project">Role in the project</a></li>
+    <li><a href="#deployment-decision">Deployment decision</a></li>
+    <li><a href="#cloudshell-deployment-runbook">CloudShell deployment runbook</a>
+      <ul>
+        <li><a href="#1-open-cloudshell-in-sydney-and-verify-identity">1. Open CloudShell in Sydney and verify identity</a></li>
+        <li><a href="#2-install-and-verify-cid-cmd">2. Install and verify <code>cid-cmd</code></a></li>
+        <li><a href="#3-verify-the-athena-result-location">3. Verify the Athena result location</a></li>
+        <li><a href="#4-start-the-cudos-v5-deployment">4. Start the CUDOS v5 deployment</a></li>
+        <li><a href="#5-apply-the-project-wizard-selections">5. Apply the project wizard selections</a></li>
+      </ul>
+    </li>
+    <li><a href="#dependency-chain">Dependency chain</a></li>
+    <li><a href="#generated-asset-model">Generated asset model</a></li>
+    <li><a href="#deployment-and-readiness-record">Deployment and readiness record</a></li>
+    <li><a href="#acceptance-contract">Acceptance contract</a></li>
+    <li><a href="#cudos-style-dashboard-companion">CUDOS-style dashboard companion</a></li>
+    <li><a href="#current-project-status">Current project status</a></li>
   </ul>
 </nav>
     </div>
@@ -862,7 +878,7 @@
           
             <h1>
               
-              Deploy CUDOS v5 Dashboards
+              CUDOS v5 Deployment Model &amp; Readiness Contract
             </h1>
           
 
@@ -874,114 +890,225 @@
 <span class="aws-badge ">cid-cmd</span>
 
 <span class="aws-badge ">Amazon Quick Sight</span>
-
-<div class="aws-duration">
-    <i class="far fa-clock"></i> <strong>Estimated duration:</strong> 20 mins
-</div>
 </p>
-<h1 id="deploy-cudos-v5-dashboards">Deploy CUDOS v5 Dashboards</h1>
 <p>Official reference:</p>
 <p><code>https://docs.aws.amazon.com/guidance/latest/cloud-intelligence-dashboards/deployment-in-global-regions.html</code></p>
-<h2 id="step-1--verify-prerequisites">Step 1 — Verify prerequisites</h2>
-<p>Before deploying:</p>
-<ul>
-<li>CUR 2.0 has been delivered.</li>
-<li>Athena can query the CUR table.</li>
-<li>Amazon Quick / Quick Sight is provisioned.</li>
-<li>You know the Quick Sight username.</li>
-<li>You are using the same Region as the Data Collection stack.</li>
-</ul>
-<h2 id="step-2--open-aws-cloudshell">Step 2 — Open AWS CloudShell</h2>
-<p>Open <strong>AWS CloudShell</strong> in Sydney.</p>
-<div class="aws-callout callout-note">
-    
-    <p><p>📸 <strong>Screenshot placeholder — <code>05-01-cloudshell.png</code></strong></p>
-<p>Capture CloudShell showing the target Region.</p>
-<p>Replace this block with the real screenshot after completing the step.</p>
-</p>
+<h2 id="role-in-the-project">Role in the project</h2>
+<p>CUDOS is the analytical product built on top of CUR and Athena. It converts billing records into executive, service, account, Region, resource, commitment, and optimization views. It is not the evidence layer itself; its credibility depends on the lineage and reconciliation established in Chapters 3 and 4.</p>
+<h2 id="deployment-decision">Deployment decision</h2>
+<p>The project uses the AWS-supported <code>cid-cmd</code> deployment path from AWS CloudShell rather than recreating the CUDOS assets manually. The deployment boundary is fixed explicitly:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Setting</th>
+          <th>Project value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AWS Console Region</td>
+          <td>Asia Pacific (Sydney)</td>
+      </tr>
+      <tr>
+          <td>AWS Region code</td>
+          <td><code>ap-southeast-2</code></td>
+      </tr>
+      <tr>
+          <td>Dataset refresh timezone</td>
+          <td><code>Australia/Sydney</code></td>
+      </tr>
+      <tr>
+          <td>CUR database/table</td>
+          <td><code>cid_data_export.cur2</code></td>
+      </tr>
+      <tr>
+          <td>Athena workgroup</td>
+          <td><code>primary</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>The CLI version is retained because wizard prompts and generated assets can change between releases.</p>
+<h2 id="cloudshell-deployment-runbook">CloudShell deployment runbook</h2>
+<p>This is the operational path used for the project. Screenshots of every terminal prompt are deliberately omitted; the final assets and ingestion state are stronger evidence.</p>
+<h3 id="1-open-cloudshell-in-sydney-and-verify-identity">1. Open CloudShell in Sydney and verify identity</h3>
+<p>Select <strong>Asia Pacific (Sydney)</strong> in the AWS Console, open CloudShell, and run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws sts get-caller-identity
+</span></span><span style="display:flex;"><span>aws configure get region
+</span></span></code></pre></div><p>Confirm the intended AWS account and redact the account ID and ARN in any published evidence. A blank value from <code>aws configure get region</code> is not automatically a failure because CloudShell follows the Console session. The deployment command below still passes <code>ap-southeast-2</code> explicitly.</p>
+<div class="aws-callout callout-security">
+    <h4>Security</h4>
+    <p>CloudShell uses the current AWS Console session. Do not run <code>aws configure</code> or store long-term access keys in the terminal.</p>
 </div>
 
-<h2 id="step-3--install-cid-cli">Step 3 — Install CID CLI</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip3 install --upgrade cid-cmd
-</span></span></code></pre></div><p>Verify:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cid-cmd --help
-</span></span></code></pre></div><div class="aws-callout callout-note">
-    
-    <p><p>📸 <strong>Screenshot placeholder — <code>05-02-cid-cmd-installed.png</code></strong></p>
-<p>Capture successful <code>cid-cmd --help</code> output.</p>
-<p>Replace this block with the real screenshot after completing the step.</p>
-</p>
-</div>
-
-<h2 id="step-4--deploy-cudos-v5">Step 4 — Deploy CUDOS v5</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cid-cmd deploy --dashboard-id cudos-v5
-</span></span></code></pre></div><p>Follow the wizard.</p>
-<p>When prompted:</p>
+<h3 id="2-install-and-verify-cid-cmd">2. Install and verify <code>cid-cmd</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -m ensurepip --upgrade
+</span></span><span style="display:flex;"><span>pip3 install --upgrade cid-cmd
+</span></span><span style="display:flex;"><span>cid-cmd --help
+</span></span></code></pre></div><p>If pip is already available, <code>ensurepip</code> may report that the requirement is satisfied. The useful outcome is a working <code>cid-cmd</code>, not a screenshot of the installation process.</p>
+<h3 id="3-verify-the-athena-result-location">3. Verify the Athena result location</h3>
+<p>CUDOS uses the <code>primary</code> workgroup to create and query its Athena views. Verify the workgroup before starting the wizard:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aws athena get-work-group <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --work-group primary <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --region ap-southeast-2 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --query <span style="color:#e6db74">&#34;WorkGroup.Configuration.ResultConfiguration.OutputLocation&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --output text
+</span></span></code></pre></div><p>The expected result is a Sydney bucket dedicated to Athena query output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>s3://finops-workshop-athena-results-&lt;ACCOUNT_ID&gt;-ap-southeast-2/
+</span></span></code></pre></div><p>Do not select <code>cid-&lt;ACCOUNT_ID&gt;-data-exports</code>; that bucket contains CUR 2.0 source data. Mixing the two purposes makes lifecycle controls and troubleshooting less reliable.</p>
+<h3 id="4-start-the-cudos-v5-deployment">4. Start the CUDOS v5 deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cid-cmd <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --region_name ap-southeast-2 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  deploy <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --dashboard-id cudos-v5
+</span></span></code></pre></div><p>Passing <code>--region_name</code> prevents a shell default from creating Athena or Quick Sight assets in another Region.</p>
+<h3 id="5-apply-the-project-wizard-selections">5. Apply the project wizard selections</h3>
+<p>Prompt wording can vary by <code>cid-cmd</code> version. Use the following decisions rather than relying on prompt order:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Wizard decision</th>
+          <th>Project selection</th>
+          <th>Why</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Athena database</td>
+          <td><code>cid_data_export</code></td>
+          <td>Contains the CUR 2.0 table <code>cur2</code></td>
+      </tr>
+      <tr>
+          <td>Athena workgroup</td>
+          <td><code>primary</code></td>
+          <td>Uses the validated query-result configuration</td>
+      </tr>
+      <tr>
+          <td>Athena result bucket</td>
+          <td><code>finops-workshop-athena-results-&lt;ACCOUNT_ID&gt;-ap-southeast-2</code></td>
+          <td>Keeps query results separate from CUR source data</td>
+      </tr>
+      <tr>
+          <td>Quick Sight data source</td>
+          <td><code>CID-CMD-Athena &lt;CREATE NEW DATASOURCE&gt;</code></td>
+          <td>First deployment; reuse <code>CID-CMD-Athena</code> if it already exists in Sydney</td>
+      </tr>
+      <tr>
+          <td>Quick Sight data-source role</td>
+          <td><code>CidCmdQuickSightDataSourceRole &lt;ADD NEW ROLE&gt;</code></td>
+          <td>First deployment; reuse the existing CID-managed role when present</td>
+      </tr>
+      <tr>
+          <td>Cost allocation tags</td>
+          <td>Empty, then <code>Looks good</code></td>
+          <td>No approved business taxonomy was available in this account</td>
+      </tr>
+      <tr>
+          <td>Dataset refresh timezone</td>
+          <td><code>Australia/Sydney</code></td>
+          <td>Aligns the refresh schedule with the deployment location</td>
+      </tr>
+      <tr>
+          <td>Dashboard taxonomy fields</td>
+          <td>Empty, then <code>Looks good</code></td>
+          <td>Single-account parent fields add no useful allocation context</td>
+      </tr>
+  </tbody>
+</table>
+<p>If <code>cid-cmd</code> proposes an updated Athena-access policy for the CID-managed role, review its resources before confirming. Do not add high-cardinality tags merely because they are discoverable; they increase dataset size and SPICE consumption without improving allocation.</p>
+<p>At successful completion, the expected assets include <code>summary_view</code>, <code>resource_view</code>, <code>hourly_view</code>, supporting Athena views, and CUDOS Dashboard v5. Do not interrupt CloudShell while these dependencies are being created.</p>
+<h2 id="dependency-chain">Dependency chain</h2>
+<p>The deployment is valid only when these upstream conditions hold:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>CUR 2.0 delivered
+</span></span><span style="display:flex;"><span>→ Glue table points to the delivery prefix
+</span></span><span style="display:flex;"><span>→ Athena query succeeds
+</span></span><span style="display:flex;"><span>→ Quick Sight owner and source access exist
+</span></span><span style="display:flex;"><span>→ SPICE capacity is available
+</span></span><span style="display:flex;"><span>→ cid-cmd creates and refreshes CUDOS assets
+</span></span></code></pre></div><p>A failure near the end of this chain is not automatically a CUDOS defect. For example, an ingestion failure can be caused by stale source permissions or insufficient SPICE capacity.</p>
+<h2 id="generated-asset-model">Generated asset model</h2>
+<p>AWS currently documents CUDOS v5 around datasets such as <code>summary_view</code>, <code>resource_view</code>, and <code>hourly_view</code>. Exact asset names and sheet labels are release-dependent, so the deployed environment, <code>cid-cmd</code> version, and resulting Quick Sight assets are recorded together.</p>
+<h2 id="deployment-and-readiness-record">Deployment and readiness record</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cid-cmd version:
+</span></span><span style="display:flex;"><span>Deployment timestamp:
+</span></span><span style="display:flex;"><span>Region:
+</span></span><span style="display:flex;"><span>Dashboard ID/version:
+</span></span><span style="display:flex;"><span>CUR database/table:
+</span></span><span style="display:flex;"><span>Quick Sight owner:
+</span></span><span style="display:flex;"><span>Generated datasets:
+</span></span><span style="display:flex;"><span>Latest ingestion status/time:
+</span></span><span style="display:flex;"><span>Final command status:
+</span></span></code></pre></div><p>Dashboard availability and data freshness are separate checks. A dashboard can open while its SPICE datasets are stale or failed.</p>
+<h2 id="acceptance-contract">Acceptance contract</h2>
+<p>CUDOS is accepted only when:</p>
 <ol>
-<li>Use the current Data Collection account.</li>
-<li>Use the CUR 2.0 source created in Module 3.</li>
-<li>Use the same Region.</li>
-<li>Select the Quick Sight user that owns/creates the assets.</li>
-<li>Review values before confirming.</li>
+<li>the deployment command completes successfully;</li>
+<li>expected datasets and dashboard assets exist;</li>
+<li>the latest SPICE ingestion succeeds;</li>
+<li>the dashboard shows the intended period and metric;</li>
+<li>one headline value reconciles with Athena for identical scope.</li>
 </ol>
+<figure class="workshop-evidence">
+    <img
+        src="http://localhost:62999/CUDOS-with-AmazonQuick/images/05-cudos/05-01-cudos-datasets-spice.png"
+        alt="Amazon Quick dataset list showing the three CUDOS v5 datasets in SPICE"
+        loading="lazy"
+    />
+    
+    <figcaption>The asset inventory proves that the three expected CUDOS datasets exist and use SPICE.</figcaption>
+    
+</figure>
+<figure class="workshop-evidence">
+    <img
+        src="http://localhost:62999/CUDOS-with-AmazonQuick/images/05-cudos/05-01-cudos-dashboard.png"
+        alt="Deployed CUDOS Dashboard v5 open in Amazon Quick"
+        loading="lazy"
+    />
+    
+    <figcaption>The open dashboard proves that the analytical asset is accessible; a dashboard list alone is not required.</figcaption>
+    
+</figure>
+<figure class="workshop-evidence">
+    <img
+        src="http://localhost:62999/CUDOS-with-AmazonQuick/images/05-cudos/05-02-cudos-spice-ingestion.png"
+        alt="SPICE ingestion state for the CUDOS v5 summary_view dataset"
+        loading="lazy"
+    />
+    
+    <figcaption>Only Successful or Completed with a timestamp passes the freshness gate. An In progress capture documents a pending refresh and must be replaced after completion.</figcaption>
+    
+</figure>
 <div class="aws-callout callout-note">
     
-    <p><p>📸 <strong>Screenshot placeholder — <code>05-03-cudos-deployment-wizard.png</code></strong></p>
-<p>Capture one wizard screen that clearly shows the selected CUR source and Region.</p>
-<p>Replace this block with the real screenshot after completing the step.</p>
-</p>
+    <p>A newly created CUR 2.0 export can contain only the current billing period. In that case, visuals for Previous Month, Two Months Ago, or Three Months Ago can show <code>No data</code> even when CUDOS is deployed correctly. The cause is insufficient billing history, not automatically a dashboard failure.</p>
 </div>
 
-<h2 id="step-5--wait-for-deployment">Step 5 — Wait for deployment</h2>
-<p>Do not interrupt the deployment just because it takes several minutes.</p>
-<div class="aws-callout callout-note">
+<h2 id="cudos-style-dashboard-companion">CUDOS-style dashboard companion</h2>
+<p>The deployed CUDOS Dashboard v5 remains the deployment asset. When its real CUR history is too limited for a useful walkthrough, the project also provides a separate <strong>CUDOS Dashboard Demo [Synthetic]</strong>. It runs through Amazon Quick Direct Query against <code>finops_demo.cudos_dashboard_demo_mock</code>, does not consume SPICE, and uses the same synthetic cost source as sections 6.1 and 6.2.</p>
+<p>Its costs reconcile across the project:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>July total cost:      $1,180.00
+</span></span><span style="display:flex;"><span>AmazonEC2 driver:       $693.30
+</span></span><span style="display:flex;"><span>EC2 staging subset:     $135.30
+</span></span><span style="display:flex;"><span>6.1 measured savings:    $15.00
+</span></span><span style="display:flex;"><span>6.2 allocated cost:   $1,142.80
+</span></span><span style="display:flex;"><span>6.2 unallocated cost:    $37.20
+</span></span></code></pre></div><figure class="workshop-evidence evidence-placeholder">
+    <div class="evidence-placeholder__panel" role="note" aria-label="Pending project evidence">
+        <span class="evidence-placeholder__status">Pending project evidence</span>
+        <strong class="evidence-placeholder__title">CUDOS-style cost dashboard demonstration</strong>
+        <p class="evidence-placeholder__capture">Create the Direct Query dashboard from CUDOS Dashboard Demo [Synthetic]. Show the July date range, total cost, daily cost trend, cost by service, and cost by owner. Keep the synthetic/demo label visible.</p>
+        <span class="evidence-placeholder__label">Suggested file</span>
+        <code class="evidence-placeholder__file">images/05-cudos/05-01-cudos-dashboard-demo-synthetic.png</code>
+        <p class="evidence-placeholder__hint">Save the captured image under <code>static/images/05-cudos/05-01-cudos-dashboard-demo-synthetic.png</code>. The next Hugo build replaces this placeholder automatically.</p>
+    </div>
     
-    <p><p>📸 <strong>Screenshot placeholder — <code>05-04-cudos-deployment-complete.png</code></strong></p>
-<p>Capture the successful cid-cmd completion output.</p>
-<p>Replace this block with the real screenshot after completing the step.</p>
-</p>
-</div>
-
-<h2 id="step-6--verify-quick-sight-datasets">Step 6 — Verify Quick Sight datasets</h2>
-<p>Open:</p>
-<p><strong>Amazon Quick → Quick Sight → Datasets</strong></p>
-<p>AWS currently documents CUDOS v5 around:</p>
-<ul>
-<li><code>summary_view</code></li>
-<li><code>resource_view</code></li>
-<li><code>hourly_view</code></li>
-</ul>
-<div class="aws-callout callout-note">
+    <figcaption>Demonstration dataset: this companion visualizes the shared synthetic source used by chapters 5 and 6. It does not replace CUDOS v5 deployment or SPICE-ingestion evidence.</figcaption>
     
-    <p><p>📸 <strong>Screenshot placeholder — <code>05-05-cudos-datasets.png</code></strong></p>
-<p>Capture the CUDOS v5 datasets.</p>
-<p>Replace this block with the real screenshot after completing the step.</p>
-</p>
-</div>
-
-<h2 id="step-7--verify-spice-refresh">Step 7 — Verify SPICE refresh</h2>
-<p>Open relevant datasets and inspect ingestion status.</p>
-<div class="aws-callout callout-note">
-    
-    <p><p>📸 <strong>Screenshot placeholder — <code>05-06-spice-ingestion.png</code></strong></p>
-<p>Capture a successful SPICE refresh or ingestion status.</p>
-<p>Replace this block with the real screenshot after completing the step.</p>
-</p>
-</div>
-
-<h2 id="step-8--open-cudos">Step 8 — Open CUDOS</h2>
-<p>Open <strong>Dashboards → CUDOS</strong>.</p>
-<div class="aws-callout callout-note">
-    
-    <p><p>📸 <strong>Screenshot placeholder — <code>05-07-cudos-home.png</code></strong></p>
-<p>Capture the CUDOS v5 landing/executive view using real account data.</p>
-<p>Replace this block with the real screenshot after completing the step.</p>
-</p>
-</div>
-
+</figure>
+<h2 id="current-project-status">Current project status</h2>
+<p>The CUR, Glue, and Athena dependencies have runtime evidence in this repository. The project also has a working Direct Query dashboard companion based on a shared synthetic source, for a complete CUDOS-style walkthrough. The CUDOS v5 deployment gate still requires its own deployment record, successful SPICE ingestion, and a reconciled real-CUR headline metric; the companion does not claim those conditions have passed.</p>
 <div class="aws-callout callout-validation">
     <h4>Validation Checkpoint</h4>
-    <p>The deployment is complete when the CUDOS dashboard opens and its source datasets can refresh successfully.</p>
+    <p><code>Dashboard opens</code> is not the final success condition. The accepted state is <code>dashboard opens + datasets are fresh + a named metric reconciles with Athena</code>.</p>
 </div>
 
 
@@ -1641,10 +1768,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/" title="CUDOS v5 Dashboards"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/" title="CUDOS v5 Analytical Product"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="http://localhost:1313/CUDOS-with-AmazonQuick/05-cudos-v5/02-navigation-kpis/" title="CUDOS Dashboard Navigation &amp; KPIs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="http://localhost:62999/CUDOS-with-AmazonQuick/05-cudos-v5/02-navigation-kpis/" title="CUDOS KPI Contract &amp; FinOps Finding Model" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1654,19 +1781,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/clipboard.min.js?1786176874"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/perfect-scrollbar.min.js?1786176874"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/perfect-scrollbar.jquery.min.js?1786176874"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/jquery.sticky.js?1786176874"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/featherlight.min.js?1786176874"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/highlight.pack.js?1786176874"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/clipboard.min.js?1786443172"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/perfect-scrollbar.min.js?1786443172"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/perfect-scrollbar.jquery.min.js?1786443172"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/jquery.sticky.js?1786443172"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/featherlight.min.js?1786443172"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/highlight.pack.js?1786443172"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/modernizr.custom-3.6.0.js?1786176874"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/learn.js?1786176874"></script>
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/js/hugo-learn.js?1786176874"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/modernizr.custom-3.6.0.js?1786443172"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/learn.js?1786443172"></script>
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/js/hugo-learn.js?1786443172"></script>
 
-    <link href="http://localhost:1313/CUDOS-with-AmazonQuick/mermaid/mermaid.css?1786176874" rel="stylesheet" />
-    <script src="http://localhost:1313/CUDOS-with-AmazonQuick/mermaid/mermaid.js?1786176874"></script>
+    <link href="http://localhost:62999/CUDOS-with-AmazonQuick/mermaid/mermaid.css?1786443172" rel="stylesheet" />
+    <script src="http://localhost:62999/CUDOS-with-AmazonQuick/mermaid/mermaid.js?1786443172"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

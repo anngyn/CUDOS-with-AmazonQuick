@@ -1,9 +1,9 @@
 ---
-title: "CUDOS v5 Dashboards"
+title: "CUDOS v5 Analytical Product"
 weight: 5
 chapter: false
 pre: "5. "
-description: "Deploy and use CUDOS v5 on the validated CUR 2.0 foundation."
+description: "Deployment model, readiness contract, KPI semantics, reconciliation, and finding structure."
 duration: "35 mins"
 services:
   - CUDOS v5
@@ -14,12 +14,11 @@ services:
 {{< badge "CUDOS v5" >}}
 {{< badge "Amazon Quick Sight" >}}
 {{< badge "SPICE" >}}
-{{< duration "35 mins" >}}
 
 
-CUDOS is an AWS Cloud Intelligence Dashboard for detailed AWS cost and usage analysis. The current foundational path supports and recommends CUR 2.0.
+CUDOS is treated as an analytical product over the validated CUR/Athena foundation, not as an isolated dashboard installation.
 
-## Module contents
+## Chapter contents
 
-- **5.1 Deploy CUDOS v5 Dashboards**
-- **5.2 CUDOS Dashboard Navigation & KPIs**
+- **5.1 CUDOS v5 Deployment Model & Readiness Contract**
+- **5.2 CUDOS KPI Contract & FinOps Finding Model**

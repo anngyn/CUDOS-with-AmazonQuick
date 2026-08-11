@@ -1,9 +1,9 @@
 ---
-title: "Introduction"
+title: "Business Context & Architecture"
 weight: 1
 chapter: false
 pre: "1. "
-description: "Workshop goals, scope, and FinOps architecture."
+description: "Business problem, success criteria, architecture, and design boundaries."
 duration: "10 mins"
 services:
   - AWS Billing
@@ -13,10 +13,9 @@ services:
 {{< badge "AWS Billing" >}}
 {{< badge "FinOps" >}}
 {{< badge "Amazon Quick" >}}
-{{< duration "10 mins" >}}
 
 
-This module establishes the problem, target architecture, and operating principles for the workshop.
+This chapter explains why the system exists, what success means, and why evidence, analytics, presentation, and automation are separated.
 
 AWS billing data contains detailed financial evidence, but raw records do not automatically answer business questions such as:
 
@@ -26,12 +25,12 @@ AWS billing data contains detailed financial evidence, but raw records do not au
 - Which change is expected and which is anomalous?
 - Where should the FinOps team investigate first?
 
-The workshop builds a traceable path from raw billing evidence to dashboards and AI-assisted investigation.
+The project builds a traceable path from raw billing evidence to dashboards and AI-assisted investigation.
 
-## Module contents
+## Chapter contents
 
-- **1.1 Workshop Overview & Objectives**
-- **1.2 FinOps Architecture Deep-Dive**
+- **1.1 Business Context, Goals & Success Criteria**
+- **1.2 Architecture & Design Decisions**
 
 {{< finops title="FinOps Principle" >}}
 Use deterministic financial data as the source of truth. Add dashboards and AI on top of evidence rather than asking AI to invent the evidence.

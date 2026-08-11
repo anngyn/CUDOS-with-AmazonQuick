@@ -1,0 +1,42 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- $title := .Get "title" -}}
+{{- $capture := .Get "capture" -}}
+{{- $caption := .Get "caption" -}}
+{{- $staticPath := printf "static/%s" $src -}}
+{{- $pendingLabel := "Pending project evidence" -}}
+{{- $suggestedFileLabel := "Suggested file" -}}
+{{- $savePrefix := "Save the captured image under" -}}
+{{- $saveSuffix := "The next Hugo build replaces this placeholder automatically." -}}
+{{- if eq .Page.Language.Lang "vi" -}}
+    {{- $pendingLabel = "Bằng chứng dự án đang chờ bổ sung" -}}
+    {{- $suggestedFileLabel = "Tên tệp gợi ý" -}}
+    {{- $savePrefix = "Lưu ảnh đã chụp vào" -}}
+    {{- $saveSuffix = "Bản build Hugo tiếp theo sẽ tự động thay thế placeholder này." -}}
+{{- end -}}
+{{- if os.FileExists $staticPath -}}
+<figure class="workshop-evidence">
+    <img
+        src="{{ $src | relURL }}"
+        alt="{{ $alt }}"
+        loading="lazy"
+    />
+    {{ with $caption }}
+    <figcaption>{{ . | markdownify }}</figcaption>
+    {{ end }}
+</figure>
+{{- else -}}
+<figure class="workshop-evidence evidence-placeholder">
+    <div class="evidence-placeholder__panel" role="note" aria-label="{{ $pendingLabel }}">
+        <span class="evidence-placeholder__status">{{ $pendingLabel }}</span>
+        <strong class="evidence-placeholder__title">{{ $title }}</strong>
+        <p class="evidence-placeholder__capture">{{ $capture | markdownify }}</p>
+        <span class="evidence-placeholder__label">{{ $suggestedFileLabel }}</span>
+        <code class="evidence-placeholder__file">{{ $src }}</code>
+        <p class="evidence-placeholder__hint">{{ $savePrefix }} <code>static/{{ $src }}</code>. {{ $saveSuffix }}</p>
+    </div>
+    {{ with $caption }}
+    <figcaption>{{ . | markdownify }}</figcaption>
+    {{ end }}
+</figure>
+{{- end -}}

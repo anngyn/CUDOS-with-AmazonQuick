@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thiết lập môi trường và Phân quyền on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/</link>
+    <description>Recent content in Thiết lập môi trường và Phân quyền on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Identity thực thi, Region &amp; ranh giới quyền</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/01-cli-permissions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/01-cli-permissions/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS CLI&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS STS&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;AWS IAM&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;vai-trò-trong-dự-án&#34;&gt;Vai trò trong dự án&lt;/h2&gt;&#xA;&lt;p&gt;Identity triển khai là một phần của kiến trúc, không phải ô kiểm tra chuẩn bị. Identity này tạo hoặc kiểm tra billing export, S3, Glue, Athena, các tài nguyên IAM từ template do AWS duy trì và các asset Quick Sight. Nếu identity đó không rõ ràng, bằng chứng về sau không thể chứng minh account hoặc Region nào sở hữu dữ liệu.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dịch vụ Quick Sight, identity &amp; thiết kế capacity</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/02-quicksight-onboarding/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/02-environment-setup/02-quicksight-onboarding/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Quick Sight&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;SPICE&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;vai-trò-trong-kiến-trúc&#34;&gt;Vai trò trong kiến trúc&lt;/h2&gt;&#xA;&lt;p&gt;Quick Sight là lớp trình bày và truy vấn trong bộ nhớ được CUDOS sử dụng. Nó không thay thế CUR hoặc Athena. Trách nhiệm của Quick Sight là cung cấp dataset, ingestion SPICE, analysis, filter và dashboard đã publish trên các ngữ nghĩa tài chính được phê duyệt.&lt;/p&gt;&#xA;&lt;p&gt;Amazon Quick được xem là một lớp trải nghiệm tùy chọn riêng. Sự phân biệt này quan trọng vì triển khai CUDOS vẫn phải sử dụng được ngay cả khi chat agent hoặc Flow không khả dụng.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,10 +1,9 @@
 ---
-title: "Automated Governance & Remediation"
+title: "Automation Levels, Approval & Remediation Boundary"
 weight: 2
 chapter: false
 pre: "9.2 "
-description: "Add human approval boundaries to agentic FinOps recommendations."
-duration: "10 mins"
+description: "Define which FinOps activities may be automated and where human-owned workload authority begins."
 services:
   - Amazon Quick
   - AWS IAM
@@ -13,73 +12,63 @@ services:
 {{< badge "Governance" >}}
 {{< badge "Human Review" >}}
 {{< badge "FinOps" >}}
-{{< duration "10 mins" >}}
 
+## Automation taxonomy
 
-## Step 1 — Classify automation levels
+| Level | Capability | Project status |
+|---|---|---|
+| 0 | Manual analysis | Supported |
+| 1 | Automated detection | Designed through Cost Anomaly Detection |
+| 2 | Automated investigation | Optional Quick Flow design |
+| 3 | Automated recommendation | Optional, always reviewable |
+| 4 | Human-approved workload action | Outside the analytical agent |
 
-| Level | Capability |
-|---|---|
-| 0 | Manual analysis |
-| 1 | Automated detection |
-| 2 | Automated investigation |
-| 3 | Automated recommendation |
-| 4 | Human-approved workload action |
+The project targets Levels 1–3. Level 4 belongs to the workload owner’s delivery process, where change windows, testing, rollback, and business risk are available.
 
-The workshop implements Levels 1–3.
+## Prohibited agent authority
 
-## Step 2 — Identify risky actions
+The analytical identity cannot directly:
 
-Ensure the Flow does not directly:
+- terminate EC2 instances;
+- stop or delete RDS databases;
+- delete S3 data;
+- change IAM;
+- purchase Savings Plans or Reserved Instances.
 
-- terminate EC2
-- stop/delete RDS
-- delete S3 data
-- change IAM
-- purchase Savings Plans or RIs
+These are not merely prompt restrictions. IAM and tool configuration enforce the boundary.
 
-{{< note >}}
-📸 **Screenshot placeholder — `09-06-flow-action-review.png`**
-
-Capture the Flow showing analysis/recommendation steps and no destructive AWS action.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Define an approval package
+## Approval package
 
 ```text
-Observed evidence
-Financial impact
-Affected scope
-Proposed action
-Verification required
-Owner
-Risk
-Approval status
+Observed evidence:
+Financial impact:
+Affected scope:
+Proposed action:
+Verification required:
+Owner:
+Risk and rollback:
+Approval status:
 ```
 
-## Step 4 — Add a human-review message
-
-Finish the Flow output with:
+The final recommendation carries:
 
 ```text
 Status: REVIEW REQUIRED
 No workload changes have been executed.
 ```
 
-{{< note >}}
-📸 **Screenshot placeholder — `09-07-review-required-output.png`**
+## Separation of security domains
 
-Capture the final output showing human review is required.
+```text
+Analytical domain
+→ detection, query, explanation, recommendation
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+Workload domain
+→ approved change, deployment control, rollback, measurement
+```
 
-## Step 5 — Map governance to IAM
-
-The analytical agent/Flow does not need direct destructive EC2/RDS permissions.
+This separation prevents a cost-analysis compromise from becoming a workload-management incident.
 
 {{< security >}}
-Recommendation generation and resource modification are separate security domains.
+Prompt language communicates the policy; IAM and tool permissions enforce it.
 {{< /security >}}

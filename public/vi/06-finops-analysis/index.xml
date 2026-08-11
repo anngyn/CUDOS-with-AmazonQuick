@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Phân tích số liệu FinOps và Unit Economics on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/</link>
+    <description>Recent content in Phân tích số liệu FinOps và Unit Economics on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Phát hiện tối ưu hóa: Từ biến động chi phí đến kết quả đo được</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/01-cost-optimization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/01-cost-optimization/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Cost Optimization&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;CUDOS v5&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;mô-hình-vận-hành&#34;&gt;Mô hình vận hành&lt;/h2&gt;&#xA;&lt;p&gt;Tối ưu hóa được xem là một vòng đời có kiểm soát, không phải một đề xuất rút ra từ dashboard:&lt;/p&gt;&#xA;&lt;figure class=&#34;workshop-evidence&#34;&gt;&#xA;    &lt;img&#xA;        src=&#34;http://localhost:62999/CUDOS-with-AmazonQuick/images/06-finops-analysis/06-01-evidence-driven-finops-operating-loop.png&#34;&#xA;        alt=&#34;Vòng vận hành FinOps dựa trên bằng chứng từ phát hiện bất thường qua xác thực, quy trách nhiệm, quản trị, hành động và đo lường&#34;&#xA;        loading=&#34;lazy&#34;&#xA;    /&gt;&#xA;    &#xA;    &lt;figcaption&gt;Đây là mô hình vận hành của dự án, không phải kiến trúc triển khai. Sơ đồ tách biệt đề xuất, phê duyệt, thực thi và khoản tiết kiệm thực nhận.&lt;/figcaption&gt;&#xA;    &#xA;&lt;/figure&gt;&#xA;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Phát hiện biến động&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ xác thực con số&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ quy trách nhiệm cho tác nhân&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ gán owner&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ đánh giá rủi ro&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ phê duyệt hoặc từ chối&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ thực thi bên ngoài analytical identity&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ đo lường kết quả&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;mô-hình-trọng-yếu&#34;&gt;Mô hình trọng yếu&lt;/h2&gt;&#xA;&lt;p&gt;Các kỳ hiện tại và trước đó tương đương được so sánh bằng cùng chỉ số và phạm vi:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Độ phủ phân bổ &amp; Mô hình kinh tế đơn vị</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/02-unit-economics-allocation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/06-finops-analysis/02-unit-economics-allocation/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Unit Economics&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Cost Allocation&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;FinOps&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;mô-hình-ownership&#34;&gt;Mô hình ownership&lt;/h2&gt;&#xA;&lt;p&gt;Phân bổ trả lời ai chịu trách nhiệm về chi phí. Cấu trúc phân cấp có thể kết hợp account liên kết, Cost Categories, cost allocation tags, taxonomy của account, team, product, application và environment.&lt;/p&gt;&#xA;&lt;p&gt;Một chiều ownership chuẩn duy nhất được chọn để báo cáo. Nếu trộn &lt;code&gt;Team&lt;/code&gt;, &lt;code&gt;CostCenter&lt;/code&gt; và &lt;code&gt;Application&lt;/code&gt; mà không có quy tắc ưu tiên, cùng một khoản phí có thể được các báo cáo khác nhau quy cho những nơi khác nhau.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

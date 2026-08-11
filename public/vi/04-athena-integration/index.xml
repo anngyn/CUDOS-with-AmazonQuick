@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tích hợp Athena và Đối soát dữ liệu on AWS FinOps Intelligence with CUDOS v5</title>
+    <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/</link>
+    <description>Recent content in Tích hợp Athena và Đối soát dữ liệu on AWS FinOps Intelligence with CUDOS v5</description>
+    <generator>Hugo</generator>
+    <language>vi-VN</language>
+    <atom:link href="http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xác thực Athena &amp; Đối soát CUDOS</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/01-query-cur2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/01-query-cur2/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;Amazon Athena&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;SQL&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;CUR 2.0&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;vai-trò-xác-thực&#34;&gt;Vai trò xác thực&lt;/h2&gt;&#xA;&lt;p&gt;Athena là lớp tính toán độc lập của dự án. Chỉ tin cậy CUDOS sau khi một chỉ số có tên cụ thể có thể được tái tạo từ cùng dữ liệu CUR, cùng kỳ, cùng phạm vi account và cùng bộ lọc.&lt;/p&gt;&#xA;&lt;p&gt;Cách tách này phát hiện hai vấn đề phổ biến:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;SQL đúng + SPICE cũ&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ Athena và CUDOS khác nhau vì thời điểm làm mới khác nhau.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Dữ liệu mới + các chỉ số chi phí khác nhau&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;→ cả hai con số đều đúng về nội bộ nhưng trả lời các câu hỏi khác nhau.&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;các-định-danh-phụ-thuộc-môi-trường&#34;&gt;Các định danh phụ thuộc môi trường&lt;/h2&gt;&#xA;&lt;p&gt;Tên database và table được tạo ra sẽ được phát hiện từ môi trường đã triển khai và ghi nhận lần lượt là &lt;code&gt;&amp;lt;CUR_DATABASE&amp;gt;&lt;/code&gt; và &lt;code&gt;&amp;lt;CUR2_TABLE&amp;gt;&lt;/code&gt;. Chúng không được hard-code theo một phiên bản template cũ.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Glue Catalog, Hợp đồng lược đồ &amp; Truy xuất nguồn gốc S3</title>
+      <link>http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/02-glue-inspection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:62999/CUDOS-with-AmazonQuick/vi/04-athena-integration/02-glue-inspection/</guid>
+      <description>&lt;p&gt;&lt;span class=&#34;aws-badge &#34;&gt;AWS Glue&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Data Catalog&lt;/span&gt;&#xA;&#xA;&lt;span class=&#34;aws-badge &#34;&gt;Amazon S3&lt;/span&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;vai-trò-của-catalog&#34;&gt;Vai trò của catalog&lt;/h2&gt;&#xA;&lt;p&gt;Glue là hợp đồng dữ liệu giữa nơi lưu trữ và lớp tính toán. Glue cho Athena biết prefix S3 nào chứa dataset và cách diễn giải từng trường Parquet.&lt;/p&gt;&#xA;&lt;p&gt;Nếu catalog trỏ đến sai prefix, SQL vẫn có thể hợp lệ về cú pháp nhưng lại báo cáo dữ liệu tài chính thiếu hoặc không liên quan. Vì vậy, kiểm tra catalog là một bước kiểm tra truy xuất nguồn gốc chứ không phải một chuyến tham quan console.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

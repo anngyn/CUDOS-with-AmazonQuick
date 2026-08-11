@@ -1,10 +1,9 @@
 ---
-title: "Deploy the CUR 2.0 Data Export Foundation"
+title: "CUR 2.0 Collection Architecture & Deployment"
 weight: 3
 chapter: false
 pre: "3.3 "
-description: "Deploy the official CID Data Exports destination stack for a single-account workshop."
-duration: "15–20 mins"
+description: "Document the official CID deployment pattern, parameter decisions, IAM boundary, and resulting collection resources."
 services:
   - AWS CloudFormation
   - AWS Data Exports
@@ -15,145 +14,66 @@ services:
 {{< badge "AWS CloudFormation" >}}
 {{< badge "AWS Data Exports" >}}
 {{< badge "CUR 2.0" >}}
-{{< duration "15–20 mins" >}}
 
+## Deployment pattern
 
-Official guide:
+The project adopts the current AWS Cloud Intelligence Dashboards Data Exports destination template instead of maintaining a local fork. The official guide remains the template authority:
 
 `https://docs.aws.amazon.com/guidance/latest/cloud-intelligence-dashboards/data-exports.html`
 
-## Step 1 — Launch the Destination stack
+This decision reduces custom infrastructure code, but it creates a versioning responsibility: the template version and actual parameters shown by CloudFormation must be recorded with the deployment.
 
-1. Open the official guide above.
-2. Go to **Deployment → Step 1 of 3 — Create Destination for Data Exports**.
-3. Choose **Launch Stack**.
-4. When CloudFormation opens, confirm the Region is **Asia Pacific (Sydney)**.
+{{< evidence src="images/03-cur2/2.%20launchstack.png" alt="Official CID Data Exports guide with Launch Stack button" caption="The official CID guide is the deployment entry point; an old copied template URL is not treated as authoritative." >}}
 
-{{< note >}}
-📸 **Screenshot placeholder — `03-05-launch-destination-stack.png`**
+## Parameter decisions
 
-Capture the official Launch Stack link or the pre-populated CloudFormation create-stack page.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 2 — Set the stack name
-
-Use:
-
-```text
-CID-DataExports-Destination
-```
-
-## Step 3 — Configure account parameters
-
-Use your current account for both roles:
+The stack is named `CID-DataExports-Destination`. Both source and destination use the current account:
 
 ```text
 Destination Account ID = <ACCOUNT_ID>
 Source Account IDs      = <ACCOUNT_ID>
+Manage CUR 2.0          = yes
+FOCUS                    = no
+Cost Optimization Hub   = no
+Carbon export            = no
 ```
 
-Because this is the single-account test path, place the current account first in `SourceAccountIds`. AWS documents that this lets you **skip Step 2 of 3 (the separate Source stack)**.
+CUR 2.0 is the only enabled export because it is the dataset required by the current CUDOS scope. FOCUS, Cost Optimization Hub, and Carbon are not rejected as products; they are excluded to keep the first data contract small and testable.
 
-## Step 4 — Enable CUR 2.0
+{{< evidence src="images/03-cur2/3.destinationfordataexport.png" alt="CloudFormation parameters for the Data Exports destination stack" caption="Reference parameter set for the single-account destination architecture." >}}
 
-Set:
+## IAM and change boundary
 
-- **Manage CUR 2.0**: `yes`
-- FOCUS: disabled for this workshop
-- Cost Optimization Hub export: disabled for the core workshop
-- Carbon export: disabled
+The template creates IAM roles or managed policies needed by delivery and catalog automation. Acknowledging the CloudFormation capability permits that creation; it does not prove least privilege. The created roles are reviewed later against the analytical boundary in Chapter 11.
 
-Review any additional parameters exposed by the current template and record their actual values rather than relying on an old screenshot.
+{{< evidence src="images/03-cur2/4.createstack.png" alt="CloudFormation IAM capability acknowledgement and Create stack button" caption="IAM capability is an explicit deployment decision whose resulting roles remain subject to review." >}}
 
-{{< note >}}
-📸 **Screenshot placeholder — `03-06-destination-parameters.png`**
+## Resulting resource model
 
-Capture the parameter screen showing the stack name, destination account, source account IDs, and CUR 2.0 enabled.
+The destination stack is expected to create or coordinate:
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+- an S3 destination bucket;
+- a CUR 2.0 Data Export;
+- a Glue database and table automation;
+- Athena-compatible metadata and supporting resources;
+- policies required for delivery and query access.
 
-## Step 5 — Review IAM capability
+CloudFormation `CREATE_COMPLETE` proves only that the control-plane deployment succeeded. It does not prove that billing records have arrived. Data delivery is validated separately.
 
-Continue through **Configure stack options**.
-
-Optional workshop tags:
-
-| Key | Value |
-|---|---|
-| Project | FinOpsWorkshop |
-| Environment | Workshop |
-
-At the Review page:
-
-1. Confirm the Region.
-2. Confirm CUR 2.0 is enabled.
-3. Confirm Source and Destination are the same account.
-4. Acknowledge that CloudFormation might create IAM resources.
-5. Create the stack.
-
-{{< note >}}
-📸 **Screenshot placeholder — `03-07-review-destination-stack.png`**
-
-Capture the final review screen before creating the stack. Hide account IDs before publication.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 6 — Wait for CloudFormation
-
-Open the stack **Events** tab.
-
-You will first see:
+## Deployment record
 
 ```text
-CREATE_IN_PROGRESS
+Template/version shown by CloudFormation:
+Region: ap-southeast-2
+Stack name: CID-DataExports-Destination
+Source/destination topology: single account
+CUR 2.0 enabled: yes
+Final stack status:
+First failed resource/status reason (if any):
 ```
 
-Wait until:
-
-```text
-CREATE_COMPLETE
-```
-
-AWS documents roughly 5–15 minutes for this destination step.
-
-{{< note >}}
-📸 **Screenshot placeholder — `03-08-destination-stack-complete.png`**
-
-Capture the CloudFormation stack showing `CREATE_COMPLETE`.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-If the stack fails, record the first failed logical resource and **Status reason** from Events.
-
-## Step 7 — Inspect resources
-
-Open the stack **Resources** tab.
-
-Expect collection-side resources such as:
-
-- S3 destination bucket
-- Glue database
-- Athena tables
-- Glue crawlers/supporting resources
-- policies required for Data Exports delivery
-
-{{< note >}}
-📸 **Screenshot placeholder — `03-09-destination-stack-resources.png`**
-
-Capture the Resources tab so the workshop shows what CloudFormation actually created.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 8 — Skip the separate Source stack
-
-For this single-account workshop, the current account ID was placed first in `SourceAccountIds`, so follow the official single-account path and **skip the separate Source stack**.
+If the stack fails, the first failed logical resource and its status reason are treated as the root diagnostic evidence. Re-running with broader administrator permissions would obscure that evidence.
 
 {{< validation >}}
-The destination stack must be `CREATE_COMPLETE`, CUR 2.0 must be enabled, and the stack resources must be visible before moving to delivery validation.
+The infrastructure layer is accepted when the stack reaches `CREATE_COMPLETE`, its resource model matches the design, and its exact version and parameters are recorded. Billing delivery remains a separate acceptance gate.
 {{< /validation >}}

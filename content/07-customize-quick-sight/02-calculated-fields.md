@@ -1,33 +1,32 @@
 ---
-title: "Creating Custom Calculated Fields"
+title: "Presentation Logic & Calculated-Field Boundary"
 weight: 2
 chapter: false
 pre: "7.2 "
-description: "Add a simple FinOps classification field and understand where BI logic should live."
-duration: "15 mins"
+description: "Separate harmless presentation classifications from organization-wide financial semantics."
 services:
   - Amazon Quick Sight
   - Calculated Fields
 ---
 {{< badge "Amazon Quick Sight" >}}
 {{< badge "Calculated Fields" >}}
-{{< badge "FinOps" >}}
-{{< duration "15 mins" >}}
+{{< badge "Semantic Governance" >}}
 
+## Boundary decision
 
-Calculated fields are useful for presentation-level logic. Core financial semantics should remain in a reusable semantic/query layer.
-
-## Step 1 — Create a safe calculated field
-
-Open the analysis and choose **Add calculated field**.
-
-Name:
+Quick Sight calculated fields are appropriate for local presentation logic. They are not the correct location for shared definitions of amortized cost, chargeback, allocation, or commitment treatment because those definitions would be hidden inside one analysis.
 
 ```text
-Spend Band
+Reusable financial meaning
+→ Athena view or governed semantic layer
+
+Local visual classification
+→ Quick Sight calculated field
 ```
 
-Example expression:
+## Reference classification
+
+`Spend Band` is intentionally simple:
 
 ```text
 ifelse(
@@ -37,40 +36,23 @@ ifelse(
 )
 ```
 
-Adapt the field name and threshold to the real dataset and workshop purpose.
+The threshold and source field are documented. The field classifies a value for the current view; it does not redefine the cost metric.
 
-{{< note >}}
-📸 **Screenshot placeholder — `07-08-calculated-field-editor.png`**
+## Validation
 
-Capture the calculated-field editor with the verified expression.
+At least two rows on opposite sides of the threshold are checked manually. The validation record contains the input value, expected band, observed band, and result.
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+```text
+Calculated field:
+Source field:
+Threshold/version:
+Test case 1:
+Test case 2:
+Result: PASS / FAIL
+```
 
-## Step 2 — Use it in a visual
-
-Create a table containing:
-
-- service
-- cost
-- Spend Band
-
-{{< note >}}
-📸 **Screenshot placeholder — `07-09-spend-band-table.png`**
-
-Capture the visual using the new calculated field.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Validate manually
-
-Check at least two services and confirm their assigned band matches the rule.
-
-## Step 4 — Keep core financial logic out of presentation-only fields
-
-Avoid hiding organization-wide amortized-cost, chargeback, or allocation semantics in one Quick Sight analysis.
+{{< capture src="images/07-customize-quick-sight/07-02-spend-band-validation.png" alt="QuickSight Spend Band validation with values on both sides of the threshold" title="Calculated-field boundary validation" capture="Capture a small table visual showing at least one input below the threshold and one input at or above it, with the observed Spend Band and expected result visible. Do not use the calculated-field editor as the evidence." caption="Two boundary cases demonstrate the presentation rule without treating it as a shared financial definition." >}}
 
 {{< validation >}}
-The calculated field is correct for selected examples and does not redefine the underlying cost metric.
+Presentation logic is accepted when it is transparent, locally scoped, manually testable, and does not override the governed financial model.
 {{< /validation >}}

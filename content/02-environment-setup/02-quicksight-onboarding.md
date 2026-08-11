@@ -1,10 +1,9 @@
 ---
-title: "Quick Sight Account Onboarding"
+title: "Quick Sight Service, Identity & Capacity Design"
 weight: 2
 chapter: false
 pre: "2.2 "
-description: "Create or verify the Amazon Quick account and Quick Sight BI environment."
-duration: "10 mins"
+description: "Define how Quick Sight is provisioned, owned, and sized for CUDOS rather than treating onboarding as a console exercise."
 services:
   - Amazon Quick
   - Amazon Quick Sight
@@ -13,81 +12,52 @@ services:
 {{< badge "Amazon Quick" >}}
 {{< badge "Amazon Quick Sight" >}}
 {{< badge "SPICE" >}}
-{{< duration "10 mins" >}}
 
+## Role in the architecture
 
-Amazon Quick Sight is the BI capability used by CUDOS. It is part of Amazon Quick.
+Quick Sight is the presentation and in-memory query layer used by CUDOS. It does not replace CUR or Athena. Its responsibility is to provide datasets, SPICE ingestion, analyses, filters, and published dashboards over approved financial semantics.
 
-## Step 1 — Open Amazon Quick
+Amazon Quick is treated as a separate optional experience layer. This distinction matters because the CUDOS implementation should remain usable even when chat agents or Flows are unavailable.
 
-In the AWS Management Console:
+## Service ownership decision
 
-1. Confirm the Region is **Asia Pacific (Sydney)**.
-2. Search for **Amazon Quick**.
-3. Open the service.
+The project records four ownership choices before CUDOS deployment:
 
-{{< note >}}
-📸 **Screenshot placeholder — `02-04-amazon-quick-home.png`**
+| Decision | Project value |
+|---|---|
+| Quick account Region | `ap-southeast-2` |
+| Authentication model | Account-specific; IAM Identity Center preferred for organizational use |
+| Asset owner | Named Quick Sight user or governed group |
+| Administrative owner | Responsible for capacity, sharing, and lifecycle |
 
-Capture the Amazon Quick landing or sign-up screen in the Sydney Region.
+For a production organization, the authentication model is a governance decision because it controls offboarding, group-based access, and cross-team sharing.
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
+## Readiness contract
 
-## Step 2 — Sign up if required
+The service is ready for CUDOS when all of the following are true:
 
-If the account is not provisioned yet:
+- the Quick account is provisioned in the intended Region;
+- the owner can access datasets, analyses, and dashboards;
+- SPICE capacity is visible and sufficient for the planned CUDOS datasets;
+- the identity can read the approved Athena/Glue/S3 analytical path;
+- dashboard sharing is not public by default.
 
-1. Start the sign-up workflow.
-2. Choose the Region where the dashboards will be deployed.
-3. Enter a unique Quick account name.
-4. Enter the notification email address.
-5. Choose the authentication method appropriate to the workshop account.
-6. Create the account and wait until onboarding completes.
+If any item is missing, CUDOS deployment is expected to fail or produce assets that cannot refresh. The project therefore records readiness before running `cid-cmd`, rather than diagnosing capacity and identity only after deployment.
 
-For a production organization, consider IAM Identity Center for organization-wide sharing. Choose the authentication model carefully.
+## Cost and capacity effect
 
-{{< note >}}
-📸 **Screenshot placeholder — `02-05-quick-account-configuration.png`**
+SPICE and advanced Amazon Quick capabilities can incur recurring charges. Capacity is increased only when an observed ingestion failure or measured dataset size requires it. This avoids provisioning excess capacity merely to remove uncertainty.
 
-Capture the sign-up configuration before creating the Quick account. Redact email addresses before publishing.
+```text
+Quick account/Region:
+Asset owner:
+Authentication model:
+Current SPICE capacity:
+Expected CUDOS datasets:
+Sharing default:
+Readiness status: READY / BLOCKED
+```
 
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 3 — Verify Quick Sight BI
-
-Open the BI area and confirm you can access:
-
-- Datasets
-- Analyses
-- Dashboards
-
-{{< note >}}
-📸 **Screenshot placeholder — `02-06-quick-sight-home.png`**
-
-Capture the Quick Sight home area showing the BI navigation.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-## Step 4 — Review SPICE capacity
-
-Open Quick administration and inspect SPICE capacity. CUDOS v5 uses SPICE-backed datasets. Record the current state and adjust only if the CUDOS deployment reports insufficient capacity.
-
-{{< note >}}
-📸 **Screenshot placeholder — `02-07-spice-capacity.png`**
-
-Capture the SPICE capacity page before CUDOS deployment.
-
-Replace this block with the real screenshot after completing the step.
-{{< /note >}}
-
-{{< cost >}}
-Quick Sight/SPICE and advanced Amazon Quick capabilities can incur charges. Record what you enable so it can be reviewed in Module 12.
-{{< /cost >}}
-
-## Official references
-
-- https://docs.aws.amazon.com/quick/latest/userguide/getting-started.html
-- https://docs.aws.amazon.com/guidance/latest/cloud-intelligence-dashboards/deployment-in-global-regions.html
+{{< validation >}}
+Quick Sight is considered a valid dependency only when ownership, Region, capacity, source access, and sharing defaults are recorded.
+{{< /validation >}}
