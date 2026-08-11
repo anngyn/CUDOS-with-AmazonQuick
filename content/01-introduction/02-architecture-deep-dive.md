@@ -16,22 +16,6 @@ services:
 {{< badge "Architecture" >}}
 {{< badge "FinOps" >}}
 
-weight: 2
-chapter: false
-pre: "1.2 "
-description: "Understand each data, analytics, BI, AI, and governance layer."
-duration: "10 mins"
-services:
-  - AWS Data Exports
-  - Amazon S3
-  - AWS Glue
-  - Amazon Athena
-  - Amazon QuickSight
-  - Amazon Q
----
-{{< badge "Architecture" >}}
-{{< badge "FinOps" >}}
-
 
 ## System context
 
