@@ -15,7 +15,7 @@ services:
 
 ## Tại sao cần Mô hình Quản trị?
 
-Có tool xịn (như CUDOS) để nhìn thấy chi phí là tốt, nhưng nếu không có quy định RÕ RÀNG về việc: "Ai là người xem?", "Ai là người sửa lỗi?", "Bao lâu thì họp review một lần?" thì cái Dashboard đó cũng chỉ để chưng cho đẹp chứ không ai dùng.
+CUDOS giúp nhìn thấy chi phí, nhưng giá trị chỉ xuất hiện khi quyền truy cập, trách nhiệm và nhịp review được xác định rõ: ai xem, ai kiểm chứng và ai có quyền thay đổi workload.
 
 ## Ma trận Phân quyền (Access Matrix)
 
@@ -26,7 +26,7 @@ Có tool xịn (như CUDOS) để nhìn thấy chi phí là tốt, nhưng nếu 
 | CUDOS/Quick Sight |  |  | đã tắt | PASS/FAIL |
 | Quick Space/agent |  |  | đã tắt | PASS/FAIL |
 
-Lưu ý: Chỉ cấp quyền cho IAM Role hoặc Group, TUYỆT ĐỐI không cấp trực tiếp cho User, và không ghi nhận các session tạm thời vào ma trận này.
+Ưu tiên cấp quyền qua IAM Role hoặc Group thay vì user trực tiếp; không ghi nhận session tạm thời trong ma trận này.
 
 ## Phân công Trách nhiệm (Ownership)
 
@@ -39,7 +39,7 @@ Chủ sở hữu hành động workload:
 Chủ sở hữu bảo mật:
 ```
 
-Tuyệt đối KHÔNG gộp chung 'Người xem Dashboard' và 'Người sửa hệ thống' làm một. Nếu không, bộ phận soi chi phí sẽ tự ý vào tắt server của team Dev mà không cần hỏi ý kiến.
+Không gộp vai trò xem dashboard với vai trò thay đổi workload. Sự tách biệt này giữ cho khuyến nghị phân tích không trở thành thay đổi hạ tầng không được kiểm soát.
 
 ## Lịch Review Chi phí định kỳ
 

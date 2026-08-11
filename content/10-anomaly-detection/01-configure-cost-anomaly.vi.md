@@ -60,7 +60,7 @@ AWS Cost Anomaly Detection áp dụng ngưỡng USD. Quy tắc 20% là quy tắc
 
 ## Tại sao phải lọc kép (% và $)?
 
-Nếu chỉ lọc theo %: Chi phí tăng từ `$0.01` lên `$0.10` (tăng 900%), hệ thống cũng sẽ hú còi. Rất phiền phức!
+Nếu chỉ lọc theo %: Chi phí tăng từ `$0.01` lên `$0.10` (tăng 900%) vẫn có thể tạo cảnh báo dù tác động tài chính rất nhỏ.
 Nếu chỉ lọc theo $: Bạn có thể bỏ sót các workload nhỏ nhưng đang bị rò rỉ chi phí (tăng dần đều).
 => Việc kết hợp cả hai điều kiện sẽ giúp chỉ những sự cố thực sự ĐÁNG TIỀN mới lọt vào hàng đợi xử lý của team.
 

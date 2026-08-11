@@ -16,7 +16,7 @@ services:
 {{< badge "FinOps" >}}
 
 
-Báo dòng chữ "Deleted successfully" trên màn hình không có nghĩa là tài nguyên đã bốc hơi 100%. Bạn phải check lại trên AWS Console, và quan trọng nhất: Chờ Bill tháng sau về xem có bị tính tiền nữa không.
+Thông báo "Deleted successfully" không đủ để xác nhận vòng đời đã hoàn tất. Cần đối chiếu lại trên AWS Console và kiểm tra billing sau khi dữ liệu chi phí đã kịp cập nhật.
 
 
 ## Check CloudFormation
@@ -92,5 +92,5 @@ Tài liệu vòng đời chỉ hoàn tất khi mọi tài nguyên đã xóa ho�
 {{< /validation >}}
 
 {{< finops title="Điểm rút ra về FinOps" >}}
-Dọn dẹp rác (Lifecycle Management) CHÍNH LÀ FinOps. Thấy một cục tài nguyên vô danh vứt lăn lóc và đặt câu hỏi "Cái của nợ này của ai? Sao giờ này nó vẫn chạy?" là thao tác tối ưu chi phí hiệu quả nhất.
+Quản lý vòng đời là một phần của FinOps. Câu hỏi quan trọng là: tài nguyên này thuộc ai, vì sao còn tồn tại và khi nào sẽ được review hoặc xóa?
 {{< /finops >}}

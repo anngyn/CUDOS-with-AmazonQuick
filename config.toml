@@ -14,7 +14,7 @@ home = [ "HTML", "RSS", "JSON"]
   editURL = ""
   description = "AWS FinOps Intelligence with CUDOS v5"
   author = "Nguyễn Ấn"
-  showVisitedLinks = false
+  showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
   

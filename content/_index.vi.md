@@ -4,19 +4,18 @@ chapter: false
 description: "Dự án AWS FinOps có dữ liệu đối soát thực tế, được xây dựng trên CUR 2.0, Athena, CUDOS v5, QuickSight và cơ chế tự động hóa có quản trị."
 ---
 
-{{< finops-hero
-  label="Dự án AWS FinOps · Sydney"
-  headline="Biến dữ liệu billing thành quyết định FinOps có quản trị."
-  summary="Một dự án CUDOS theo phong cách production, tách rõ nguồn tài chính, bằng chứng phân tích, khuyến nghị và phê duyệt của con người."
-  proof_one_label="Nguồn tài chính"
-  proof_one_value="CUR 2.0 → Athena"
-  proof_two_label="Sản phẩm phân tích"
-  proof_two_value="CUDOS v5 + Amazon Quick"
-  proof_three_label="Rào chắn quyết định"
-  proof_three_value="Có bằng chứng. Có người duyệt."
->}}
-
 Kho lưu trữ này trình bày bài toán kinh doanh, kiến trúc, quyết định triển khai, bằng chứng xác thực, mô hình vận hành và các phần còn đang hoàn thiện như một dự án AWS FinOps có thể truy vết.
+
+## Cách đọc dự án
+
+| Lớp | Chương | Câu hỏi được trả lời |
+|---|---|---|
+| Bằng chứng tài chính | 3–5 | Dữ liệu billing đã được bàn giao, truy vấn và hiển thị trên sản phẩm phân tích chưa? |
+| Quyết định FinOps | 6–7 | Biến động nào đáng chú ý, ai sở hữu và kết quả được đo lường thế nào? |
+| Vận hành có hỗ trợ | 8–10 | Bằng chứng đã phê duyệt có thể được giải thích, điều tra và định tuyến mà không tự động remediation hay không? |
+| Quản trị và vòng đời | 11–12 | Quyền nào, tài nguyên nào được giữ lại và nhịp review nào giúp hệ thống vận hành an toàn? |
+
+Khi triển khai, nên đọc theo thứ tự chương. Khi đánh giá một quyết định, bắt đầu từ nguồn và metric đã nêu tên, sau đó lần theo bằng chứng đến chủ sở hữu và hành động tiếp theo do con người phê duyệt.
 
 {{< badge "FinOps" >}}
 {{< badge "CUDOS v5" >}}
@@ -24,7 +23,7 @@ Kho lưu trữ này trình bày bài toán kinh doanh, kiến trúc, quyết đ�
 
 ## Bài toán kinh doanh
 
-Dữ liệu thanh toán AWS rất chi tiết nhưng lại phân tán. Bộ phận tài chính cần số liệu tổng chi phí chính xác; đội ngũ kỹ thuật muốn biết rõ tài nguyên nào đang ngốn tiền; trong khi đó, các service owner lại cần những thông tin thực tế để có thể hành động ngay. Nếu không có một luồng phân tích chuẩn hóa, các team sẽ phải tự mò mẫm trong Cost Explorer hoặc tranh luận về những con số không đồng nhất do khác biệt về khung thời gian, cách tính toán, bộ lọc hay thời điểm làm mới (refresh) dữ liệu.
+Dữ liệu thanh toán AWS rất chi tiết nhưng phân tán. Bộ phận tài chính cần tổng chi phí đáng tin cậy; đội ngũ kỹ thuật cần biết tài nguyên nào tạo ra chi phí đáng kể; còn service owner cần bằng chứng đủ rõ để quyết định. Nếu không có luồng phân tích chuẩn hóa, các team phải phụ thuộc vào kiểm tra Cost Explorer thủ công hoặc tranh luận về các con số khác kỳ, khác metric, khác filter hoặc khác thời điểm refresh.
 
 Dự án này giải quyết vấn đề trên bằng cách xây dựng một luồng dữ liệu minh bạch, có thể truy xuất từ lúc xuất hóa đơn cho đến khi đưa ra quyết định vận hành.
 
@@ -53,11 +52,11 @@ Cost Anomaly Detection và SNS cung cấp tín hiệu vận hành bao quanh lu�
 - Lớp thu thập CUR 2.0 có khả năng tiếp nhận dữ liệu định dạng Parquet thực tế;
 - Các bảng Athena được lập danh mục (catalog) rõ ràng, đi kèm với các truy vấn SQL để dễ dàng đối soát;
 - Mô hình triển khai CUDOS đi kèm với bước kiểm tra trạng thái sẵn sàng của SPICE;
-- Quy trình đối soát dữ liệu chặt chẽ giữa Athena và CUDOS;
+- Quy trình đối soát có kiểm soát giữa Athena và CUDOS;
 - Cấu trúc hóa các thông tin FinOps, bao gồm: người chịu trách nhiệm, bằng chứng cụ thể, hành động cần làm và kết quả đạt được;
 - Định nghĩa rõ cách phân bổ chi phí và các chỉ số unit economics;
 - Thiết lập cảnh báo chi phí bất thường, quản lý phân quyền và vòng đời tài nguyên;
-- Tích hợp một lớp AI (tùy chọn) để giải thích các dữ liệu đã được đối soát, tuyệt đối không dùng AI để thay thế số liệu gốc.
+- Tích hợp một lớp AI (tùy chọn) để giải thích dữ liệu đã được đối soát, không dùng AI để thay thế số liệu gốc.
 
 ## Trạng thái bàn giao hiện tại
 

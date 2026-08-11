@@ -32,7 +32,7 @@ Vai trò AI/Flow
 → tạo giải thích/khuyến nghị
 ```
 
-Nếu trong Policy có lọt vào các quyền như `ec2:TerminateInstances`, `rds:DeleteDBInstance` hay `iam:CreateUser` thì ĐÁNH RỚT (FAIL) NGAY LẬP TỨC.
+Nếu policy có các quyền như `ec2:TerminateInstances`, `rds:DeleteDBInstance` hay `iam:CreateUser`, ranh giới chỉ-đọc không còn đạt và cần được xử lý trước khi nghiệm thu.
 
 ## Review các IAM Roles
 
@@ -64,9 +64,9 @@ Trust policy của `CidCmdQuickSightDataSourceRole` chỉ cho phép `quicksight.
 
 ## Lưu ý về Customer-managed KMS
 
-Dùng Customer-managed KMS (CMK) thì xịn đấy (kiểm soát được policy, audit log), nhưng nó kéo theo ti tỉ thứ phiền phức: tự lo key policy, rủi ro bị khóa (lock-out), và tốn thêm tiền hàng tháng. Chỉ dùng CMK nếu quy định bảo mật của công ty BẮT BUỘC, còn không thì cứ AWS-managed KMS (SSE-S3 hoặc SSE-KMS) mà táng.
+Dùng customer-managed KMS (CMK) tăng khả năng kiểm soát policy và audit, nhưng cũng yêu cầu sở hữu key policy, phương án tránh lock-out và chi phí vận hành. Chỉ chọn CMK khi có yêu cầu bảo mật hoặc tuân thủ rõ ràng; nếu không, AWS-managed encryption như SSE-S3 hoặc SSE-KMS thường phù hợp hơn.
 
-Mã hóa lắm vào mà mất Key thì cũng khóc ròng. Đừng cấu hình lằng nhằng nếu không có quy trình backup/rotate Key đàng hoàng.
+Không tăng độ phức tạp mã hóa khi chưa có quy trình quản lý key, recovery và rotation tương ứng.
 
 Workshop này dùng mã hóa S3 do AWS quản lý (`AES256` / `SSE_S3`), không dùng customer-managed KMS key. Chưa có yêu cầu nào biện minh cho gánh nặng key policy, khôi phục key và vận hành bổ sung của CMK.
 

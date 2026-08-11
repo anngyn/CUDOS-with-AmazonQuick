@@ -37,20 +37,20 @@ CUDOS và Athena
 
 Để AI trả lời chính xác, ta tạo một không gian (Space) tên là `AWS FinOps Intelligence` chỉ chứa các Dashboard đã nghiệm thu. Con bot AI (được đặt tên là `FinOps Operations Advisor`) sẽ chỉ được phép đọc dữ liệu từ Space này.
 
-Cách thiết lập "hàng rào" này giúp con AI không bị "ảo giác" (hallucinate) và không trả lời linh tinh dựa trên các dữ liệu rác hay dữ liệu chưa được kiểm duyệt của công ty.
+Ranh giới này giúp AI chỉ sử dụng dữ liệu đã được kiểm duyệt, giảm nguy cơ trả lời ngoài phạm vi hoặc suy diễn từ nguồn không đáng tin cậy.
 
 ## Các quy tắc Prompt (Guardrails)
 
 ```text
 1. Chỉ được dùng số liệu từ các Dashboard FinOps trong Space đã chỉ định.
 2. Luôn phải nhắc lại mốc thời gian (kỳ hóa đơn) khi báo cáo số tiền.
-3. TUYỆT ĐỐI không được tự bịa ra các con số tài chính.
+3. Không tạo ra các số liệu tài chính không có trong nguồn đã liên kết.
 4. Phân biệt rõ giữa "Hiện tượng nhìn thấy trên biểu đồ" và "Nguyên nhân phỏng đoán".
 5. Luôn đề xuất các bước kiểm tra lại (investigate) trước khi xui người dùng đi sửa lỗi.
 6. Không được quyền xác nhận hay phê duyệt các thay đổi trên hệ thống thật.
 ```
 
-Các quy tắc này giúp hạn chế rủi ro AI trả lời bậy, nhưng KHÔNG đảm bảo đúng 100%. Bạn vẫn phải dùng não để check lại số liệu.
+Các quy tắc này giảm rủi ro trả lời không đúng phạm vi nhưng không thay thế bước đối soát số liệu. Câu trả lời vẫn cần được đánh giá với nguồn tài chính có thẩm quyền.
 
 ## Ghi nhận Thông tin Agent
 
@@ -72,5 +72,5 @@ Trạng thái: READY / BLOCKED / OPTIONAL
 Điều này chứng minh **luồng hỏi đáp chỉ-đọc ở cấp Topic** trên nguồn Athena tổng hợp dùng chung. Nó không chứng minh câu trả lời dựa trên CUR thật, không chứng minh FinOps Space, và cũng không phải Chat Agent tự động. Các phần đó vẫn là mở rộng tùy chọn và cần kiểm thử độc lập trước khi dùng production.
 
 {{< security >}}
-Con AI chỉ cần quyền ĐỌC (Read-only) đối với các Dashboard. Tuyệt đối KHÔNG cấp cho nó quyền thay đổi hạ tầng (như quyền sửa EC2, RDS, S3 hay IAM).
+AI chỉ cần quyền đọc đối với dashboard. Không cấp cho nó quyền thay đổi hạ tầng như EC2, RDS, S3 hoặc IAM.
 {{< /security >}}

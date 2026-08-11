@@ -37,7 +37,7 @@ Kênh Slack nhận cảnh báo BẮT BUỘC PHẢI LÀ KÊNH KÍN (Private Chann
 
 ## Test luồng cảnh báo (Testing)
 
-TUYỆT ĐỐI KHÔNG dùng tool sinh tải (tạo chi phí giả) để ép AWS gửi cảnh báo. Thay vào đó, hãy dùng tính năng "Send test message" của SNS để verify luồng chạy:
+Không tạo chi phí giả để ép AWS phát hiện bất thường. Thay vào đó, dùng tính năng "Send test message" của SNS để kiểm thử đường truyền:
 
 ```text
 SNS topic:
@@ -56,7 +56,7 @@ Chỉ cần một dòng tin nhắn test bắn về Slack thành công là đủ 
 1. Cost Anomaly báo lỗi, nhưng SNS không nhận được gì
 → Check lại quyền (Resource Policy) của SNS xem đã cho phép Cost Anomaly bắn thông báo vào chưa.
 
-2. SNS nhận được tin, nhưng Slack im lìm
+2. SNS publish thành công, nhưng Slack không nhận được tin
 → Check lại cấu hình AWS Chatbot (hoặc Q Developer) xem đã map đúng SNS Topic với Slack Channel chưa.
 
 3. Slack nhảy tin nhắn ầm ầm, nhưng không ai xử lý

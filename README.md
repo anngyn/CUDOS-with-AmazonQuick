@@ -10,7 +10,7 @@ GitHub Pages được build tự động từ nhánh `main`:
 
 `https://anngyn.github.io/CUDOS-with-AmazonQuick/`
 
-Trang public dùng nhận diện **FinOps evidence ledger**: điều hướng theo chuỗi bằng chứng, trạng thái delivery rõ ràng và ảnh evidence đã loại bỏ identifiers nhạy cảm. Không sử dụng tracker hay counter bên thứ ba.
+Trang public giữ nguyên template workshop hiện có, bổ sung trạng thái delivery rõ ràng và ảnh evidence đã loại bỏ identifiers nhạy cảm.
 
 ## Kiến trúc Hệ thống
 

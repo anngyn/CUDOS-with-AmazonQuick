@@ -3,7 +3,7 @@ title: "Quy trình Dọn dẹp (Tear-down)"
 weight: 1
 chapter: false
 pre: "12.1 "
-description: "Dọn dẹp sạch sẽ rác rến sau khi xong dự án để tránh bị trừ tiền oan, và phải dọn đúng thứ tự."
+description: "Quản lý vòng đời tài nguyên theo đúng thứ tự để tránh chi phí không cần thiết và bảo toàn bằng chứng dự án."
 duration: "15 phút"
 services:
   - Amazon Quick
@@ -47,7 +47,7 @@ Ghi nhận:
 - S3 bucket/prefix
 - tài nguyên Glue/Athena
 
-Mỗi mục nhận trạng thái `RETAIN` (Giữ lại) hoặc `DELETE` (Xóa bỏ), một chủ sở hữu và lý do. TUYỆT ĐỐI KHÔNG dùng tool chạy script xóa bừa dựa theo tên (vd: xóa hết bucket có chữ 'test').
+Mỗi mục nhận trạng thái `RETAIN` (Giữ lại) hoặc `DELETE` (Xóa bỏ), một chủ sở hữu và lý do. Không chạy lệnh xóa theo tên suy đoán, ví dụ xóa mọi bucket có chữ `test`.
 
 
 ## Xóa các thành phần Amazon Q

@@ -33,7 +33,7 @@ Tài khoản (IAM Role) cấp cho AI phân tích KHÔNG ĐƯỢC PHÉP:
 - Tạm dừng hay xóa database RDS;
 - Xóa file trên S3;
 - Thay đổi quyền IAM;
-- Tự ý quẹt thẻ mua Savings Plans (SP) hay Reserved Instances (RI).
+- Mua Savings Plans (SP) hoặc Reserved Instances (RI) khi chưa có phê duyệt.
 
 Đây không phải là trò đùa kiểu "dặn AI trong prompt". Bạn PHẢI dùng IAM Policy để khóa cứng các quyền này lại ở mức hạ tầng.
 

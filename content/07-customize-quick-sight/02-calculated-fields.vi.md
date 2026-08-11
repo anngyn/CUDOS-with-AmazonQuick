@@ -14,7 +14,7 @@ services:
 
 ## Ranh giới giữa Trình bày và Dữ liệu gốc
 
-Tính năng Calculated Fields của QuickSight chỉ nên dùng cho các tác vụ "làm đẹp" hoặc phân loại hiển thị trên bề mặt (presentation logic). TUYỆT ĐỐI KHÔNG dùng tính năng này để định nghĩa lại các quy tắc chia tiền phức tạp như Amortized Cost, Chargeback hay Allocation, vì những logic ngầm này sẽ bị chôn giấu trong Dashboard và không ai khác tái sử dụng được.
+Calculated Fields của QuickSight phù hợp với phân loại và logic hiển thị (presentation logic). Không dùng chúng để định nghĩa lại Amortized Cost, Chargeback hay Allocation phức tạp, vì logic sẽ bị ẩn trong dashboard và khó tái sử dụng hoặc kiểm toán.
 
 ```text
 Các quy tắc tính tiền xài chung (Reusable logic)

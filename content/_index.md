@@ -4,19 +4,18 @@ chapter: false
 description: "An evidence-backed AWS FinOps implementation built on CUR 2.0, Athena, CUDOS v5, QuickSight, and governed automation."
 ---
 
-{{< finops-hero
-  label="AWS FinOps implementation · Sydney"
-  headline="Turn billing records into governed FinOps decisions."
-  summary="A production-style CUDOS project that keeps the financial source, analytical evidence, recommendation, and human approval visibly separate."
-  proof_one_label="Financial source"
-  proof_one_value="CUR 2.0 → Athena"
-  proof_two_label="Analysis product"
-  proof_two_value="CUDOS v5 + Amazon Quick"
-  proof_three_label="Decision guardrail"
-  proof_three_value="Evidence first. Human approval."
->}}
-
 This repository documents the business problem, architecture, implementation decisions, validation evidence, operating model, and remaining gaps as one traceable AWS FinOps project.
+
+## How to read this project
+
+| Layer | Chapters | Question answered |
+|---|---|---|
+| Financial evidence | 3–5 | Is the billed data delivered, queryable, and visible in the analytical product? |
+| FinOps decision | 6–7 | Which cost movement matters, who owns it, and how is the outcome measured? |
+| Assisted operations | 8–10 | Can approved evidence be explained, investigated, and routed without autonomous remediation? |
+| Governance and lifecycle | 11–12 | Which permissions, retained resources, and review responsibilities make the system safe to operate? |
+
+Read the chapters in order when implementing. When reviewing a decision, start with the named source and metric, then follow its evidence to the owner and the next human-approved action.
 
 {{< badge "FinOps" >}}
 {{< badge "CUDOS v5" >}}

@@ -34,7 +34,7 @@ Mục tiêu không phải là xem AI nói chuyện có mượt hay không. Mục
 | Thay đổi lớn nhất | Chưa đánh giá | Chưa đánh giá | — | CHƯA ĐÁNH GIÁ |
 | Phân bổ theo tài khoản/Region | Chưa đánh giá | Chưa đánh giá | — | CHƯA ĐÁNH GIÁ |
 
-Dòng PASS được đối soát với dashboard dùng chung có nguồn Athena **tổng hợp (synthetic)**, không phải dữ liệu hóa đơn CUR thật. Đánh rớt (FAIL) ngay lập tức nếu AI: Đọc sai số, quên nhắc mốc thời gian, tự biên tự diễn nguyên nhân, hoặc xúi bậy người dùng đi xóa tài nguyên. Cho dù văn phong có trôi chảy mượt mà đến đâu mà số sai thì cũng vứt.
+Dòng PASS được đối soát với dashboard dùng chung có nguồn Athena **tổng hợp (synthetic)**, không phải dữ liệu hóa đơn CUR thật. Đánh giá FAIL nếu AI đọc sai số, bỏ quên kỳ hoặc metric, tự kết luận nguyên nhân, hay đề xuất thay đổi hạ tầng không có bằng chứng. Văn phong trôi chảy không bù được cho sai lệch số liệu.
 
 ## Hướng xử lý khi AI trả lời sai
 
@@ -42,17 +42,17 @@ Dòng PASS được đối soát với dashboard dùng chung có nguồn Athena 
 1. Đọc sai số
 → Kiểm tra lại xem AI có đang đọc đúng Dashboard không, có bị kẹt filter cũ không, hay do bản thân SPICE chưa refresh.
 
-2. Đọc đúng số, nhưng chém gió sai nguyên nhân
-→ Sửa lại System Prompt (Guardrails) để cấm AI đoán bừa, bắt buộc nó phải trích dẫn nguồn khi giải thích.
+2. Đọc đúng số, nhưng giải thích nguyên nhân không được chứng minh
+→ Siết guardrails: yêu cầu tách quan sát khỏi giả thuyết và dẫn nguồn khi giải thích.
 
-3. Xúi bậy đi sửa hệ thống
-→ Cắt ngay luồng tự động hóa (nếu có), yêu cầu phải có người thật (Human-in-the-loop) duyệt trước khi thực thi lệnh.
+3. Đề xuất thay đổi hệ thống không đúng thẩm quyền
+→ Chặn luồng tự động hóa (nếu có) và yêu cầu người phụ trách phê duyệt trước khi thực thi.
 ```
 
-Bạn chỉ cần chụp lại 1-2 câu hỏi/trả lời tiêu biểu làm bằng chứng nghiệm thu là đủ. Không cần rảnh rỗi đi chụp lại toàn bộ lịch sử chat.
+Chỉ cần lưu 1–2 câu hỏi/trả lời tiêu biểu làm bằng chứng nghiệm thu. Bảng đánh giá số liệu mới là nguồn quyết định PASS hoặc FAIL; không cần lưu toàn bộ lịch sử chat.
 
 {{< capture src="images/08-amazon-quick/08-01-grounded-finops-answer.png" alt="Câu trả lời Amazon Quick có grounding đúng trên dashboard CUDOS tổng hợp đã chọn" title="Câu trả lời Amazon Quick có grounding" capture="Ảnh hiển thị dashboard được chọn, câu hỏi, câu trả lời, kỳ July 2026, phạm vi ap-southeast-2, giá trị AmazonEC2 và sheet nguồn. Đây là bài test thành công trên nguồn Athena tổng hợp dùng chung." caption="Câu trả lời đã PASS: AmazonEC2 có $693.30 net unblended cost trong July 2026 tại ap-southeast-2. Bằng chứng là dữ liệu tổng hợp, không phải số hóa đơn CUR thật." >}}
 
 {{< finops title="Điểm rút ra về FinOps" >}}
-Chát chít với AI chỉ là phần ngọn cho vui vẻ dễ dùng, phần gốc rễ (nguồn dữ liệu tài chính chuẩn xác) mới là thứ quyết định thành bại của hệ thống.
+AI giúp người dùng tiếp cận dữ liệu nhanh hơn; nguồn dữ liệu tài chính có kiểm soát mới quyết định độ tin cậy của hệ thống.
 {{< /finops >}}
