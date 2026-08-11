@@ -4,6 +4,8 @@ chapter: false
 description: "An evidence-backed AWS FinOps implementation built on CUR 2.0, Athena, CUDOS v5, QuickSight, and governed automation."
 ---
 
+# AWS FinOps Intelligence with CUDOS v5
+
 This repository documents the business problem, architecture, implementation decisions, validation evidence, operating model, and remaining gaps as one traceable AWS FinOps project.
 
 ## How to read this project

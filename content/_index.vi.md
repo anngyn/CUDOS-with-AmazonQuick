@@ -4,6 +4,8 @@ chapter: false
 description: "Dự án AWS FinOps có dữ liệu đối soát thực tế, được xây dựng trên CUR 2.0, Athena, CUDOS v5, QuickSight và cơ chế tự động hóa có quản trị."
 ---
 
+# AWS FinOps Intelligence với CUDOS v5
+
 Kho lưu trữ này trình bày bài toán kinh doanh, kiến trúc, quyết định triển khai, bằng chứng xác thực, mô hình vận hành và các phần còn đang hoàn thiện như một dự án AWS FinOps có thể truy vết.
 
 ## Cách đọc dự án
