@@ -58,9 +58,11 @@ Rà soát bao quát:
 
 ## Kết quả audit cấu hình đã triển khai
 
-Audit CLI đã làm sạch tại `ap-southeast-2` xác nhận cả bucket Data Exports và Athena-results dùng mã hóa mặc định `AES256`, đồng thời bật đủ bốn lớp S3 Block Public Access. Athena workgroup `primary` ép cấu hình của nó và mã hóa kết quả query bằng `SSE_S3`.
+Live audit CLI đã làm sạch được chạy lại tại `ap-southeast-2` ngày 14/08/2026. Kết quả xác nhận cả bucket Data Exports và Athena-results dùng mã hóa mặc định `AES256`, đồng thời bật đủ bốn lớp S3 Block Public Access. Athena workgroup `primary` ép cấu hình của nó và mã hóa kết quả query bằng `SSE_S3`.
 
 Trust policy của `CidCmdQuickSightDataSourceRole` chỉ cho phép `quicksight.amazonaws.com`. Hai attached policy và một inline policy của role được rà soát đối với `ec2:TerminateInstances`, `rds:DeleteDBInstance` và `iam:CreateUser`; không có quyền nào khớp. Đây là kiểm tra có mục tiêu đối với các quyền làm thay đổi workload đã nêu, không phải chứng nhận toàn bộ mọi quyền IAM.
+
+[Tải biên bản access-governance máy có thể đọc](/data/audits/11-01-access-governance-audit.json)
 
 ## Lưu ý về Customer-managed KMS
 

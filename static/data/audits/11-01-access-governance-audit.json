@@ -1,0 +1,54 @@
+{
+  "snapshot_date": "2026-08-14",
+  "region": "ap-southeast-2",
+  "classification": "Live read-only AWS CLI audit; account IDs, ARNs, bucket names, role names, and principals redacted",
+  "scope": {
+    "s3": "Default encryption and all four Block Public Access controls for the Data Exports and Athena-results buckets",
+    "athena": "The primary workgroup enforcement and query-result encryption settings",
+    "quicksight_datasource_role": "Trust services, policy inventory, and targeted scan for three workload-changing actions",
+    "quicksight_assets": "Explicit permission entries for deployed dashboards and the FinOps Q&A Topic"
+  },
+  "s3": {
+    "data_exports": {
+      "default_encryption": "AES256",
+      "public_access_block_controls_enabled": 4
+    },
+    "athena_results": {
+      "default_encryption": "AES256",
+      "public_access_block_controls_enabled": 4
+    }
+  },
+  "athena_primary_workgroup": {
+    "enforce_workgroup_configuration": true,
+    "query_result_encryption": "SSE_S3"
+  },
+  "quicksight_datasource_role": {
+    "trusted_service": "quicksight.amazonaws.com",
+    "attached_policy_count": 2,
+    "inline_policy_count": 1,
+    "reviewed_workload_changing_actions": [
+      "ec2:TerminateInstances",
+      "rds:DeleteDBInstance",
+      "iam:CreateUser"
+    ],
+    "reviewed_action_matches": [],
+    "result": "PASS for reviewed actions"
+  },
+  "quicksight_dashboard_permissions": {
+    "dashboard_count": 5,
+    "explicit_principals_per_dashboard": 1,
+    "namespace_wide_share_detected": false,
+    "anonymous_or_public_principal_detected": false
+  },
+  "quicksight_topic_permissions": {
+    "topic_count": 1,
+    "explicit_principals_per_topic": 1,
+    "namespace_wide_share_detected": false,
+    "anonymous_or_public_principal_detected": false
+  },
+  "limitations": [
+    "The permission scan is a resource-level review of explicit QuickSight permissions; it is not an exhaustive review of every account-level sharing, embedding, IAM, or organization control.",
+    "The IAM policy scan is targeted to the three listed workload-changing actions and is not a blanket certification of every IAM action.",
+    "Business owners, approval dates, and the formal access-review record require organisational assignment and are not inferred from AWS identities."
+  ]
+}

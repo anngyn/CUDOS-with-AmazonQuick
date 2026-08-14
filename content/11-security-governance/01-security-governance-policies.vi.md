@@ -17,16 +17,21 @@ services:
 
 CUDOS giúp nhìn thấy chi phí, nhưng giá trị chỉ xuất hiện khi quyền truy cập, trách nhiệm và nhịp review được xác định rõ: ai xem, ai kiểm chứng và ai có quyền thay đổi workload.
 
-## Ma trận Phân quyền (Access Matrix)
+## Ma trận phân quyền: rà soát kỹ thuật trực tiếp
 
-| Tài sản | Principal đọc | Quản trị viên/chủ sở hữu | Chia sẻ công khai | Kết quả rà soát |
-|---|---|---|---|---|
-| Data Exports S3 |  |  | đã tắt | PASS/FAIL |
-| Glue/Athena |  |  | không áp dụng | PASS/FAIL |
-| CUDOS/Quick Sight |  |  | đã tắt | PASS/FAIL |
-| Quick Space/agent |  |  | đã tắt | PASS/FAIL |
+Bảng dưới đây là kết quả rà soát chỉ-đọc cấu hình và resource permission tại `ap-southeast-2` ngày 14/08/2026. Tên principal được chủ động không công bố.
 
-Ưu tiên cấp quyền qua IAM Role hoặc Group thay vì user trực tiếp; không ghi nhận session tạm thời trong ma trận này.
+| Tài sản | Quyền hoặc control quan sát được | Tín hiệu chia sẻ công khai đã rà soát | Kết quả |
+|---|---|---|---|
+| S3 Data Exports | `AES256`; bật đủ 4 control S3 Block Public Access | Bucket policy và ACL công khai bị chặn bởi các control này | PASS trong phạm vi rà soát |
+| S3 Athena results | `AES256`; bật đủ 4 control S3 Block Public Access | Bucket policy và ACL công khai bị chặn bởi các control này | PASS trong phạm vi rà soát |
+| Athena `primary` | Ép cấu hình workgroup; kết quả query dùng `SSE_S3` | Không thuộc phạm vi chia sẻ của QuickSight | PASS trong phạm vi rà soát |
+| Năm QuickSight dashboard đã triển khai | Mỗi dashboard có 1 principal tường minh | Không phát hiện principal namespace-wide, anonymous hoặc public-like trong `DashboardPermissions` | PASS cho resource permission đã rà soát |
+| Topic FinOps Q&A [Synthetic] | Có 1 principal tường minh | Không phát hiện principal namespace-wide, anonymous hoặc public-like trong `TopicPermissions` | PASS cho resource permission đã rà soát |
+
+Kết quả này không chứng nhận toàn bộ setting chia sẻ cấp account, embedding, IAM hay control cấp tổ chức. Nó chỉ chứng minh các tín hiệu resource-level đã nêu tại thời điểm audit.
+
+[Tải biên bản access-governance máy có thể đọc](/data/audits/11-01-access-governance-audit.json)
 
 ## Phân công Trách nhiệm (Ownership)
 
@@ -52,20 +57,20 @@ Hàng quý: Rà soát lại quyền truy cập (Access control) và dọn dẹp 
 
 Nhịp rà soát gắn với các sản phẩm bằng chứng: hồ sơ bất thường, backlog phát hiện, báo cáo phân bổ, phép đo khoản tiết kiệm và ma trận quyền truy cập.
 
-## Luật chơi chung
+## Quy tắc vận hành
 
-- Khi báo cáo số tiền, bắt buộc phải nói rõ: Báo cáo tháng mấy? Số đã chiết khấu chưa?
-- Đề xuất giảm chi phí phải có người chịu trách nhiệm verify tính khả thi.
-- Những chi phí chưa chia được cho team nào (Untagged/Unallocated) thì PHẢI BÊ RA ÁNH SÁNG, không được giấu đi.
-- AI (Amazon Q) chỉ được phép GỢI Ý, con người mới là người CHỐT thực thi.
-- KHÔNG MỞ Public Dashboard trừ khi có lệnh từ sếp.
-- Tách bạch rõ ràng giữa "Tiền dự kiến tiết kiệm" và "Tiền ĐÃ tiết kiệm được".
-- Đã chạy xong dự án, giữ lại cái gì thì phải ghi rõ AI LÀ NGƯỜI ÔM và khi nào review lại.
+- Mọi claim tài chính phải nêu rõ kỳ báo cáo, metric, phạm vi lọc và thời điểm refresh.
+- Mỗi đề xuất tối ưu hóa phải có chủ sở hữu và bước xác minh tính khả thi.
+- Chi phí chưa phân bổ phải được đo lường, không bị loại khỏi báo cáo.
+- Kết quả từ AI chỉ hỗ trợ điều tra; phê duyệt hành động vẫn do con người thực hiện.
+- Chỉ bật public sharing khi có quyết định được rà soát và ghi nhận rõ ràng.
+- Báo cáo tách biệt khoản tiết kiệm đề xuất với khoản tiết kiệm đã đo lường.
+- Mỗi tài nguyên được giữ lại phải có chủ sở hữu và ngày review tiếp theo.
 
 ## Trạng thái hiện tại của dự án
 
-Đã lên khung ma trận quyền và luật chơi. Các control S3, Athena và QuickSight datasource role đã được audit tại mục 11.2; vẫn chờ các team chốt principal sở hữu, ngày review và biên bản access review nghiệp vụ thực tế.
+Ranh giới kỹ thuật đã có bằng chứng từ live audit tại mục 11.1 và 11.2. Phần còn lại thuộc trách nhiệm nghiệp vụ: ghi nhận người sở hữu dữ liệu, dashboard, metric, workload và bảo mật; đặt ngày review tiếp theo; và lưu biên bản access review đã được phê duyệt. Các thông tin này không được suy đoán từ session AWS tạm thời.
 
 {{< finops title="Điểm rút ra về FinOps" >}}
-Quản trị FinOps là nghệ thuật bắt mọi người nhìn vào ví tiền và tự thấy xót, chứ không phải trao quyền cho team tài chính đi tắt server của team kỹ thuật.
+Quản trị FinOps biến khả năng quan sát chi phí thành quyết định có trách nhiệm, nhưng không trao cho nền tảng phân tích quyền thay đổi workload không cần thiết.
 {{< /finops >}}

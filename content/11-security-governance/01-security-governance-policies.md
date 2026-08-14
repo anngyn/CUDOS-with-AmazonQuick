@@ -17,16 +17,21 @@ services:
 
 The platform creates visibility, but visibility changes behavior only when access, ownership, review cadence, and decision authority are explicit.
 
-## Access matrix
+## Access matrix: live technical review
 
-| Asset | Read principals | Admin/owner | Public sharing | Review result |
-|---|---|---|---|---|
-| Data Exports S3 |  |  | disabled | PASS/FAIL |
-| Glue/Athena |  |  | n/a | PASS/FAIL |
-| CUDOS/Quick Sight |  |  | disabled | PASS/FAIL |
-| Quick Space/agent |  |  | disabled | PASS/FAIL |
+The following is a read-only configuration and resource-permission review run in `ap-southeast-2` on 14 August 2026. Principal names are intentionally not published.
 
-Role and group names are recorded; credentials and temporary sessions are not.
+| Asset | Observed access or control | Public-sharing signal reviewed | Result |
+|---|---|---|---|
+| Data Exports S3 | `AES256`; all four S3 Block Public Access controls enabled | S3 public bucket policies and ACL access are blocked by these controls | PASS for reviewed controls |
+| Athena-results S3 | `AES256`; all four S3 Block Public Access controls enabled | S3 public bucket policies and ACL access are blocked by these controls | PASS for reviewed controls |
+| Athena `primary` | Workgroup configuration enforced; query results use `SSE_S3` | Not applicable to a QuickSight sharing review | PASS for reviewed controls |
+| Five deployed QuickSight dashboards | One explicit principal per dashboard | No namespace-wide, anonymous, or public-like principal detected in `DashboardPermissions` | PASS for resource permissions reviewed |
+| FinOps Q&A Topic [Synthetic] | One explicit principal | No namespace-wide, anonymous, or public-like principal detected in `TopicPermissions` | PASS for resource permissions reviewed |
+
+This does not certify every account-level sharing, embedding, IAM, or organisation control. It proves the listed resource-level signals at the recorded time.
+
+[Download the machine-readable access-governance audit](/data/audits/11-01-access-governance-audit.json)
 
 ## Ownership model
 
@@ -64,7 +69,7 @@ The cadence is tied to artifacts: anomaly record, finding backlog, allocation re
 
 ## Current project status
 
-The operating model and matrix are defined. The deployed S3, Athena, and QuickSight datasource-role controls have been audited in section 11.2; real principal ownership, review dates, and a completed business access-review record remain to be populated.
+The technical boundary is evidenced by the live audit in sections 11.1 and 11.2. The remaining governance work is business-owned: record the named data, dashboard, metric, workload, and security owners; set the next review date; and retain the signed access-review record. These assignments are deliberately not inferred from a temporary AWS session.
 
 {{< finops title="FinOps Takeaway" >}}
 Governance turns cost visibility into accountable decisions without giving the analytical platform unnecessary workload authority.

@@ -58,9 +58,11 @@ The review covers:
 
 ## Deployed audit result
 
-A sanitized live CLI audit in `ap-southeast-2` confirmed that both the Data Exports and Athena-results buckets use `AES256` default encryption and have all four S3 Block Public Access controls enabled. The `primary` Athena workgroup enforces its configuration and encrypts query results with `SSE_S3`.
+A sanitized live CLI audit rerun in `ap-southeast-2` on 14 August 2026 confirmed that both the Data Exports and Athena-results buckets use `AES256` default encryption and have all four S3 Block Public Access controls enabled. The `primary` Athena workgroup enforces its configuration and encrypts query results with `SSE_S3`.
 
 The `CidCmdQuickSightDataSourceRole` trust policy permits `quicksight.amazonaws.com`. Its two attached policies and one inline policy were checked for `ec2:TerminateInstances`, `rds:DeleteDBInstance`, and `iam:CreateUser`; none matched. This is a targeted review of the listed workload-changing actions, not a blanket certification of every possible IAM permission.
+
+[Download the machine-readable access-governance audit](/data/audits/11-01-access-governance-audit.json)
 
 ## KMS decision
 
